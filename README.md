@@ -177,6 +177,9 @@ LOG:  could not send data to client: Broken pipe
 STATEMENT:  COPY planet_osm_rels FROM STDIN;
 
 ```
+Il semblerait que cette erreur soit connue, et due à un timeout: le télchargement des données est trop long. Il est trop long parce que les données sont de très gros volume, et non parce qu'il y a un problème réseau.
+
+
 # Melbourne map
 
 Provides a configuration to launch your own retina ready map renderer.
