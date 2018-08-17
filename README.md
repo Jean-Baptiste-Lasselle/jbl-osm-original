@@ -1,3 +1,36 @@
+# Dernière erreur
+
+Des fichiers atendus par le build de l'image Docker du nginx, manquent:
+
+```baash
+ ---> Running in 04ffb3903a00
+Cloning into 'openstreetmap-carto'...
+Removing intermediate container 04ffb3903a00
+ ---> 9ffe2f0eff0e
+Step 6/17 : WORKDIR /openstreetmap-carto
+ ---> Running in ee0df701002c
+Removing intermediate container ee0df701002c
+ ---> 2c19f3f15635
+Step 7/17 : ADD shapes/ data/
+ ---> 7982dc512e18
+Step 8/17 : RUN shapeindex --shape_files     data/simplified-water-polygons-complete-3857/simplified_water_polygons.shp     data/water-polygons-split-3857/water_polygons.shp     data/antarctica-icesheet-polygons-3857/icesheet_polygons.shp     data/antarctica-icesheet-outlines-3857/icesheet_outlines.shp     data/ne_110m_admin_0_boundary_lines_land/ne_110m_admin_0_boundary_lines_land.shp
+ ---> Running in a07f0367421f
+max tree depth:8
+split ratio:0.55
+processing data/simplified-water-polygons-complete-3857/simplified_water_polygons.shp
+error : file data/simplified-water-polygons-complete-3857/simplified_water_polygons.shp does not exist
+processing data/water-polygons-split-3857/water_polygons.shp
+error : file data/water-polygons-split-3857/water_polygons.shp does not exist
+processing data/antarctica-icesheet-polygons-3857/icesheet_polygons.shp
+error : file data/antarctica-icesheet-polygons-3857/icesheet_polygons.shp does not exist
+processing data/antarctica-icesheet-outlines-3857/icesheet_outlines.shp
+error : file data/antarctica-icesheet-outlines-3857/icesheet_outlines.shp does not exist
+processing data/ne_110m_admin_0_boundary_lines_land/ne_110m_admin_0_boundary_lines_land.shp
+error : file data/ne_110m_admin_0_boundary_lines_land/ne_110m_admin_0_boundary_lines_land.shp does not exist
+done!
+Removing intermediate container a07f0367421f
+```
+
 # Melbourne map
 
 Provides a configuration to launch your own retina ready map renderer.
