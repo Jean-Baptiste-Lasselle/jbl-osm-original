@@ -8,14 +8,14 @@ sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/
 chmod +x *.sh 
 ./download.sh && docker-compose down --rmi all 
 docker system prune -f 
-docker-compose up -d --rebuild && docker ps -a
+docker-compose up -d --build && docker ps -a
 ```
 
 
 Commande idempotente en une seule ligne:
 
 ```bash
-mkdir -p coquelicot && cd coquelicot && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/ && chmod +x *.sh && ./download.sh && docker-compose down --rmi all && docker system prune -f && docker-compose up -d --rebuild && docker ps -a
+mkdir -p coquelicot && cd coquelicot && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/ && chmod +x *.sh && ./download.sh && docker-compose down --rmi all && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
 
 # Dernière erreur
