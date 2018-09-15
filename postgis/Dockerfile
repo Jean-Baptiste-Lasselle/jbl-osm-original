@@ -9,7 +9,7 @@ RUN apt-get update && \
 
 RUN git clone https://github.com/dooman87/openstreetmap-carto.git && \
     wget https://download.geofabrik.de/australia-oceania-latest.osm.pbf
-    wget https://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
+    # wget https://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
     # link [https://s3.amazonaws.com/metro-extracts.mapzen.com/melbourne_australia.osm.pbf] has restricted access
 # wget https://s3.amazonaws.com/metro-extracts.mapzen.com/melbourne_australia.osm.pbf
 
