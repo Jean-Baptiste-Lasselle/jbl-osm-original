@@ -27,7 +27,7 @@ sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/  && docker-compose down --r
 
 Des fichiers atendus par le build de l'image Docker du nginx, manquent:
 
-```baash
+```bash
  ---> Running in 04ffb3903a00
 Cloning into 'openstreetmap-carto'...
 Removing intermediate container 04ffb3903a00
