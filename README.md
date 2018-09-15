@@ -18,6 +18,12 @@ Commande idempotente en une seule ligne:
 mkdir -p coquelicot && cd coquelicot && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/ && chmod +x *.sh && ./download.sh && docker-compose down --rmi all && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
 
+### Tout détruire 
+
+```bash
+sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/  && docker-compose down --rmi all && docker system prune -f
+```
+
 # Dernière erreur
 
 Des fichiers atendus par le build de l'image Docker du nginx, manquent:
