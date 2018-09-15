@@ -22,6 +22,9 @@ docker-compose down --rmi all && sudo rm -rf ./data && sudo rm -rf ./renderer/sh
 ```bash
 sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/  && docker-compose down --rmi all && docker system prune -f
 ```
+### Source infos sympas
+
+https://www.flocondetoile.fr/blog/switch-google-maps-leaflet-and-openstreetmap-geolocation-drupal-8
 
 # Dernière erreur
 
