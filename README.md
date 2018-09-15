@@ -27,7 +27,7 @@ sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/  && docker-compose down --r
 https://www.flocondetoile.fr/blog/switch-google-maps-leaflet-and-openstreetmap-geolocation-drupal-8
 https://github.com/tilemill-project/tilemill
 https://github.com/kosmtik/kosmtik  (oui c'est celui-là)
-
+meileur https://github.com/jimmyrocks/osm-tiles-mapnik
 # Dernière erreur
 
 Des fichiers atendus par le build de l'image Docker du nginx, manquent:
