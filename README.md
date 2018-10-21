@@ -8,6 +8,7 @@ selon la doc d'openstreetmap, je dois exécuter aussi :
 ```bash
 ./get-shapefiles.sh
 ```
+dans ./renderer/Dockerfile
 
 # Utilisation
 
