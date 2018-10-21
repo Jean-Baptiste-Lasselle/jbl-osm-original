@@ -41,6 +41,38 @@ meileur https://github.com/jimmyrocks/osm-tiles-mapnik
 
 Je n'ai rien d'affiché sur la carte,même si j'essaie de déplacer le curseur, ou is je zoom / dé-zoom...
 
+
+# Alors ça ss'est marrant dans un README.md
+
+Vous n'avez rien remarqué? Mais si regardez bien (Where is [charlie](https://shinesolutions.com/2016/12/30/generating-high-res-maps-with-mapnik-and-docker/)? Look closer at the picture. closer, you're almost there) :
+
+* Dans le `README.md` du gars, je cite (quoting [this guy's `./README.md`](ccc) ) :
+
+> It will take a while for a first start (up to 10 mins) because of DB import.
+
+(Okay)
+
+> You will know that renderer is ready to use when see logs like this:
+```
+postgis_1   | LOG:  autovacuum launcher started
+renderer_1  | Starting renderer
+renderer_1  | 2016/12/27 23:34:30 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9080
+renderer_1  | 2016/12/27 23:34:30 app.go:267: [INFO] Serving monitoring xml data on %s... :9080
+renderer_1  | 2016/12/27 23:34:30 renderselector.go:209: [DEBUG] ping error %v dial tcp 127.0.0.1:8090: getsockopt: connection refused
+renderer_1  | 2016/12/27 23:34:30 renderselector.go:117: [DEBUG] '%v' is %v localhost:8090 Offline
+renderer_1  | 2016/12/27 23:34:30 main.go:118: [INFO] Starting on %s... :8080
+renderer_1  | 2016/12/27 23:34:30 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9090
+renderer_1  | 2016/12/27 23:34:30 app.go:267: [INFO] Serving monitoring xml data on %s... :9090
+renderer_1  | 2016/12/27 23:34:35 main.go:95: [INFO] Done in %v seconds 4.84147165
+renderer_1  | 2016/12/27 23:34:35 main.go:103: [INFO] Starting on %s... :8090
+```
+
+Heum.. Heu hey guy, when you read `error [...] connection refused` in a software's logs (you know it's different from yuour users' shell's STDOUT, but nevermind), it acually means that there has been a problem, man, not that _everything 's okay, and the softxwware is ready to use_
+
+
+
+
+
 # Melbourne map
 
 Provides a configuration to launch your own retina ready map renderer.
