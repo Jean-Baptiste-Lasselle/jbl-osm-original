@@ -83,7 +83,7 @@ Maybe next week I'l end up thanking that guy for everything not working, and the
  
 Okay, so let's just switch the oh my god part, and move on todaddys work: Getting what that guy in no way near from getting, i.e. a working renderer service with true scalability
  
-### Daddy does BDD/TDDD
+### Daddy does BDD/TDD
 
 Daddy will follow network path, just like this old bed story, "le petit poucet".
 So tests, first.
