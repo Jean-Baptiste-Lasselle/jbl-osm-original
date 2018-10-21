@@ -1,12 +1,16 @@
-version: '2'
+version: '3'
 services:
   postgis:
+    container_name: 'postgis'
     build: ./postgis
     volumes:
       - ./data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=gis
+    networks:
+      - devops
   renderer:
+    container_name: 'rendereurpoulet'
     build: ./renderer
     volumes:
       - ./renderer/map_data:/map_data
@@ -18,9 +22,24 @@ services:
       - "9090:9090"
     depends_on:
       - postgis
+    networks:
+      - devops
   web:
     image: nginx:1.11-alpine
     volumes:
       - ./web:/usr/share/nginx/html
     ports:
-      - "8888:80"
+      - "8888:8080"
+    networks:
+      - devops
+
+networks:
+  devops:
+    # name: 'reseau-devops'
+    driver: bridge
+#     external: true 
+#     ipam:
+#       config:
+#         - subnet: 192.168.160.0/24
+#         - gateway: 192.168.160.1
+#         # - gateway: 172.16.1.1
