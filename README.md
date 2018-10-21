@@ -1,3 +1,57 @@
+# TODO du mataîng
+
+```bash
+[jibl@pc-100 carto-proto]$ docker ps -a
+CONTAINER ID        IMAGE                                 COMMAND                  CREATED             STATUS                   PORTS                                                                          NAMES
+54e70ebd507f        carto-proto_renderer                  "/bin/sh -c /entrypo…"   5 minutes ago       Up 5 minutes             0.0.0.0:8080->8080/tcp, 0.0.0.0:9090->9090/tcp                                 carto-proto_renderer_1
+129238ac7339        carto-proto_postgis                   "docker-entrypoint.s…"   5 minutes ago       Up 5 minutes             5432/tcp                                                                       carto-proto_postgis_1
+c865a16da75a        nginx:1.11-alpine                     "nginx -g 'daemon of…"   5 minutes ago       Up 5 minutes             443/tcp, 0.0.0.0:8888->80/tcp                                                  carto-proto_web_1
+[jibl@pc-100 carto-proto]$ more web/index.html 
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+	<style type="text/css">
+		html, body, #map {
+			width: 100%;
+			height: 100%;
+			margin: 0 !important;
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+<div id="map"></div>
+</body>
+
+<script type="text/javascript">
+
+	var map = L.map('map').setView([-37.8130, 144.9484], 14);
+	L.tileLayer('http://localhost:8080/{z}/{x}/{y}.png', {
+		attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licens
+es/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+		maxZoom: 18
+	}).addTo(map);
+</script>
+</html>
+[jibl@pc-100 carto-proto]$ 
+
+```
+
+And that, below, is leaflet code that i know of: (ah ben voilà, quoi)
+
+```javascript
+	var map = L.map('map').setView([-37.8130, 144.9484], 14);
+	L.tileLayer('http://localhost:8080/{z}/{x}/{y}.png', {
+		attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licens
+es/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+		maxZoom: 18
+	}).addTo(map);
+```
+
 # Utilisation
 
 ```bash
