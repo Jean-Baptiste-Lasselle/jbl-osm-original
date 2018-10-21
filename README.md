@@ -271,6 +271,16 @@ psql: FATAL:  role "postgis" does not exist
 Indeed, `FATAL:  role "postgis" does not exist` means postgresql DID answer: a NO answer, IS, an answer (aka I don't know what's the valid user in use by renderer, and I don't care about that question, I care about renderer being able to talk to postgis).
 SO you can reach postgis container from renderer container.
 
+But Daddy always cares (cf. `./docker-compose.yml` , see ` - POSTGRES_DB=gis` + `postgis/initdb-postgis.sh` , see `# Perform all actions as $POSTGRES_USER`) : 
+test
+```bash
+docker exec -it rendereurpoulet sh -c "psql -U gis -h postgis -p 5432"
+```
+result : 
+```bash
+docker exec -it rendereurpoulet sh -c "psql -U gis -h postgis -p 5432"
+```
+
 * Question : What does the well konwn `pg_isready` say, on its behalf?
 test
 test : 
@@ -287,7 +297,7 @@ result (everything 's fine) :
 ```
 
 
-Alright, now daddy has a better overview:
+**Alright, now daddy has a better overview**
 * A, everything is up n running on the software level (all apps up n running)
 * B, network is end-toend tested, and everything just neat
 * C, now that Daddy thinks about it, Daddy remembers he tried to compute Australia all night long with mom threatening to throw alienware out, and Daddy found there has been a [problem during Australia's *.PBF files processing](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/3) : could it be that, which explains why Daddy has no tiles displaying on his leaflet map?
@@ -295,7 +305,17 @@ Alright, now daddy has a better overview:
 So daddy is going to spin up an import / process cycle automation, which he will then, be able to TDD / BDD test :
 Daddy knows how to test a sofware, so If Daddys boss ask Daddy to test something, Daddy turns that thing into a software, (infrastructure as code), and suddenly boum, daddy can test the thing for boss with all those good old and well-sharped testing methods and tools.
 
-We're almost there, my young apprentice. Be patient. Do not under-assess the power of the force in universe.
+We're almost there, my young apprentice. Be patient. Do not under-assess the power of the force in universe : 
+
+Okay, Australia is big, but lets try the import again ?
+
+```bash
+export DADDYS_HOME=daddys-pbf-imports-tests
+mkdir $DADDYS_HOME
+cd $DADDYS_HOME
+wget https://s3.amazonaws.com/metro-extracts.mapzen.com/melbourne_australia.osm.pbf
+
+```
 
 # Melbourne map
 
