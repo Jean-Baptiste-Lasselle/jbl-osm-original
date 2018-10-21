@@ -10,3 +10,10 @@ I included this page in this repo as `./JOSM-developer-page.pdf`
 Source code of JOSM is here (Oh My SVN ! ::o: )
 
 https://josm.openstreetmap.de/browser/josm/trunk
+
+
+### Dads' automation for batch-importing JOSM source code in his infrastructure at home
+
+```bash
+git clone --bare "https://github.com/openstreetmap/josm"
+```
