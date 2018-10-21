@@ -284,6 +284,18 @@ Okay daddy, but wtf ..? Well Boy, as [mentionned in its docuemntation](), this b
 
 And guess what? there's no `POSTGRES_USER` mention in the `./docker-compose.yml`.
 Okay go fix that, dad.
+K done, so now test is (successful) :
+
+```bahs
+[jibl@pc-100 carto-proto]$ docker exec -it rendereurpoulet sh -c "psql -d gis -U renderer-user -h postgis -p 5432"
+psql (9.3.24, server 9.5.14)
+WARNING: psql major version 9.3, server major version 9.5.
+         Some psql features might not work.
+Type "help" for help.
+
+gis=# 
+
+```
 
 
 
