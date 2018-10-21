@@ -4,7 +4,7 @@ services:
     container_name: 'postgis'
     build: ./postgis
     volumes:
-      - geodata-volume:./data:/var/lib/postgresql/data
+      - geodata-volume:/var/lib/postgresql/data
     volumes:
       - ./data:/var/lib/postgresql/data
     environment:
