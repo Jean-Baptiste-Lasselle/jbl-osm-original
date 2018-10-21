@@ -155,14 +155,21 @@ round-trip min/avg/max = 0.131/0.222/0.293 ms
 ```
 
 * Question: is `index.html` in nginx container accessible from outside the container, via `http://$NET_HOST_NAME:80/`, where `NET_HOST_NAME`is the IP address or a domain name associated with the docker host (the machine you installed docker on, Michael) ?
-test : 
+test (because default listen port in nginx is 80, and given the mapped volume in `./docker-compose.yml`, for `web` service based on nginx/alpine image, we expect nginx to serve ./index.html on 80   : 
 ```bash
-docker exec -it carto-proto_web_1 sh -c "curl http://localhost/"
+curl http://localhost:80/
 ```
 result is no : 
 ```bash
-# 
+[jibl@pc-100 carto-proto]$ curl http://localhost:80/
+curl: (7) Failed connect to localhost:80; Connection refused
+[jibl@pc-100 carto-proto]$ 
+
 ```
+
+fix idea 1 : map any port number `XXXX` to port 80 inside nginx container,insted of 8888 to 8080
+
+
 
 # Melbourne map
 
