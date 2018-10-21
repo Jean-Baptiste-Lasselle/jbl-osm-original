@@ -1,6 +1,13 @@
 
 ![I love you  I miss you V.](https://www.youtube.com/watch?v=god7hAPv8f0)
 
+# TODO du mataîng
+
+selon la doc d'openstreetmap, je dois exécuter aussi : 
+
+```bash
+./get-shapefiles.sh
+```
 
 # Utilisation
 
