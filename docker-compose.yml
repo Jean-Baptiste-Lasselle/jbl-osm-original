@@ -4,6 +4,8 @@ services:
     container_name: 'postgis'
     build: ./postgis
     volumes:
+      - geodata-volume
+    volumes:
       - ./data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=gis
@@ -15,8 +17,10 @@ services:
     volumes:
       - ./renderer/map_data:/map_data
       - ./renderer/scripts:/scripts
-    volumes_from:
-      - postgis:ro
+      # instead of deprecated 'volumes_from' directive
+      - geodata-volume:ro
+#     volumes_from:
+#       - postgis:ro
     ports:
       - "8080:8080"
       - "9090:9090"
@@ -43,3 +47,8 @@ networks:
 #         - subnet: 192.168.160.0/24
 #         - gateway: 192.168.160.1
 #         # - gateway: 172.16.1.1
+# - 
+# + NAMED VOLUMES 
+# - 
+volumes:
+     geodata-volume: ./data:/var/lib/postgresql/data
