@@ -85,7 +85,7 @@ Okay, so let's just switch the oh my god part, and move on todaddys work: Gettin
  
 ### Daddy does BDD/TDDD
 
-Daddy will follow network path, just like this old bed story.
+Daddy will follow network path, just like this old bed story, "le petit poucet".
 So tests, first.
 * Question: is `index.html` in nginx container accessible from inside the container, via localhost?
 test : 
