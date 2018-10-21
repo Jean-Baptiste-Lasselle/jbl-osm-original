@@ -287,10 +287,10 @@ result (everything 's fine) :
 ```
 
 
-Alright, now daady has a better overview:
+Alright, now daddy has a better overview:
 * A, everything is up n running on the software level (all apps up n running)
 * B, network is end-toend tested, and everything just neat
-* C, Daddy tried to compute Australia all night long with mom threatening to throw alienware out, and Daddy found there has been a [problem during Australia's *.PBF files processing](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/3)
+* C, now that Daddy thinks about it, Daddy remembers he tried to compute Australia all night long with mom threatening to throw alienware out, and Daddy found there has been a [problem during Australia's *.PBF files processing](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/3) : could it be that, which explains why Daddy has no tiles displaying on his leaflet map?
 
 So daddy is going to spin up an import / process cycle automation, which he will then, be able to TDD / BDD test :
 Daddy knows how to test a sofware, so If Daddys boss ask Daddy to test something, Daddy turns that thing into a software, (infrastructure as code), and suddenly boum, daddy can test the thing for boss with all those good old and well-sharped testing methods and tools.
