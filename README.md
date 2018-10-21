@@ -46,7 +46,7 @@ Je n'ai rien d'affiché sur la carte,même si j'essaie de déplacer le curseur, 
 
 Vous n'avez rien remarqué? Mais si regardez bien (Where is [charlie](https://shinesolutions.com/2016/12/30/generating-high-res-maps-with-mapnik-and-docker/)? Look closer at the picture. closer, you're almost there) :
 
-* Dans le `README.md` du gars, je cite (quoting [this guy's `./README.md`](ccc) ) :
+* Dans le `README.md` du gars, je cite (quoting [this guy's `./README.md`](https://github.com/dooman87/melbourne-map) :
 
 > It will take a while for a first start (up to 10 mins) because of DB import.
 
@@ -67,9 +67,19 @@ renderer_1  | 2016/12/27 23:34:35 main.go:95: [INFO] Done in %v seconds 4.841471
 renderer_1  | 2016/12/27 23:34:35 main.go:103: [INFO] Starting on %s... :8090
 ```
 
-Heum.. Heu hey guy, when you read `error [...] connection refused` in a software's logs (you know it's different from yuour users' shell's STDOUT, but nevermind), it acually means that there has been a problem, man, not that _everything 's okay, and the softxwware is ready to use_
+Heum.. Heu hey guy, when you read `error [...] connection refused` in a software's logs (you know it's different from yuour users' shell's STDOUT, but nevermind), it acually means that there has been a problem, man, not that _everything 's okay, and the softwware is ready to use_
 
 
+Maybe next week I'l end up thanking that guy for everything not working, and the only feature he was pushing forward
+ [in his article (clustering an OSM rendrer)](https://shinesolutions.com/2016/12/30/generating-high-res-maps-with-mapnik-and-docker/) will turn to just bring me a prooof taht this guys was comppletely lying on that article, just to get job interviews with people who don't understand tehcniques, or selling low cost "website" to small buisness comppanies (poor them, and no, that guy wouldn't pass any interview in any company that's got a devops inside).
+ Oh, sorry,it's a French stupid company (we have a big corruption problem in France, making the business, a little pointless here, and which is why I don'nt work in France) , let me give a piece of help to a yougn nice guy from France, before I get into Dad gets to repair your mess on sunday :
+ ![Mikael Leroy (screencshot commentaire "very informative")](cccc)
+ _Michael, If you want an IT job in any out of france company, please, prepare explaining what is really very informative your former company's blog. If that was your Boss from "shine solution" who forced you posting that comment, then get ready to explain what was acutally wrong here . That repo will help you with that. And next timpe, tell your boss to comment with his name, not yours_
+ 
+ Okay, so let's just switch the oh my god part, and move ontothe next:
+ 
+Getting what that guy in no way near from getting, i.e. a working renderer service with true scalability
+ 
 
 
 
