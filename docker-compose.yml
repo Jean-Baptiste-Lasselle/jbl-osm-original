@@ -18,7 +18,7 @@ services:
       - ./renderer/map_data:/map_data
       - ./renderer/scripts:/scripts
       # instead of deprecated 'volumes_from' directive with read-only option
-      - geodata-volume:./data:/var/lib/postgresql/data:ro
+      - geodata-volume:/var/lib/postgresql/data:ro
 #     volumes_from:
 #       - postgis:ro
     ports:
