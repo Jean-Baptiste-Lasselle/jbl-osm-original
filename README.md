@@ -274,13 +274,18 @@ SO you can reach postgis container from renderer container.
 But Daddy always cares (cf. `./docker-compose.yml` , see ` - POSTGRES_DB=gis` + `postgis/initdb-postgis.sh` , see `# Perform all actions as $POSTGRES_USER`) : 
 test
 ```bash
-export POSTGRES_USER=???
+export POSTGRES_USER=???but... wait ....daddy's thinking... No???!!! t
 docker exec -it rendereurpoulet sh -c "psql -U $POSTGRES_USER -h postgis -p 5432"
 ```
 result : 
-```bash
-docker exec -it rendereurpoulet sh -c "psql -U gis -h postgis -p 5432"
-```
+Daddy checked all files, and it appears that postgis image is based on [this base docker image](https://hub.docker.com/r/mdillon/postgis/).
+
+Okay daddy, but wtf ..? Well Boy, as [mentionned in its docuemntation](), this base image expects you to set an environment variable, namely `POSTGRES_USER`, when you run a container instance. And the valeu you set, will be the name of the postgis user the `osm2pgsql` executable is gonna use (cf. your own coment in `postgis/initdb-postgis.sh` : `# Perform all actions as $POSTGRES_USER`).
+
+And guess what? there's no `POSTGRES_USER` mention in the `./docker-compose.yml`.
+Okay go fix that, dad.
+
+
 
 * Question : What does the well konwn `pg_isready` say, on its behalf?
 test
