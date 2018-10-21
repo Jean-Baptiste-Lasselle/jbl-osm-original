@@ -44,7 +44,7 @@ meileur https://github.com/jimmyrocks/osm-tiles-mapnik
 Je n'ai rien d'affiché sur la carte,même si j'essaie de déplacer le curseur, ou is je zoom / dé-zoom...
 
 
-# Alors ça ss'est marrant dans un README.md
+# Alors ça s'est marrant dans un README.md
 
 Vous n'avez rien remarqué? Mais si regardez bien (Where is [charlie](https://shinesolutions.com/2016/12/30/generating-high-res-maps-with-mapnik-and-docker/)? Look closer at the picture. closer, you're almost there) :
 
