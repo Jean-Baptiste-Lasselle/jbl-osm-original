@@ -274,7 +274,8 @@ SO you can reach postgis container from renderer container.
 But Daddy always cares (cf. `./docker-compose.yml` , see ` - POSTGRES_DB=gis` + `postgis/initdb-postgis.sh` , see `# Perform all actions as $POSTGRES_USER`) : 
 test
 ```bash
-docker exec -it rendereurpoulet sh -c "psql -U gis -h postgis -p 5432"
+export POSTGRES_USER=???
+docker exec -it rendereurpoulet sh -c "psql -U $POSTGRES_USER -h postgis -p 5432"
 ```
 result : 
 ```bash
