@@ -90,6 +90,7 @@ So tests, first.
 * Question: is `index.html` in nginx container accessible from inside the container, via localhost?
 test : 
 ```bash
+docker exec -it carto-proto_web_1 sh -c "apk update -y && apk add net-tools curl"
 docker exec -it carto-proto_web_1 sh -c "curl http://localhost/"
 ```
 result is yes : 
@@ -170,8 +171,131 @@ curl: (7) Failed connect to localhost:80; Connection refused
 
 fix  : map any port number `XXXX` to port 80 inside nginx container, instead of 8888 to 8080
 
-* Question: 
-  * `./DDD` 
+* Question: Is it possible to reach `renderer` container from within the `web` container ?
+
+test : 
+```bash
+docker exec -it rendereurpoulet sh -c "apk update -y && apk add apt-utils net-tools curl"
+docker exec -it carto-proto_web_1 sh -c "curl http://rendereurpoulet:8080/"
+```
+
+test (using a postgis client to test DAtabase connexion, not an http protocol) : 
+```bash
+# https://wiki.debian.org/PostgreSql
+
+docker exec -it rendereurpoulet sh -c "apt-get update -y && apt-get install -y apt-utils net-tools curl"
+docker exec -it rendereurpoulet sh -c "apt-get update -y && apt-get install -y postgresql-client"
+docker exec -it rendereurpoulet sh -c "apt-get install -y postgresql-client"
+
+# docker exec -it rendereurpoulet sh -c "curl http://carto-proto_postgis:5432/"
+```
+result, answer is yes : 
+
+```bash
+[jibl@pc-100 carto-proto]$ docker exec -it rendereurpoulet sh -c "apt-get update -y && apt-get install -y postgresql-client"
+Ign http://archive.ubuntu.com trusty InRelease
+Get:1 http://archive.ubuntu.com trusty-updates InRelease [65.9 kB]
+Get:2 http://archive.ubuntu.com trusty-security InRelease [65.9 kB]
+Get:3 http://archive.ubuntu.com trusty Release.gpg [933 B]
+Get:4 http://archive.ubuntu.com trusty Release [58.5 kB]
+Get:5 http://archive.ubuntu.com trusty-updates/main Sources [524 kB]
+Get:6 http://archive.ubuntu.com trusty-updates/restricted Sources [6449 B]
+Get:7 http://archive.ubuntu.com trusty-updates/universe Sources [268 kB]
+Get:8 http://archive.ubuntu.com trusty-updates/main amd64 Packages [1387 kB]
+Get:9 http://archive.ubuntu.com trusty-updates/restricted amd64 Packages [21.4 kB]
+Get:10 http://archive.ubuntu.com trusty-updates/universe amd64 Packages [634 kB]
+Get:11 http://archive.ubuntu.com trusty-security/main Sources [212 kB]
+Get:12 http://archive.ubuntu.com trusty-security/restricted Sources [5050 B]
+Get:13 http://archive.ubuntu.com trusty-security/universe Sources [104 kB]
+Get:14 http://archive.ubuntu.com trusty-security/main amd64 Packages [967 kB]
+Get:15 http://archive.ubuntu.com trusty-security/restricted amd64 Packages [18.1 kB]
+Get:16 http://archive.ubuntu.com trusty-security/universe amd64 Packages [338 kB]
+Get:17 http://archive.ubuntu.com trusty/main Sources [1335 kB]
+Get:18 http://archive.ubuntu.com trusty/restricted Sources [5335 B]
+Get:19 http://archive.ubuntu.com trusty/universe Sources [7926 kB]
+Get:20 http://archive.ubuntu.com trusty/main amd64 Packages [1743 kB]
+Get:21 http://archive.ubuntu.com trusty/restricted amd64 Packages [16.0 kB]
+Get:22 http://archive.ubuntu.com trusty/universe amd64 Packages [7589 kB]
+Fetched 23.3 MB in 5s (4187 kB/s)                        
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following extra packages will be installed:
+  libpq-dev libpq5 postgresql-client-9.3 postgresql-client-common
+Suggested packages:
+  postgresql-doc-9.3 postgresql-9.3
+The following NEW packages will be installed:
+  postgresql-client postgresql-client-9.3 postgresql-client-common
+The following packages will be upgraded:
+  libpq-dev libpq5
+2 upgraded, 3 newly installed, 0 to remove and 174 not upgraded.
+Need to get 1047 kB of archives.
+After this operation, 3224 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libpq-dev amd64 9.3.24-0ubuntu0.14.04 [140 kB]
+Get:2 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libpq5 amd64 9.3.24-0ubuntu0.14.04 [78.5 kB]
+Get:3 http://archive.ubuntu.com/ubuntu/ trusty-updates/main postgresql-client-common all 154ubuntu1.1 [25.4 kB]
+Get:4 http://archive.ubuntu.com/ubuntu/ trusty-updates/main postgresql-client-9.3 amd64 9.3.24-0ubuntu0.14.04 [797 kB]
+Get:5 http://archive.ubuntu.com/ubuntu/ trusty-updates/main postgresql-client all 9.3+154ubuntu1.1 [5048 B]
+Fetched 1047 kB in 0s (7013 kB/s)            
+(Reading database ... 40968 files and directories currently installed.)
+Preparing to unpack .../libpq-dev_9.3.24-0ubuntu0.14.04_amd64.deb ...
+Unpacking libpq-dev (9.3.24-0ubuntu0.14.04) over (9.3.15-0ubuntu0.14.04) ...
+Preparing to unpack .../libpq5_9.3.24-0ubuntu0.14.04_amd64.deb ...
+Unpacking libpq5 (9.3.24-0ubuntu0.14.04) over (9.3.15-0ubuntu0.14.04) ...
+Selecting previously unselected package postgresql-client-common.
+Preparing to unpack .../postgresql-client-common_154ubuntu1.1_all.deb ...
+Unpacking postgresql-client-common (154ubuntu1.1) ...
+Selecting previously unselected package postgresql-client-9.3.
+Preparing to unpack .../postgresql-client-9.3_9.3.24-0ubuntu0.14.04_amd64.deb ...
+Unpacking postgresql-client-9.3 (9.3.24-0ubuntu0.14.04) ...
+Selecting previously unselected package postgresql-client.
+Preparing to unpack .../postgresql-client_9.3+154ubuntu1.1_all.deb ...
+Unpacking postgresql-client (9.3+154ubuntu1.1) ...
+Setting up libpq5 (9.3.24-0ubuntu0.14.04) ...
+Setting up libpq-dev (9.3.24-0ubuntu0.14.04) ...
+Setting up postgresql-client-common (154ubuntu1.1) ...
+Setting up postgresql-client-9.3 (9.3.24-0ubuntu0.14.04) ...
+update-alternatives: using /usr/share/postgresql/9.3/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
+Setting up postgresql-client (9.3+154ubuntu1.1) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.9) ...
+[jibl@pc-100 carto-proto]$ docker exec -it rendereurpoulet sh -c "psql -h postgis -p 5432"
+psql: FATAL:  role "root" does not exist
+[jibl@pc-100 carto-proto]$ docker exec -it rendereurpoulet sh -c "psql -u postgis -h postgis -p 5432"
+/usr/lib/postgresql/9.3/bin/psql: invalid option -- 'u'
+Try "psql --help" for more information.
+[jibl@pc-100 carto-proto]$ docker exec -it rendereurpoulet sh -c "psql -U postgis -h postgis -p 5432"
+psql: FATAL:  role "postgis" does not exist
+[jibl@pc-100 carto-proto]$ 
+```
+Indeed, `FATAL:  role "postgis" does not exist` means postgresql DID answer: a NO answer, IS, an answer (aka I don't know what's the valid user in use by renderer, and I don't care about that question, I care about renderer being able to talk to postgis).
+SO you can reach postgis container from renderer container.
+
+* Question : What does the well konwn `pg_isready` say, on its behalf?
+test
+test : 
+```bash
+# docker exec -it postgis sh -c "apk update -y && apk add apt-utils net-tools curl"
+docker exec -it postgis sh -c "pg_isready"
+```
+result (everything 's fine) : 
+```bash
+[jibl@pc-100 carto-proto]$ docker exec -it postgis sh -c "pg_isready"
+/var/run/postgresql:5432 - accepting connections
+[jibl@pc-100 carto-proto]$ 
+
+```
+
+
+Alright, now daady has a better overview:
+* A, everything is up n running on the software level (all apps up n running)
+* B, network is end-toend tested, and everything just neat
+* C, Daddy tried to compute Australia all night long with mom threatening to throw alienware out, and Daddy found there has been a [problem during Australia's *.PBF files processing](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/3)
+
+So daddy is going to spin up an import / process cycle automation, which he will then, be able to TDD / BDD test :
+Daddy knows how to test a sofware, so If Daddys boss ask Daddy to test something, Daddy turns that thing into a software, (infrastructure as code), and suddenly boum, daddy can test the thing for boss with all those good old and well-sharped testing methods and tools.
+
+We're almost there, my young apprentice. Be patient. Do not under-assess the power of the force in universe.
 
 # Melbourne map
 
