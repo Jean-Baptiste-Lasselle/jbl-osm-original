@@ -9,6 +9,8 @@ services:
       - ./data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=gis
+      # Is there no dad at shinesolutions.com?
+      - POSTGRES_USER=renderer-user
     networks:
       - devops
   renderer:
