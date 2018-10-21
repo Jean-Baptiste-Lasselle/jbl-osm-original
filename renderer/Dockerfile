@@ -16,6 +16,7 @@ RUN wget https://github.com/adobe-fonts/source-sans-pro/archive/2.020R-ro/1.075R
 RUN git clone https://github.com/dooman87/openstreetmap-carto.git
 WORKDIR /openstreetmap-carto
 RUN chmod +x ./get-shapefiles.sh
+# dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md]
 RUN ./get-shapefiles.sh
 ADD shapes/ data/
 RUN shapeindex --shape_files \
