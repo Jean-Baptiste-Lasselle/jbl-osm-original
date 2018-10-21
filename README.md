@@ -41,6 +41,7 @@ es/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade
 
 ```
 
+
 And that, below, is leaflet code that i know of: (ah ben voilà, quoi)
 
 ```javascript
@@ -51,6 +52,18 @@ es/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade
 		maxZoom: 18
 	}).addTo(map);
 ```
+Funny, itlopoks like people working on geoloc with no money happen to know nothing about docker :
+A `localhost` mention inside a file inside a mapped docker-compose volume ... 
+
+Interesting...
+
+Let's just say the person work his test on his local laptop, everything localhost, with no docker at all, and then either got asked, or realizing docker is trendy and good word for google referecing, suddenly copy-pasted his code in a dockerfile, after having worked on a 1-day udemy docker tutorial.
+
+Let's see if the guy reacts ;)
+(if so, I'lll explain hil for free Ansible Jinja 2 templating, promised ;) )
+
+Ok let's fix that 
+
 
 ![I love you  I miss you V.](https://www.youtube.com/watch?v=god7hAPv8f0)
 
