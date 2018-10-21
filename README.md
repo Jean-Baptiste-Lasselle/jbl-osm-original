@@ -62,7 +62,7 @@ Let's just say the person work his test on his local laptop, everything localhos
 Let's see if the guy reacts ;)
 (if so, I'lll explain hil for free Ansible Jinja 2 templating, promised ;) )
 
-Ok let's fix that 
+Ok [let's fix that ](https://github.com/Jean-Baptiste-Lasselle/jbl-osm3)
 
 
 ![I love you  I miss you V.](https://www.youtube.com/watch?v=god7hAPv8f0)
