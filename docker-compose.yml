@@ -5,7 +5,6 @@ services:
     build: ./postgis
     volumes:
       - geodata-volume:/var/lib/postgresql/data
-    volumes:
       - ./data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=gis
