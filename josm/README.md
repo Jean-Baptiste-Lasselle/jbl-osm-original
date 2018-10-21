@@ -6,3 +6,7 @@ I willm here docuement and design an automation lifecycle, with geolocalization 
 
 So well, JOSM is josm, cf. the JOSM [developer page on Openstreet Map's public wiki](https://wiki.openstreetmap.org/wiki/Develop) : 
 I included this page in this repo as `./JOSM-developer-page.pdf`
+
+Source code of JOSM is here (Oh My SVN ! ::o: )
+
+https://josm.openstreetmap.de/browser/josm/trunk
