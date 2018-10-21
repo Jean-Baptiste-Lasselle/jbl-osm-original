@@ -83,7 +83,86 @@ Maybe next week I'l end up thanking that guy for everything not working, and the
  
 Okay, so let's just switch the oh my god part, and move on todaddys work: Getting what that guy in no way near from getting, i.e. a working renderer service with true scalability
  
+### Daddy does BDD/TDDD
 
+Daddy will follow network path, just like this old bed story.
+So tests, first.
+* Question: is `index.html` in nginx container accessible from inside the container, via localhost?
+test : 
+```bash
+docker exec -it carto-proto_web_1 sh -c "curl http://localhost/"
+```
+result is yes : 
+```bash
+[jibl@pc-100 carto-proto]$ docker exec -it carto-proto_web_1 sh -c "apk update -y && apk add net-tools curl "
+apk: unrecognized option: y
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.4/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.4/community/x86_64/APKINDEX.tar.gz
+v3.4.6-316-g63ea6d0 [http://dl-cdn.alpinelinux.org/alpine/v3.4/main]
+v3.4.6-160-g14ad2a3 [http://dl-cdn.alpinelinux.org/alpine/v3.4/community]
+OK: 5987 distinct packages available
+(1/6) Installing ca-certificates (20161130-r0)
+(2/6) Installing libssh2 (1.7.0-r0)
+(3/6) Installing libcurl (7.60.0-r1)
+(4/6) Installing curl (7.60.0-r1)
+(5/6) Installing mii-tool (1.60_git20140218-r0)
+(6/6) Installing net-tools (1.60_git20140218-r0)
+Executing busybox-1.24.2-r13.trigger
+Executing ca-certificates-20161130-r0.trigger
+OK: 56 MiB in 30 packages
+[jibl@pc-100 carto-proto]$ docker exec -it carto-proto_web_1 sh -c "curl http://rendereurpoulet:8080/"
+curl: (7) Failed to connect to rendereurpoulet port 8080: Connection refused
+[jibl@pc-100 carto-proto]$ docker exec -it carto-proto_web_1 sh -c "ping rendereurpoulet"
+PING rendereurpoulet (172.21.0.4): 56 data bytes
+64 bytes from 172.21.0.4: seq=0 ttl=64 time=0.131 ms
+64 bytes from 172.21.0.4: seq=1 ttl=64 time=0.244 ms
+64 bytes from 172.21.0.4: seq=2 ttl=64 time=0.293 ms
+^C
+--- rendereurpoulet ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.131/0.222/0.293 ms
+[jibl@pc-100 carto-proto]$ docker exec -it carto-proto_web_1 sh -c "curl http://localhost/"
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+	<style type="text/css">
+		html, body, #map {
+			width: 100%;
+			height: 100%;
+			margin: 0 !important;
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+<div id="map"></div>
+</body>
+
+<script type="text/javascript">
+
+	var map = L.map('map').setView([-37.8130, 144.9484], 14);
+	L.tileLayer('http://localhost:8080/{z}/{x}/{y}.png', {
+		attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+		maxZoom: 18
+	}).addTo(map);
+</script>
+</html>
+[jibl@pc-100 carto-proto]$ 
+```
+
+* Question: is `index.html` in nginx container accessible from outside the container, via `http://$NET_HOST_NAME:80/`, where `NET_HOST_NAME`is the IP address or a domain name associated with the docker host (the machine you installed docker on, Michael) ?
+test : 
+```bash
+docker exec -it carto-proto_web_1 sh -c "curl http://localhost/"
+```
+result is no : 
+```bash
+# 
+```
 
 # Melbourne map
 
