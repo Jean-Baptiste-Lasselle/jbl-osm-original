@@ -37,6 +37,8 @@ https://www.flocondetoile.fr/blog/switch-google-maps-leaflet-and-openstreetmap-g
 https://github.com/tilemill-project/tilemill
 https://github.com/kosmtik/kosmtik  (oui c'est celui-là)
 meileur https://github.com/jimmyrocks/osm-tiles-mapnik
+
+
 # Dernière erreur
 
 Je n'ai rien d'affiché sur la carte,même si j'essaie de déplacer le curseur, ou is je zoom / dé-zoom...
@@ -73,12 +75,12 @@ Heum.. Heu hey guy, when you read `error [...] connection refused` in a software
 Maybe next week I'l end up thanking that guy for everything not working, and the only feature he was pushing forward
  [in his article (clustering an OSM rendrer)](https://shinesolutions.com/2016/12/30/generating-high-res-maps-with-mapnik-and-docker/) will turn to just bring me a prooof taht this guys was comppletely lying on that article, just to get job interviews with people who don't understand tehcniques, or selling low cost "website" to small buisness comppanies (poor them, and no, that guy wouldn't pass any interview in any company that's got a devops inside).
  Oh, sorry,it's a French stupid company (we have a big corruption problem in France, making the business, a little pointless here, and which is why I don'nt work in France) , let me give a piece of help to a yougn nice guy from France, before I get into Dad gets to repair your mess on sunday :
- ![Mikael Leroy (screencshot commentaire "very informative")](cccc)
- _Michael, If you want an IT job in any out of france company, please, prepare explaining what is really very informative your former company's blog. If that was your Boss from "shine solution" who forced you posting that comment, then get ready to explain what was acutally wrong here . That repo will help you with that. And next timpe, tell your boss to comment with his name, not yours_
+ ![Mikael Leroy (screencshot commentaire "very informative")](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/raw/master/issues-memory/michael_leroy_daddies_pof_advice.png)
+ _Michael, If you want an IT job in any out of france company, please, prepare explaining what is really very informative your former company's blog. If that was your Boss from "shine solution" who forced you posting that comment, then get ready to explain what was acutally wrong here . That repo will help you with that. And next timpe, tell your boss to comment with his name, not yours. And Mikael, next you write something stupid in English, about IT, please consider we have an image in other countries, as French Professionals, and wer have duty to stand up for it. Let's not have people think that French engineers are just stupid guys that write anything you ask them to, however stuopid that maybe, okay?_
+
  
- Okay, so let's just switch the oh my god part, and move ontothe next:
  
-Getting what that guy in no way near from getting, i.e. a working renderer service with true scalability
+Okay, so let's just switch the oh my god part, and move on todaddys work: Getting what that guy in no way near from getting, i.e. a working renderer service with true scalability
  
 
 
