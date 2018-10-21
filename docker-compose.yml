@@ -33,7 +33,7 @@ services:
     volumes:
       - ./web:/usr/share/nginx/html
     ports:
-      - "8888:8080"
+      - "8888:80"
     networks:
       - devops
 
