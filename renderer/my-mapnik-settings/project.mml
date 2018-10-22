@@ -104,7 +104,10 @@
         "geometry_field": "way",
         "type": "postgis",
         "key_field": "",
-        "dbname": "gis"
+        "dbname": "gis",
+        "dbhost": "postgis",
+        "user": "renderer-user",
+        "password": "whereischarlie"
       },
       "extent": [
         -180,
