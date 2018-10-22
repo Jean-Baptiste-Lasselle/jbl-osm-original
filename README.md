@@ -1,6 +1,112 @@
 
 ![I love you  I miss you V.](https://www.youtube.com/watch?v=god7hAPv8f0)
 
+# Dernière erreur
+
+```bash
+CONTAINER ID        IMAGE                         COMMAND                  CREATED             STATUS                            PORTS                                                                          NAMES
+d7de061dcbcc        carto-proto_renderer          "/bin/sh -c /entrypo…"   2 seconds ago       Up Less than a second             0.0.0.0:8080->8080/tcp, 0.0.0.0:8090->8090/tcp, 0.0.0.0:9090->9090/tcp         rendereurpoulet
+22bcfec38a3a        carto-proto_postgis           "docker-entrypoint.s…"   3 seconds ago       Up 2 seconds (health: starting)   5432/tcp                                                                       postgis
+61d971c85f60        nginx:1.11-alpine             "nginx -g 'daemon of…"   3 seconds ago       Up 2 seconds                      443/tcp, 0.0.0.0:8888->80/tcp                                                  carto-proto_web_1
+5a7c86a2cd3c        nginx                         "nginx -g 'daemon of…"   5 days ago          Up 14 hours                       80/tcp, 0.0.0.0:1222->322/tcp, 0.0.0.0:1443->7443/tcp, 0.0.0.0:801->8030/tcp   marguerite_reverseproxy
+fc3e83c41a29        marguerite/meteor-ide:1.0.0   "/bin/sh -c $WORKSPA…"   5 days ago          Up 14 hours (healthy)             0.0.0.0:6000->6000/tcp                                                         ide_meteor_marguerite
+d5701330a0f2        marguerite/mongo:1.0.0        "docker-entrypoint.s…"   5 days ago          Up 14 hours (unhealthy)           0.0.0.0:27018->27017/tcp                                                       ide_mongo_marguerite
+[jibl@pc-100 carto-proto]$ docker exec -it postgis sh -c "psql -U renderer-user -d gis"psql (9.5.14)
+Type "help" for help.
+
+gis=# \q
+[jibl@pc-100 carto-proto]$ docker logs -f postgis
+LOG:  database system was shut down at 2018-10-22 21:06:36 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+ERROR:  relation "planet_osm_polygon" does not exist at character 651
+STATEMENT:  SELECT ST_SRID("way") AS srid FROM (SELECT
+	    way, name, way_pixels,
+	    COALESCE(wetland, landuse, "natural") AS feature
+	  FROM (SELECT
+	      way, COALESCE(name, '') AS name,
+	      ('landuse_' || (CASE WHEN landuse IN ('forest', 'military') THEN landuse ELSE NULL END)) AS landuse,
+	      ('natural_' || (CASE WHEN "natural" IN ('wood', 'sand', 'scree', 'shingle', 'bare_rock') THEN "natural" ELSE NULL END)) AS "natural",
+	      ('wetland_' || (CASE WHEN "natural" IN ('wetland', 'mud') THEN (CASE WHEN "natural" IN ('mud') THEN "natural" ELSE wetland END) ELSE NULL END)) AS wetland,
+	      way_area/NULLIF(0::real*0::real,0) AS way_pixels
+	    FROM planet_osm_polygon
+	    WHERE (landuse IN ('forest', 'military')
+	      OR "natural" IN ('wood', 'wetland', 'mud', 'sand', 'scree', 'shingle', 'bare_rock'))
+	      AND way_area > 0.01*0::real*0::real
+	      AND building IS NULL
+	    ORDER BY CASE WHEN layer~E'^-?\\d+$' AND length(layer)<10 THEN layer::integer ELSE 0 END, way_area DESC
+	  ) AS features
+	) AS landcover_low_zoom WHERE "way" IS NOT NULL LIMIT 1;
+ERROR:  relation "planet_osm_polygon" does not exist at character 651
+STATEMENT:  SELECT ST_SRID("way") AS srid FROM (SELECT
+	    way, name, way_pixels,
+	    COALESCE(wetland, landuse, "natural") AS feature
+	  FROM (SELECT
+	      way, COALESCE(name, '') AS name,
+	      ('landuse_' || (CASE WHEN landuse IN ('forest', 'military') THEN landuse ELSE NULL END)) AS landuse,
+	      ('natural_' || (CASE WHEN "natural" IN ('wood', 'sand', 'scree', 'shingle', 'bare_rock') THEN "natural" ELSE NULL END)) AS "natural",
+	      ('wetland_' || (CASE WHEN "natural" IN ('wetland', 'mud') THEN (CASE WHEN "natural" IN ('mud') THEN "natural" ELSE wetland END) ELSE NULL END)) AS wetland,
+	      way_area/NULLIF(0::real*0::real,0) AS way_pixels
+	    FROM planet_osm_polygon
+	    WHERE (landuse IN ('forest', 'military')
+	      OR "natural" IN ('wood', 'wetland', 'mud', 'sand', 'scree', 'shingle', 'bare_rock'))
+	      AND way_area > 0.01*0::real*0::real
+	      AND building IS NULL
+	    ORDER BY CASE WHEN layer~E'^-?\\d+$' AND length(layer)<10 THEN layer::integer ELSE 0 END, way_area DESC
+	  ) AS features
+	) AS landcover_low_zoom WHERE "way" IS NOT NULL LIMIT 1;
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+FATAL:  role "root" does not exist
+^C
+```
+
 # TODO du mataîng
 
 selon la doc d'openstreetmap, je dois exécuter aussi (le le gars n'as pas reporté cela dans son `./renderer/Dockerfile`) : 
