@@ -43,5 +43,8 @@ COPY entrypoint.sh /
 RUN chmod 755 /scripts/*.sh && \
     chmod 755 /entrypoint.sh
 
+# jib's ;) => poulet
+EXPOSE 8080
+
 WORKDIR /
 ENTRYPOINT /entrypoint.sh
