@@ -247,7 +247,8 @@ WARNING: psql major version 9.3, server major version 9.5.
 Type "help" for help.
 
 gis=# 
-
+gis-# \q
+[jibl@pc-100 carto-proto]$ 
 ```
 
 tests à papa
