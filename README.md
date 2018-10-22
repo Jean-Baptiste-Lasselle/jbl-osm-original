@@ -40,6 +40,60 @@ jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$
 
 ```
 
+AH! :
+
+```bash
+Success. You can now start the database server using:
+
+    pg_ctl -D /var/lib/postgresql/data -l logfile start
+
+
+WARNING: enabling "trust" authentication for local connections
+You can change this by editing pg_hba.conf or using the option -A, or
+--auth-local and --auth-host, the next time you run initdb.
+****************************************************
+WARNING: No password has been set for the database.
+         This will allow anyone with access to the
+         Postgres port to access your database. In
+         Docker's default configuration, this is
+         effectively any other container on the same
+         system.
+
+         Use "-e POSTGRES_PASSWORD=password" to set
+         it in "docker run".
+****************************************************
+waiting for server to start....LOG:  database system was shut down at 2018-10-22 15:42:37 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ done
+server started
+CREATE DATABASE
+
+
+/usr/local/bin/docker-entrypoint.sh: sourcing /docker-entrypoint-initdb.d/postgis.sh
+CREATE DATABASE
+UPDATE 1
+Loading PostGIS extensions into template_postgis
+CREATE EXTENSION
+CREATE EXTENSION
+CREATE EXTENSION
+CREATE EXTENSION
+CREATE EXTENSION
+Loading PostGIS extensions into gis
+CREATE EXTENSION
+CREATE EXTENSION
+CREATE EXTENSION
+CREATE EXTENSION
+CREATE EXTENSION
+osm2pgsql version 0.92.0 (64 bit id space)
+
+Using built-in tag processing pipeline
+Using projection SRS 3857 (Spherical Mercator)
+FATAL:  role "postgres" does not exist
+Osm2pgsql failed due to ERROR: Connection to database failed: FATAL:  role "postgres" does not exist
+```
+
 # Utilisation
 
 ### Initialisation IAAC 
