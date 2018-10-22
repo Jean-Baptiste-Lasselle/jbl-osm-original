@@ -3,12 +3,12 @@
 
 # TODO du mataîng
 
-selon la doc d'openstreetmap, je dois exécuter aussi : 
+selon la doc d'openstreetmap, je dois exécuter aussi (le le gars n'as pas reporté cela dans son `./renderer/Dockerfile`) : 
 
 ```bash
 ./get-shapefiles.sh
 ```
-dans ./renderer/Dockerfile
+
 
 
 Et j'ai trouvé une erreur : le conteneur postgis indique dans ses logs un arrêt incorrect + conteneur rendereurpoulet indiquant qu'il est en attente de la BDD
