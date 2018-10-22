@@ -19,7 +19,7 @@ WORKDIR /openstreetmap-carto
 # https://github.com/mapnik/mapnik/blob/master/INSTALL.md
 # https://help.openstreetmap.org/questions/51521/mapnik-and-postgresql-in-differents-servers
 RUN rm -f ./project.yaml
-ADD ./renderer/project.yaml .
+ADD ./my-mapnik-settings/project.yaml .
 RUN echo "TODO : build de l'image du service 'renderer' => faire des substitution sed au lieu d'écraser le fichier ? Il faut une sync avec la distribution chain de openstreetmap, et  tout récuperer dans l'infra en privé, ne serait que pour les téléchargements des dépendances"
 RUN chmod +x ./get-shapefiles.sh
 # dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md], which was coming from [https://github.com/mapnik/mapnik/blob/master/INSTALL.md]
