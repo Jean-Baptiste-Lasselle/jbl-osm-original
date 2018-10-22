@@ -21,6 +21,7 @@ services:
       - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
     networks:
       - devops
+    restart: always
   renderer:
     container_name: 'rendereurpoulet'
     build: ./renderer
@@ -51,6 +52,8 @@ services:
       - postgis
     networks:
       - devops
+    restart: always
+    
   web:
     image: nginx:1.11-alpine
     volumes:
@@ -59,6 +62,7 @@ services:
       - "8888:80"
     networks:
       - devops
+    restart: always
 
 networks:
   devops:
