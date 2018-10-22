@@ -43,26 +43,28 @@ jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$
 # Utilisation
 
 ```bash
-export PROVISIONING_HOME=$HOME/carto-proto
-cd $HOME
-sudo rm -rf $PROVISIONING_HOME
-mkdir -p $PROVISIONING_HOME
-cd $PROVISIONING_HOME
-docker-compose down --rmi all 
-sudo rm -rf ./data 
-sudo rm -rf ./renderer/shapes/ 
+export PBF_VAULT_HOME=$(pwd)/carto-vault
+export PROVISIONING_HOME=$HOME/carto-proto 
+cd $HOME && sudo rm -rf $PROVISIONING_HOME 
+mkdir -p $PROVISIONING_HOME 
+cd $PROVISIONING_HOME 
+git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . 
+# copy of all big PBF' files to docker-compose mapped directory ./renderer/ 
+# it is mmapped inside renderer container to /openstreemap-carto 's HOme directory, i.e. /openstreetmap-ccarto/
+cp $PBF_VAULT_HOME/*.pbf ./renderer
 chmod +x *.sh 
 ./download.sh 
-./set-underneath-vm-overcomit-config.sh
+./set-underneath-vm-overcomit-config.sh 
 docker system prune -f 
-docker-compose up -d --build && docker ps -a
+docker-compose up -d --build 
+docker ps -a
 ```
 
 
 Commande idempotente en une seule ligne:
 
 ```bash
-export PROVISIONING_HOME=$HOME/carto-proto && cd $HOME && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && docker-compose down --rmi all && sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/ && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
+export PBF_VAULT_HOME=$(pwd)/carto-vault && export PROVISIONING_HOME=$HOME/carto-proto && cd $HOME && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./renderer && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
 
 ### Tout détruire 
