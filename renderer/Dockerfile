@@ -15,6 +15,10 @@ RUN wget https://github.com/adobe-fonts/source-sans-pro/archive/2.020R-ro/1.075R
 
 RUN git clone https://github.com/dooman87/openstreetmap-carto.git
 WORKDIR /openstreetmap-carto
+# pour appliquer ma propre configuration PostGIS à Mapnik:  essentiellement pour l'hôte réseau
+RUN rm -f ./project.yaml
+ADD ./renderer/project.yaml .
+RUN echo "TODO : build de l'image du service 'renderer' => faire des substitution sed au lieu d'écraser le fichier ? Il faut une sync avec la distribution chain de openstreetmap, et  tout récuperer dans l'infra en privé, ne serait que pour les téléchargements des dépendances"
 RUN chmod +x ./get-shapefiles.sh
 # dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md]
 RUN ./get-shapefiles.sh
