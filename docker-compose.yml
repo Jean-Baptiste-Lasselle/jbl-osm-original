@@ -29,7 +29,7 @@ services:
       - ./renderer/scripts:/scripts
       - ./renderer/scripts:/shapes
       # instead of deprecated 'volumes_from' directive with read-only option
-      - geodata-volume:/var/lib/postgresql/data
+      - geodata-volume:/var/lib/postgresql/data:ro
 #     volumes_from:
 #       - postgis:ro
     environment:
