@@ -106,7 +106,54 @@ FATAL:  role "root" does not exist
 FATAL:  role "root" does not exist
 ^C
 ```
+me suis débarassé de l'erreur root causée par lecheckhealth, et il me reste : 
 
+```bash
+[jibl@pc-100 carto-proto]$ docker logs -f postgis
+LOG:  database system was shut down at 2018-10-22 21:59:16 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  relation "planet_osm_polygon" does not exist at character 651
+STATEMENT:  SELECT ST_SRID("way") AS srid FROM (SELECT
+	    way, name, way_pixels,
+	    COALESCE(wetland, landuse, "natural") AS feature
+	  FROM (SELECT
+	      way, COALESCE(name, '') AS name,
+	      ('landuse_' || (CASE WHEN landuse IN ('forest', 'military') THEN landuse ELSE NULL END)) AS landuse,
+	      ('natural_' || (CASE WHEN "natural" IN ('wood', 'sand', 'scree', 'shingle', 'bare_rock') THEN "natural" ELSE NULL END)) AS "natural",
+	      ('wetland_' || (CASE WHEN "natural" IN ('wetland', 'mud') THEN (CASE WHEN "natural" IN ('mud') THEN "natural" ELSE wetland END) ELSE NULL END)) AS wetland,
+	      way_area/NULLIF(0::real*0::real,0) AS way_pixels
+	    FROM planet_osm_polygon
+	    WHERE (landuse IN ('forest', 'military')
+	      OR "natural" IN ('wood', 'wetland', 'mud', 'sand', 'scree', 'shingle', 'bare_rock'))
+	      AND way_area > 0.01*0::real*0::real
+	      AND building IS NULL
+	    ORDER BY CASE WHEN layer~E'^-?\\d+$' AND length(layer)<10 THEN layer::integer ELSE 0 END, way_area DESC
+	  ) AS features
+	) AS landcover_low_zoom WHERE "way" IS NOT NULL LIMIT 1;
+ERROR:  relation "planet_osm_polygon" does not exist at character 651
+STATEMENT:  SELECT ST_SRID("way") AS srid FROM (SELECT
+	    way, name, way_pixels,
+	    COALESCE(wetland, landuse, "natural") AS feature
+	  FROM (SELECT
+	      way, COALESCE(name, '') AS name,
+	      ('landuse_' || (CASE WHEN landuse IN ('forest', 'military') THEN landuse ELSE NULL END)) AS landuse,
+	      ('natural_' || (CASE WHEN "natural" IN ('wood', 'sand', 'scree', 'shingle', 'bare_rock') THEN "natural" ELSE NULL END)) AS "natural",
+	      ('wetland_' || (CASE WHEN "natural" IN ('wetland', 'mud') THEN (CASE WHEN "natural" IN ('mud') THEN "natural" ELSE wetland END) ELSE NULL END)) AS wetland,
+	      way_area/NULLIF(0::real*0::real,0) AS way_pixels
+	    FROM planet_osm_polygon
+	    WHERE (landuse IN ('forest', 'military')
+	      OR "natural" IN ('wood', 'wetland', 'mud', 'sand', 'scree', 'shingle', 'bare_rock'))
+	      AND way_area > 0.01*0::real*0::real
+	      AND building IS NULL
+	    ORDER BY CASE WHEN layer~E'^-?\\d+$' AND length(layer)<10 THEN layer::integer ELSE 0 END, way_area DESC
+	  ) AS features
+	) AS landcover_low_zoom WHERE "way" IS NOT NULL LIMIT 1;
+
+
+```
+Je vais te virer les données australiennez de l'autre réttin direct
 # TODO du mataîng
 
 selon la doc d'openstreetmap, je dois exécuter aussi (le le gars n'as pas reporté cela dans son `./renderer/Dockerfile`) : 
