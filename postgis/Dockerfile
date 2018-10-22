@@ -20,7 +20,7 @@ RUN git clone https://github.com/dooman87/openstreetmap-carto.git
 # wget https://s3.amazonaws.com/metro-extracts.mapzen.com/melbourne_australia.osm.pbf
 
 RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
-ADD ./*.pbf $DOWNLOADED_PBF_FILES_HOME
+ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
 RUN echo " ----------------------------------------------------------- "
 RUN echo " Vérification DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME "
 RUN echo " ----------------------------------------------------------- "
