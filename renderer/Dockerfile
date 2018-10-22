@@ -1,5 +1,14 @@
 FROM dpokidov/gopnik
 
+ENV MAPNIK_POSTGRES_DB=gis
+# Is there no dad at shinesolutions.com?
+ENV MAPNIK_POSTGRES_USER=renderer-user
+ENV MAPNIK_POSTGRES_PASSWORD=whereischarlie
+
+ENV PGUSER=$MAPNIK_POSTGRES_USER
+ENV PGPASSWORD=$MAPNIK_POSTGRES_PASSWORD
+
+
 RUN apt-get update && \
     apt-get install -y git curl unzip node-carto mapnik-utils fontconfig && \
     rm -rf /var/lib/apt/lists/*
