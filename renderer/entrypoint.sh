@@ -20,8 +20,9 @@ echo " -------------------------------------------------------------------------
 # Lorsque l'on définit la variable PGPASSWORD, psql prend en compte celle-ci pour s'authentifier avec le username spécifié  
 export PGPASSWORD=$POSTGRES_PASSWORD
 export PGUSER=$POSTGRES_USER
-sh /scripts/compile_style.sh
-
+# sh /scripts/compile_style.sh
+chmod +x /scripts/compile_style.sh
+/scripts/compile_style.sh
 # apt-get update -y && apt-get install -y postgresql-client
 # Hey! let's use ;;; the PostGreSQL client, to try and connect to PostGRESQL??
 # psql -d gis -U renderer-user -h postgis -p 5432
