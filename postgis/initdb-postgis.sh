@@ -15,10 +15,11 @@ echo " -------------------------------------------------------------------------
 
 # Create the 'template_postgis' template db
 # Lorsque l'on définit la variable PGUSER, psql prend en compte celle-ci pour s'authentifier avec ce username  
-# Lorsque l'on définit la variable PGPASSWORD, psql prend en compte celle-ci pour s'authentifier avec le username spécifié  
+# Lorsque l'on définit la variable PGPASSWORD, psql prend en compte celle-ci pour s'authentifier avec le username spécifié 
+export PGHOST=localhost
 export PGPASSWORD=$POSTGRES_PASSWORD
 export PGUSER=$POSTGRES_USER
-psql --dbname="$POSTGRES_DB" <<- 'EOSQL'
+psql -U $POSTGRES_USER --dbname="$POSTGRES_DB" <<- 'EOSQL'
 CREATE DATABASE template_postgis;
 UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
 EOSQL
@@ -26,7 +27,7 @@ EOSQL
 # Load PostGIS into both template_database and $POSTGRES_DB
 for DB in template_postgis "$POSTGRES_DB"; do
 	echo "Loading PostGIS extensions into $DB"
-	psql --dbname="$DB" <<-'EOSQL'
+	psql -U $POSTGRES_USER --dbname="$DB" <<-'EOSQL'
 		CREATE EXTENSION postgis;
 		CREATE EXTENSION postgis_topology;
 		CREATE EXTENSION fuzzystrmatch;
@@ -42,7 +43,8 @@ export PGUSER=$POSTGRES_USER
 
 #import Melbourne city
 # osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /Melbourne.osm.pbf
-osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /australia-oceania-latest.osm.pbf && touch /var/lib/postgresql/data/DB_INITED
+osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U $POSTGRES_USER -k --slim /australia-oceania-latest.osm.pbf 
+# && touch /var/lib/postgresql/data/DB_INITED
 # osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /australia-oceania/australia-latest.osm.pbf
 
 
