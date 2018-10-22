@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+
+# Perform all actions as $POSTGRES_USER
+export PGUSER=$MAPNIK_POSTGRES_USER
+export PGPASSWORD=$MAPNIK_POSTGRES_PASSWORD
+echo " ------------------------------------------------------------------------------------------- "
+echo " VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_USER=$MAPNIK_POSTGRES_USER] "
+echo " VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_PASSWORD=$MAPNIK_POSTGRES_PASSWORD] "
+echo " VERIFICATION RENDERER ENNTRYPOINT : [PGUSER=$PGUSER] "
+echo " VERIFICATION RENDERER ENNTRYPOINT  : [PGPASSWORD=$PGPASSWORD] "
+echo " ------------------------------------------------------------------------------------------- "
+
+
+# Create the 'template_postgis' template db
+# Lorsque l'on définit la variable PGUSER, psql prend en compte celle-ci pour s'authentifier avec ce username  
+# Lorsque l'on définit la variable PGPASSWORD, psql prend en compte celle-ci pour s'authentifier avec le username spécifié  
+export PGPASSWORD=$POSTGRES_PASSWORD
+export PGUSER=$POSTGRES_USER
 sh /scripts/compile_style.sh
 
 while [ ! -e /var/lib/postgresql/data/DB_INITED ]
