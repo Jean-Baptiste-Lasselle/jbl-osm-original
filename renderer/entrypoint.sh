@@ -25,15 +25,16 @@ sh /scripts/compile_style.sh
 # apt-get update -y && apt-get install -y postgresql-client
 # Hey! let's use ;;; the PostGreSQL client, to try and connect to PostGRESQL??
 # psql -d gis -U renderer-user -h postgis -p 5432
-psql -d gis -U $MAPNIK_POSTGRES_USER -h $MAPNIK_POSTGRES_DB_HOST -p 5432 -c "SELECT 1;"
+# but instead of this, I'd rather use a plain docker HEALTHCHECKC, with "depends_on" relationship btw containers
+# psql -d gis -U $MAPNIK_POSTGRES_USER -h $MAPNIK_POSTGRES_DB_HOST -p 5432 -c "SELECT 1;"
 # Reminds me of JDBC old days ... 
 
-
-while [ ! -e /var/lib/postgresql/data/DB_INITED ]
-do
-sleep 5
-echo "Waiting while database is initializing..."
-done
+# And yo ugly, you just go away
+# while [ ! -e /var/lib/postgresql/data/DB_INITED ]
+# do
+# sleep 5
+# echo "Waiting while database is initializing..."
+# done
 
 #Have to wait because once DB created then osm2pgsql restarting postgres.
 #TODO: Using pg_isready
