@@ -24,7 +24,8 @@
 	/* Damn, Michael, you have to learn that NGINX is known FIRST, for being a REVERSE PROXY !!! 
 	   Daddys advice : Just use a domain name like "carto.shinesolutions.com" here, and that domain name is in an NGINX conf
 		*/
-	L.tileLayer('http://rendereurpoulet:8080/{z}/{x}/{y}.png', {
+	// L.tileLayer('http://rendereurpoulet:8080/{z}/{x}/{y}.png', {
+        L.tileLayer('http://192.168.1.30:8080/{z}/{x}/{y}.png', {
 		attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
 		maxZoom: 18
 	}).addTo(map);
