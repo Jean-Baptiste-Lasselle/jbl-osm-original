@@ -5,12 +5,7 @@ set -e
 # Perform all actions as $POSTGRES_USER
 export PGUSER="$POSTGRES_USER"
 
-echo " ------------------------------------------------------------------------------------------- "
-echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_DB=$POSTGRES_DB] "
-echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_USER=$POSTGRES_USER] "
-echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_PASSWORD=$POSTGRES_PASSWORD] "
-echo " VERIFICATION DEBUT INIT DB POSTGIS : [DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME] "
-echo " ------------------------------------------------------------------------------------------- "
+
 
 
 # Create the 'template_postgis' template db
@@ -19,6 +14,14 @@ echo " -------------------------------------------------------------------------
 export PGHOST=localhost
 export PGPASSWORD=$POSTGRES_PASSWORD
 export PGUSER=$POSTGRES_USER
+
+echo " ------------------------------------------------------------------------------------------- "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_DB=$POSTGRES_DB] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_USER=$POSTGRES_USER] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_PASSWORD=$POSTGRES_PASSWORD] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME] "
+echo " ------------------------------------------------------------------------------------------- "
+
 psql -U $POSTGRES_USER --dbname="$POSTGRES_DB" <<- 'EOSQL'
 CREATE DATABASE template_postgis;
 UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
@@ -40,6 +43,10 @@ done
 export PGHOST=localhost
 export PGPASSWORD=$POSTGRES_PASSWORD
 export PGUSER=$POSTGRES_USER
+
+useradd -G sudo $POSTGRES_USER
+su $POSTGRES_USER
+
 
 #import Melbourne city
 # osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /Melbourne.osm.pbf
