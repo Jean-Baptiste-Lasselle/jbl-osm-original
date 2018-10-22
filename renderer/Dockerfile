@@ -33,7 +33,8 @@ RUN echo "TODO : build de l'image du service 'renderer' => faire des substitutio
 RUN chmod +x ./get-shapefiles.sh
 # dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md], which was coming from [https://github.com/mapnik/mapnik/blob/master/INSTALL.md]
 RUN ./get-shapefiles.sh
-ADD shapes/ data/
+# don't want anything anymore from hsinesolutions custom data of Autralia, it's corrupted probably
+# ADD shapes/ data/
 RUN shapeindex --shape_files \
     data/simplified-water-polygons-complete-3857/simplified_water_polygons.shp \
     data/water-polygons-split-3857/water_polygons.shp \
