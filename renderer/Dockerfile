@@ -20,8 +20,8 @@ RUN wget https://github.com/adobe-fonts/source-sans-pro/archive/2.020R-ro/1.075R
     rm 1.075R-it.tar.gz && \
     rm -rf source-sans-pro-2.020R-ro-1.075R-it
 
-# RUN git clone https://github.com/dooman87/openstreetmap-carto.git
-RUN git clone https://github.com/gravitystorm/openstreetmap-carto
+RUN git clone https://github.com/dooman87/openstreetmap-carto.git
+# RUN git clone https://github.com/gravitystorm/openstreetmap-carto
 WORKDIR /openstreetmap-carto
 # pour appliquer ma propre configuration PostGIS à Mapnik:  essentiellement pour l'hôte réseau
 # https://github.com/mapnik/mapnik/blob/master/INSTALL.md
@@ -49,8 +49,8 @@ RUN mkdir /map_data
 VOLUME /map_data
 
 RUN mkdir /scripts
-# COPY scripts/compile_style.sh /scripts
-# COPY scripts/run_render.sh /scripts
+COPY scripts/compile_style.sh /scripts
+COPY scripts/run_render.sh /scripts
 COPY entrypoint.sh /
 
 RUN chmod 755 /scripts/*.sh && \
