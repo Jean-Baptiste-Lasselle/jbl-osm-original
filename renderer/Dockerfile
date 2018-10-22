@@ -4,11 +4,11 @@ ENV MAPNIK_POSTGRES_DB=gis
 # Is there no dad at shinesolutions.com?
 ENV MAPNIK_POSTGRES_USER=renderer-user
 ENV MAPNIK_POSTGRES_PASSWORD=whereischarlie
+ENV MAPNIK_POSTGRES_DB_HOST=postgis
 
-
-
-RUN apt-get update && \
-    apt-get install -y git curl unzip node-carto mapnik-utils fontconfig && \
+# Hey! let's use ;;; the PostGreSQL client, to try and connect to PostGRESQL??
+RUN apt-get update -y && \
+    apt-get install -y git curl unzip node-carto mapnik-utils fontconfig postgresql-client && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /
