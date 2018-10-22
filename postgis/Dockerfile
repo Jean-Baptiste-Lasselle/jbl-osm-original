@@ -4,6 +4,27 @@ ARG DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
 # built-in default value et runtime, baby
 ENV DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME
 
+# POSTGRES_DB
+ARG POSTGRES_DB=gis
+# built-in default value et runtime, baby
+ENV POSTGRES_DB=$POSTGRES_DB
+# POSTGRES_USER
+ARG POSTGRES_USER=poulet
+# built-in default value et runtime, baby
+ENV POSTGRES_USER=$POSTGRES_USER
+# POSTGRES_PASSWORD (note: should not be built-in container, for the sake of security)
+ARG POSTGRES_PASSWORD=poulet
+# built-in default value et runtime, baby
+ENV POSTGRES_PASSWORD=whereischarlie
+
+
+
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [=$POSTGRES_DB] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [=$POSTGRES_USER] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [=$POSTGRES_PASSWORD] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME] "
+
+
 WORKDIR /
 
 
