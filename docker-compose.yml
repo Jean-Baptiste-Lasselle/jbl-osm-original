@@ -37,6 +37,7 @@ services:
       # Is there no dad at shinesolutions.com?
       - MAPNIK_POSTGRES_USER=renderer-user
       - MAPNIK_POSTGRES_PASSWORD=whereischarlie
+      - MAPNIK_POSTGRES_DB_HOST=postgis
     ports:
       - "8080:8080"
       - "9090:9090"
