@@ -15,3 +15,11 @@ RUN git clone https://github.com/dooman87/openstreetmap-carto.git && \
 
 #Overriding init script to add hstore extension that osm2pgsql requires
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
+
+# ouais poulet, et puis sait-on jamais, si l'Australie est grande : 
+RUN ./configuration-optimale-pour-osm2pgsql-batch.sh
+# tee /etc/sysctl.d/60-overcommit.conf <<EOF
+# echo "# Overcommit settings to allow faster osm2pgsql imports"
+# vm.overcommit_memory=1
+# EOF
+# sudo sysctl -p /etc/sysctl.d/60-overcommit.conf
