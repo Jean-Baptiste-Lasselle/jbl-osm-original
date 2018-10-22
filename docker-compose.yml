@@ -2,14 +2,20 @@ version: '3'
 services:
   postgis:
     container_name: 'postgis'
-    build: ./postgis
+    build: 
+      context: './postgis'
+      args:
+        # because it's our custom diretrory, not present ion base postgis image, cf. ./postgis/Dockerfile
+        - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
     volumes:
       - geodata-volume:/var/lib/postgresql/data
       - ./data:/var/lib/postgresql/data
+      - ./pbf:/downloaded-pbf-files
     environment:
       - POSTGRES_DB=gis
       # Is there no dad at shinesolutions.com?
       - POSTGRES_USER=renderer-user
+      - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
     networks:
       - devops
   renderer:
