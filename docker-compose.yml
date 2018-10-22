@@ -18,6 +18,7 @@ services:
     volumes:
       - ./renderer/map_data:/map_data
       - ./renderer/scripts:/scripts
+      - ./renderer/scripts:/shapes
       # instead of deprecated 'volumes_from' directive with read-only option
       - geodata-volume:/var/lib/postgresql/data:ro
 #     volumes_from:
