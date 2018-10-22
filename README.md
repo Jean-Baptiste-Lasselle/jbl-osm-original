@@ -156,7 +156,7 @@ STATEMENT:  SELECT ST_SRID("way") AS srid FROM (SELECT
 
 J'ai trouvé : 
 
-![pd avec les data et project.mml](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/raw/master/issues-memory/probleme_data_project_mml.png)
+![pb avec les data et project.mml](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/raw/master/issues-memory/probleme_data_project_mml.png)
 # TODO du mataîng
 
 selon la doc d'openstreetmap, je dois exécuter aussi (le le gars n'as pas reporté cela dans son `./renderer/Dockerfile`) : 
