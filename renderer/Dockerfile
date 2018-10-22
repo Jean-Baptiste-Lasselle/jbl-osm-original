@@ -44,7 +44,9 @@ RUN chmod 755 /scripts/*.sh && \
     chmod 755 /entrypoint.sh
 
 # jib's ;) => poulet
-EXPOSE 8080
+EXPOSE 8080/tcp
+EXPOSE 9090/tcp
+
 
 WORKDIR /
 ENTRYPOINT /entrypoint.sh
