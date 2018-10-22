@@ -14,6 +14,10 @@ echo " -------------------------------------------------------------------------
 
 
 # Create the 'template_postgis' template db
+# Lorsque l'on définit la variable PGUSER, psql prend en compte celle-ci pour s'authentifier avec ce username  
+# Lorsque l'on définit la variable PGPASSWORD, psql prend en compte celle-ci pour s'authentifier avec le username spécifié  
+export PGPASSWORD=$POSTGRES_PASSWORD
+export PGUSER=$POSTGRES_USER
 psql --dbname="$POSTGRES_DB" <<- 'EOSQL'
 CREATE DATABASE template_postgis;
 UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
