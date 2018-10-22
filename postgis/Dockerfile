@@ -52,3 +52,6 @@ RUN echo " ----------------------------------------------------------- "
 
 #Overriding init script to add hstore extension that osm2pgsql requires
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
+
+# Right, Michael?
+HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready || exit 1
