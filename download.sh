@@ -6,15 +6,22 @@ UNZIP_OPTS=-qqun
 SHAPES_DIR=renderer/shapes
 # pour télécharger en préliminaire du cycle IAAC, les fichiers PBF volmineux, au lieu de faire les téléchéargement dans le build de l'image renderer
 PBF_VAULT_HOME=/home/jibl/carto-vault
+
+WHEREEVERIWASBEFORE=`pwd`
 mkdir -p ${PBF_VAULT_HOME}
+
 cd $PBF_VAULT_HOME
-# if [ -f australia-oceania-latest.osm.pbf ]; then echo "Le fichier if [australia-oceania-latest.osm.pbf] existe déjà"
+echo "Téléchargement du fichier [australia-oceania-latest.osm.pbf] ... "
 if [ -f australia-oceania-latest.osm.pbf ]; then
-   echo "Le fichier if [australia-oceania-latest.osm.pbf] existe déjà";
+   echo "Le fichier if [australia-oceania-latest.osm.pbf] existe déjà : ";
+   ls -all ./australia-oceania-latest.osm.pbf
 else 
    wget "https://download.geofabrik.de/australia-oceania-latest.osm.pbf"
+   echo " Téléchargement du fichier [australia-oceania-latest.osm.pbf] terminé : "
+   ls -all ./australia-oceania-latest.osm.pbf
 fi
 
+cd $WHEREEVERIWASBEFORE
 
 # create and populate data dir
 mkdir -p ${SHAPES_DIR}
