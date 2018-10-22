@@ -49,9 +49,9 @@ cd $HOME && sudo rm -rf $PROVISIONING_HOME
 mkdir -p $PROVISIONING_HOME 
 cd $PROVISIONING_HOME 
 git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . 
-# copy of all big PBF' files to docker-compose mapped directory ./renderer/ 
-# it is mmapped inside renderer container to /openstreemap-carto 's HOme directory, i.e. /openstreetmap-ccarto/
-cp $PBF_VAULT_HOME/*.pbf ./renderer
+# copy of all big PBF' files to docker-compose mapped directory ./postgis/ 
+# it is mmapped inside postgis container to PBF 's HOme directory, cf. $DOWNLOADED_PBF_FILES_HOME './postgis/Dockerfile' 
+cp $PBF_VAULT_HOME/*.pbf ./postgis
 chmod +x *.sh 
 ./download.sh 
 ./set-underneath-vm-overcomit-config.sh 
