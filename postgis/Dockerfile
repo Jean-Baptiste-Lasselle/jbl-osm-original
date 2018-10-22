@@ -50,8 +50,8 @@ RUN echo " ----------------------------------------------------------- "
 RUN echo "  REPERTOIRE=$(pwd)" && ls -all 
 RUN echo " ----------------------------------------------------------- "
 
-#Overriding init script to add hstore extension that osm2pgsql requires
+# Overriding init script to add hstore extension that osm2pgsql requires
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 
 # Right, Michael?
-HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready || exit 1
+HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $POSTGRES_USER --dbname=$POSTGRES_DB || exit 1
