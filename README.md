@@ -9,7 +9,36 @@ selon la doc d'openstreetmap, je dois exécuter aussi (le le gars n'as pas repor
 ./get-shapefiles.sh
 ```
 
+Automatisation de la récupération du fichier `project.yaml` du projet OSM git cloné dans le conteneur renderer : 
 
+```bash
+jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ # mkdir -p renderer-of-osm/ && scp jibl@production-docker-host-1.kytes.io:/home/jibl/carto-proto/renderer/project.yaml 
+jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ mkdir -p renderer-of-osm/ && scp jibl@production-docker-host-1.kytes.io:/home/jibl/carto-proto/renderer/project.yaml 
+usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]
+           [-l limit] [-o ssh_option] [-P port] [-S program]
+           [[user@]host1:]file1 ... [[user@]host2:]file2
+jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ mkdir -p renderer-of-osm/ && scp jibl@production-docker-host-1.kytes.io:/home/jibl/carto-proto/renderer/project.yaml  .
+jibl@production-docker-host-1.kytes.io's password: 
+project.yaml                                                                                                                                                100%  107KB  23.0MB/s   00:00    
+jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ ls -all
+total 44727644
+drwxr-xr-x  4 jibl jibl        4096 Oct 22 13:56 .
+drwxr-xr-x 41 jibl jibl        4096 Oct 22 11:55 ..
+-rw-r--r--  1 jibl jibl     1376256 Oct 22 12:01 australia-oceania-latest.osm.bz2
+-rw-r--r--  1 jibl jibl   633086720 Oct 22 00:08 australia-oceania-latest.osm.pbf
+drwxr-xr-x  5 jibl jibl        4096 Oct 22 11:56 openstreetmap-carto
+-rw-r--r--  1 jibl jibl 45166498303 Oct 18 04:06 planet-latest.osm.pbf
+-rw-r--r--  1 jibl jibl      109892 Oct 22 13:56 project.yaml
+drwxr-xr-x  2 jibl jibl        4096 Oct 22 13:56 renderer-of-osm
+jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ mv project.yaml ./renderer-of-osm/
+jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ # ssh jibl@production-docker-host-1.kytes.io < copier-fichier-du-conteneur-vers-dockhost.sh
+jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ vi ./copier-fichier-du-conteneur-vers-dockhost.sh
+jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ cat ./copier-fichier-du-conteneur-vers-dockhost.sh 
+#!/bin/bash
+docker cp rendereurpoulet:/openstreetmap-carto/project.yaml ./renderer/
+jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ 
+
+```
 
 # Utilisation
 
