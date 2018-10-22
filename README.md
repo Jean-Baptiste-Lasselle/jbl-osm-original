@@ -24,6 +24,7 @@ sudo rm -rf ./data
 sudo rm -rf ./renderer/shapes/ 
 chmod +x *.sh 
 ./download.sh 
+./set-underneath-vm-overcomit-config.sh
 docker system prune -f 
 docker-compose up -d --build && docker ps -a
 ```
@@ -32,7 +33,7 @@ docker-compose up -d --build && docker ps -a
 Commande idempotente en une seule ligne:
 
 ```bash
-export PROVISIONING_HOME=$HOME/carto-proto && cd $HOME && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && docker-compose down --rmi all && sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/ && chmod +x *.sh && ./download.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
+export PROVISIONING_HOME=$HOME/carto-proto && cd $HOME && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && docker-compose down --rmi all && sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/ && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
 
 ### Tout détruire 
