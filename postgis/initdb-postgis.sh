@@ -5,6 +5,14 @@ set -e
 # Perform all actions as $POSTGRES_USER
 export PGUSER="$POSTGRES_USER"
 
+echo " ------------------------------------------------------------------------------------------- "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_DB=$POSTGRES_DB] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_USER=$POSTGRES_USER] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_PASSWORD=$POSTGRES_PASSWORD] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME] "
+echo " ------------------------------------------------------------------------------------------- "
+
+
 # Create the 'template_postgis' template db
 psql --dbname="$POSTGRES_DB" <<- 'EOSQL'
 CREATE DATABASE template_postgis;
