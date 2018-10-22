@@ -33,14 +33,14 @@ RUN echo "TODO : build de l'image du service 'renderer' => faire des substitutio
 RUN chmod +x ./get-shapefiles.sh
 # dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md], which was coming from [https://github.com/mapnik/mapnik/blob/master/INSTALL.md]
 RUN ./get-shapefiles.sh
-# don't want anything anymore from hsinesolutions custom data of Autralia, it's corrupted probably
+# don't want anything anymore from hsinesolutions custom data of Autralia, it's probably messing everything up
 # ADD shapes/ data/
-RUN shapeindex --shape_files \
-    data/simplified-water-polygons-complete-3857/simplified_water_polygons.shp \
-    data/water-polygons-split-3857/water_polygons.shp \
-    data/antarctica-icesheet-polygons-3857/icesheet_polygons.shp \
-    data/antarctica-icesheet-outlines-3857/icesheet_outlines.shp \
-    data/ne_110m_admin_0_boundary_lines_land/ne_110m_admin_0_boundary_lines_land.shp
+# RUN shapeindex --shape_files \
+#     data/simplified-water-polygons-complete-3857/simplified_water_polygons.shp \
+#     data/water-polygons-split-3857/water_polygons.shp \
+#     data/antarctica-icesheet-polygons-3857/icesheet_polygons.shp \
+#     data/antarctica-icesheet-outlines-3857/icesheet_outlines.shp \
+#     data/ne_110m_admin_0_boundary_lines_land/ne_110m_admin_0_boundary_lines_land.shp
 
 RUN mkdir /map_data
 VOLUME /map_data
