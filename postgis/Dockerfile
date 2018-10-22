@@ -17,6 +17,11 @@ RUN git clone https://github.com/dooman87/openstreetmap-carto.git && \
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 
 # ouais poulet, et puis sait-on jamais, si l'Australie est grande : 
+ADD configuration-optimale-pour-osm2pgsql-batch.sh .
+RUN chmod +x./configuration-optimale-pour-osm2pgsql-batch.sh
+# Attention mon poulet, dans le Dockerfile, il faut être rcine des Ents, pour faire ce genre de trucs, okay?
+# USER root
+# (mais par chance pour toi, poulet, chez postgis ils ont fixe le user à root dans l'image que tu as ré-utilisée)
 RUN ./configuration-optimale-pour-osm2pgsql-batch.sh
 # tee /etc/sysctl.d/60-overcommit.conf <<EOF
 # echo "# Overcommit settings to allow faster osm2pgsql imports"
