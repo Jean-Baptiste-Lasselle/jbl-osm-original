@@ -21,7 +21,7 @@
 		}
 	},
 	"Render": {
-		"Addr":             ":8090",
+		"Addr":             ":8080", /* doit correspondre aux no de port dans le docker-compose.yml */
 		"DebugAddr":        ":9090",
 		"Logging": {
 			"Backend": "Console",
@@ -49,7 +49,7 @@
 		}
 	},
 	"PrerenderSlave": {
-		"RPCAddr": ":8090",
+		"RPCAddr": ":8080", /* doit correspondre aux no de port dans le docker-compose.yml */
 		"Logging": {
 			"Backend": "Console",
 			"Level":   "Debug",
