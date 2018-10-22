@@ -44,8 +44,8 @@ export PGHOST=localhost
 export PGPASSWORD=$POSTGRES_PASSWORD
 export PGUSER=$POSTGRES_USER
 
-useradd -G sudo $POSTGRES_USER
-su $POSTGRES_USER
+# useradd -G sudo $POSTGRES_USER
+# su $POSTGRES_USER
 
 
 #import Melbourne city
