@@ -168,14 +168,18 @@ Donc ce qui est en cause est simple, il s'agit des commandes osm2pgsql inscrites
   * `planet_osm_polygon` (HEy, Oh My! The exact table name mentionend in my error logs !  :) :100: )
 En effet, Je cite la [documentation officielle `osm2pgsql`](https://github.com/openstreetmap/osm2pgsql/blob/master/README.md#usage) : 
   > A basic invocation to load the data into the database gis for rendering would be
-  > ```osm2pgsql --create --database gis data.osm.pbf```
+  
+  > `osm2pgsql --create --database gis data.osm.pbf`
+  
   > This will load the data from `data.osm.pbf` into the `planet_osm_point`, `planet_osm_line`, `planet_osm_roads`, and `planet_osm_polygon` tables.
 
 Donc, je vais utiliser l'instruction de la forme : 
 
 
   > When importing a large amount of data such as the complete planet, a typical command line would be
-  > ```osm2pgsql -c -d gis --slim -C <cache size> --flat-nodes <flat nodes> planet-latest.osm.pbf```
+  
+  > `osm2pgsql -c -d gis --slim -C <cache size> --flat-nodes <flat nodes> planet-latest.osm.pbf`
+	
   > where
   >     `<cache size>` is about 75% of memory in MiB, to a maximum of about 30000. Additional RAM will not be used.
   >     `<flat nodes>` is a location where a 36GiB+ file can be saved.
