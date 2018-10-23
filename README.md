@@ -161,13 +161,12 @@ J'ai trouvé :
 Et là: ce qui est  en cause, ce n'est pas la validité du project.mml, dont je pense qu'il a été copié sans aucun changment au travers des 2 repos que j'ai du travaerser, pour retrouver `openstreetmap-carto`.
 Donc ce qui est en cause est simple, il s'agit des commandes osm2pgsql inscrites dans le dockerfile postgis :
 * Il n'y a qu'une seule instruction, et elle utilise l'option `--style`, mais absolument pas l'option `--create` ,
-* Hors la doc de `osm2pgsql` indique clairement (`./README.md` racine ) qu'une ["invocation typique"]()  de `osm2pgsql` utilise l'option `--create`, et que cette option créée les tables postgesql suivantes :
-  * cccc
-  * cccc
-  * cccc
-  * cccc
-  * Je cite  : 
-  
+* Hors la doc de `osm2pgsql` indique clairement (`./README.md` racine ) qu'une ["invocation typique"](https://github.com/openstreetmap/osm2pgsql/blob/master/README.md#usage)  de `osm2pgsql` utilise l'option `--create`, et que cette option créée les tables postgesql suivantes :
+  * `planet_osm_point`
+  * `planet_osm_line`
+  * `planet_osm_roads`
+  * `planet_osm_polygon` (HEy, Oh My! The exact table name mentionend in my error logs !  :) :100: )
+En effet, Je cite la [documentation officielle `osm2pgsql`](https://github.com/openstreetmap/osm2pgsql/blob/master/README.md#usage) : 
   > A basic invocation to load the data into the database gis for rendering would be
   > ```osm2pgsql --create --database gis data.osm.pbf```
   > This will load the data from `data.osm.pbf` into the `planet_osm_point`, `planet_osm_line`, `planet_osm_roads`, and `planet_osm_polygon` tables.
