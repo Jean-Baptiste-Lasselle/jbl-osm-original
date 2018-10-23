@@ -30,7 +30,7 @@ EOSQL
 # Load PostGIS into both template_database and $POSTGRES_DB
 for DB in template_postgis "$POSTGRES_DB"; do
 	echo "Loading PostGIS extensions into $DB"
-	psql -U $POSTGRES_USER --dbname="$DB" <<-'EOSQL'
+	psql -U $POSTGRES_USER --dbname="$POSTGRES_DB" <<-'EOSQL'
 		CREATE EXTENSION postgis;
 		CREATE EXTENSION postgis_topology;
 		CREATE EXTENSION fuzzystrmatch;
