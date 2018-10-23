@@ -50,6 +50,10 @@ export PGUSER=$POSTGRES_USER
 
 #import Melbourne city
 # osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /Melbourne.osm.pbf
+
+# -> YO Michael, 
+# -> Let's start with just the same instruction, but with `--create` option instread of `--style` (have they even once imported data for their customer(s)...??)
+osm2pgsql --create /openstreetmap-carto/openstreetmap-carto.style -d gis -U $POSTGRES_USER -k --slim /australia-oceania-latest.osm.pbf 
 osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U $POSTGRES_USER -k --slim /australia-oceania-latest.osm.pbf 
 # && touch /var/lib/postgresql/data/DB_INITED
 # osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /australia-oceania/australia-latest.osm.pbf
