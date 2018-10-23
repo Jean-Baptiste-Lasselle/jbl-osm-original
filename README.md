@@ -175,8 +175,7 @@ Donc, je vais utiliser l'instruction de la forme :
 
 
   > When importing a large amount of data such as the complete planet, a typical command line would be
-  > ```osm2pgsql -c -d gis --slim -C <cache size> \
-  --flat-nodes <flat nodes> planet-latest.osm.pbf```
+  > ```osm2pgsql -c -d gis --slim -C <cache size> --flat-nodes <flat nodes> planet-latest.osm.pbf```
   > where
   >     `<cache size>` is about 75% of memory in MiB, to a maximum of about 30000. Additional RAM will not be used.
   >     `<flat nodes>` is a location where a 36GiB+ file can be saved.
