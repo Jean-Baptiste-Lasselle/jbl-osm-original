@@ -187,7 +187,182 @@ Donc, je vais utiliser l'instruction de la forme :
 
 et vérifier si cette fois , ma table `planet_osm_point` existe bel et bien.
 
+### Essai 1 : `osm2pgsql --create /openstreetmap-carto/openstreetmap-carto.style -d gis -U $POSTGRES_USER -k --slim /australia-oceania-latest.osm.pbf `
 
+
+
+
+```bash
+[jibl@pc-100 carto-proto]$ docker logs -f postgis
+LOG:  database system was shut down at 2018-10-22 22:43:29 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  relation "planet_osm_polygon" does not exist at character 651
+STATEMENT:  SELECT ST_SRID("way") AS srid FROM (SELECT
+	    way, name, way_pixels,
+	    COALESCE(wetland, landuse, "natural") AS feature
+	  FROM (SELECT
+	      way, COALESCE(name, '') AS name,
+	      ('landuse_' || (CASE WHEN landuse IN ('forest', 'military') THEN landuse ELSE NULL END)) AS landuse,
+	      ('natural_' || (CASE WHEN "natural" IN ('wood', 'sand', 'scree', 'shingle', 'bare_rock') THEN "natural" ELSE NULL END)) AS "natural",
+	      ('wetland_' || (CASE WHEN "natural" IN ('wetland', 'mud') THEN (CASE WHEN "natural" IN ('mud') THEN "natural" ELSE wetland END) ELSE NULL END)) AS wetland,
+	      way_area/NULLIF(0::real*0::real,0) AS way_pixels
+	    FROM planet_osm_polygon
+	    WHERE (landuse IN ('forest', 'military')
+	      OR "natural" IN ('wood', 'wetland', 'mud', 'sand', 'scree', 'shingle', 'bare_rock'))
+	      AND way_area > 0.01*0::real*0::real
+	      AND building IS NULL
+	    ORDER BY CASE WHEN layer~E'^-?\\d+$' AND length(layer)<10 THEN layer::integer ELSE 0 END, way_area DESC
+	  ) AS features
+	) AS landcover_low_zoom WHERE "way" IS NOT NULL LIMIT 1;
+ERROR:  relation "planet_osm_polygon" does not exist at character 651
+STATEMENT:  SELECT ST_SRID("way") AS srid FROM (SELECT
+	    way, name, way_pixels,
+	    COALESCE(wetland, landuse, "natural") AS feature
+	  FROM (SELECT
+	      way, COALESCE(name, '') AS name,
+	      ('landuse_' || (CASE WHEN landuse IN ('forest', 'military') THEN landuse ELSE NULL END)) AS landuse,
+	      ('natural_' || (CASE WHEN "natural" IN ('wood', 'sand', 'scree', 'shingle', 'bare_rock') THEN "natural" ELSE NULL END)) AS "natural",
+	      ('wetland_' || (CASE WHEN "natural" IN ('wetland', 'mud') THEN (CASE WHEN "natural" IN ('mud') THEN "natural" ELSE wetland END) ELSE NULL END)) AS wetland,
+	      way_area/NULLIF(0::real*0::real,0) AS way_pixels
+	    FROM planet_osm_polygon
+	    WHERE (landuse IN ('forest', 'military')
+	      OR "natural" IN ('wood', 'wetland', 'mud', 'sand', 'scree', 'shingle', 'bare_rock'))
+	      AND way_area > 0.01*0::real*0::real
+	      AND building IS NULL
+	    ORDER BY CASE WHEN layer~E'^-?\\d+$' AND length(layer)<10 THEN layer::integer ELSE 0 END, way_area DESC
+	  ) AS features
+	) AS landcover_low_zoom WHERE "way" IS NOT NULL LIMIT 1;
+^C                
+[jibl@pc-100 carto-proto]$ docker logs -f rendereurpoulet
+ ------------------------------------------------------------------------------------------- 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_USER=renderer-user] 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_DB=gis] 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_DB_HOST=postgis] 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_PASSWORD=whereischarlie] 
+ VERIFICATION RENDERER ENNTRYPOINT : [PGUSER=renderer-user] 
+ VERIFICATION RENDERER ENNTRYPOINT  : [PGPASSWORD=whereischarlie] 
+ ------------------------------------------------------------------------------------------- 
+DB successfully created, waiting for restart
+Starting renderer
+2018/10/23 16:09:26 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9090
+2018/10/23 16:09:26 app.go:267: [INFO] Serving monitoring xml data on %s... :9090
+2018/10/23 16:09:26 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9080
+2018/10/23 16:09:26 app.go:267: [INFO] Serving monitoring xml data on %s... :9080
+2018/10/23 16:09:26 renderselector.go:209: [DEBUG] ping error %v dial tcp 127.0.0.1:8090: getsockopt: connection refused
+2018/10/23 16:09:26 renderselector.go:117: [DEBUG] '%v' is %v localhost:8090 Offline
+2018/10/23 16:09:26 main.go:118: [INFO] Starting on %s... :8080
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v Exception: ERROR:  relation "planet_osm_polygon" does not exist
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v LINE 10:     FROM planet_osm_polygon
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v                   ^
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v 
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v Full sql was: 'SELECT ST_SRID("way") AS srid FROM (SELECT
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     way, name, way_pixels,
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     COALESCE(wetland, landuse, "natural") AS feature
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v   FROM (SELECT
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       way, COALESCE(name, '') AS name,
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       ('landuse_' || (CASE WHEN landuse IN ('forest', 'military') THEN landuse ELSE NULL END)) AS landuse,
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       ('natural_' || (CASE WHEN "natural" IN ('wood', 'sand', 'scree', 'shingle', 'bare_rock') THEN "natural" ELSE NULL END)) AS "natural",
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       ('wetland_' || (CASE WHEN "natural" IN ('wetland', 'mud') THEN (CASE WHEN "natural" IN ('mud') THEN "natural" ELSE wetland END) ELSE NULL END)) AS wetland,
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       way_area/NULLIF(0::real*0::real,0) AS way_pixels
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     FROM planet_osm_polygon
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     WHERE (landuse IN ('forest', 'military')
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       OR "natural" IN ('wood', 'wetland', 'mud', 'sand', 'scree', 'shingle', 'bare_rock'))
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       AND way_area > 0.01*0::real*0::real
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       AND building IS NULL
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     ORDER BY CASE WHEN layer~E'^-?\\d+$' AND length(layer)<10 THEN layer::integer ELSE 0 END, way_area DESC
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v   ) AS features
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v ) AS landcover_low_zoom WHERE "way" IS NOT NULL LIMIT 1;'
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v   encountered during parsing of layer 'landcover-low-zoom' in Layer at line 334 of '/openstreetmap-carto/stylesheet.xml'
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v Exception: ERROR:  relation "planet_osm_polygon" does not exist
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v LINE 10:     FROM planet_osm_polygon
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v                   ^
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v 
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v Full sql was: 'SELECT ST_SRID("way") AS srid FROM (SELECT
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     way, name, way_pixels,
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     COALESCE(wetland, landuse, "natural") AS feature
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v   FROM (SELECT
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       way, COALESCE(name, '') AS name,
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       ('landuse_' || (CASE WHEN landuse IN ('forest', 'military') THEN landuse ELSE NULL END)) AS landuse,
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       ('natural_' || (CASE WHEN "natural" IN ('wood', 'sand', 'scree', 'shingle', 'bare_rock') THEN "natural" ELSE NULL END)) AS "natural",
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       ('wetland_' || (CASE WHEN "natural" IN ('wetland', 'mud') THEN (CASE WHEN "natural" IN ('mud') THEN "natural" ELSE wetland END) ELSE NULL END)) AS wetland,
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       way_area/NULLIF(0::real*0::real,0) AS way_pixels
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     FROM planet_osm_polygon
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     WHERE (landuse IN ('forest', 'military')
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       OR "natural" IN ('wood', 'wetland', 'mud', 'sand', 'scree', 'shingle', 'bare_rock'))
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       AND way_area > 0.01*0::real*0::real
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v       AND building IS NULL
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v     ORDER BY CASE WHEN layer~E'^-?\\d+$' AND length(layer)<10 THEN layer::integer ELSE 0 END, way_area DESC
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v   ) AS features
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v ) AS landcover_low_zoom WHERE "way" IS NOT NULL LIMIT 1;'
+
+2018/10/23 16:09:28 render.go:35: [ERROR] Render child error: %v   encountered during parsing of layer 'landcover-low-zoom' in Layer at line 334 of '/openstreetmap-carto/stylesheet.xml'
+
+2018/10/23 16:09:28 main.go:91: [CRITICAL] Failed to create tile server: Failed to create some renders: [Invalid read uint64: EOF Invalid read uint64: EOF]
+2018/10/23 16:09:56 renderselector.go:209: [DEBUG] ping error %v dial tcp 127.0.0.1:8090: getsockopt: connection refused
+2018/10/23 16:09:56 renderselector.go:117: [DEBUG] '%v' is %v localhost:8090 Offline
+2018/10/23 16:10:26 renderselector.go:209: [DEBUG] ping error %v dial tcp 127.0.0.1:8090: getsockopt: connection refused
+2018/10/23 16:10:26 renderselector.go:117: [DEBUG] '%v' is %v localhost:8090 Offline
+^C
+[jibl@pc-100 carto-proto]$ 
+```
+
+Résultat : négatif, donc je vais essayer avec une syntaxe indqiuée par la doc officielle `osm2pgsql`, et avec une surce de données PBF reconnue par le projet `osm2pgsql`. Quand je maîtriserai la syntaxe, sans me soucier de l'intégrité des données, je me mettrai à analyser les données elles-mêmes.
+
+J'ajoute un test, qui me permettra de vérifier l'existence d'une table PostGreSQL / PostGIS :  
+
+```bash
+export POSTGRES_USER=renderer-user
+export POSTGRES_PASSWD=whereischarlie
+export DATABASE_NAME=gis
+export TABLE_NAME=
+echo "SELECT * FROM $TABLE_NAME LIMIT 5;" >> ./requete-test-sql.sql
+export PGPASSWORD=$POSTGRES_PASSWD
+psql -U $POSTGRES_USER -d $DATABASE_NAME < ./requete-test-sql.sql
+```
 
 
 # TODO du mataîng
