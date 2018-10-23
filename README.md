@@ -350,7 +350,26 @@ Starting renderer
 [jibl@pc-100 carto-proto]$ 
 ```
 
-Résultat : négatif, donc je vais essayer avec une syntaxe indqiuée par la doc officielle `osm2pgsql`, et avec une surce de données PBF reconnue par le projet `osm2pgsql`. Quand je maîtriserai la syntaxe, sans me soucier de l'intégrité des données, je me mettrai à analyser les données elles-mêmes.
+Résultat : négatif
+
+### Essai 2 : `osm2pgsql --create --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U $POSTGRES_USER --slim -C 4096 /australia-oceania-latest.osm.pbf`
+
+J'ai eut cette petite envie de test, parce que manifestement, `/openstreetmap-carto/openstreetmap-carto.style` est l'arguement de l'option `--style`
+
+```bash
+logs
+```
+Résultat: , donc je vais essayer avec une syntaxe indqiuée par la doc officielle `osm2pgsql`, et avec une surce de données PBF reconnue par le projet `osm2pgsql`. Quand je maîtriserai la syntaxe, sans me soucier de l'intégrité des données, je me mettrai à analyser les données elles-mêmes.
+ 
+
+
+### Essai 3 : `osm2pgsql --create --database gis /australia-oceania-latest.osm.pbf`
+
+```bash
+logs
+```
+
+Résultat: ,
 
 J'ajoute un test, qui me permettra de vérifier l'existence d'une table PostGreSQL / PostGIS :  
 
