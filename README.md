@@ -157,6 +157,36 @@ STATEMENT:  SELECT ST_SRID("way") AS srid FROM (SELECT
 J'ai trouvé : 
 
 ![pb avec les data et project.mml](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/raw/master/issues-memory/probleme_data_project_mml.png)
+
+Et là: ce qui est  en cause, ce n'est pas la validité du project.mml, dont je pense qu'il a été copié sans aucun changment au travers des 2 repos que j'ai du travaerser, pour retrouver `openstreetmap-carto`.
+Donc ce qui est en cause est simple, il s'agit des commandes osm2pgsql inscrites dans le dockerfile postgis :
+* Il n'y a qu'une seule instruction, et elle utilise l'option `--style`, mais absolument pas l'option `--create` ,
+* Hors la doc de `osm2pgsql` indique clairement (`./README.md` racine ) qu'une ["invocation typique"]()  de `osm2pgsql` utilise l'option `--create`, et que cette option créée les tables postgesql suivantes :
+  * cccc
+  * cccc
+  * cccc
+  * cccc
+  * Je cite  : 
+  
+  > A basic invocation to load the data into the database gis for rendering would be
+  > ```osm2pgsql --create --database gis data.osm.pbf```
+  > This will load the data from `data.osm.pbf` into the `planet_osm_point`, `planet_osm_line`, `planet_osm_roads`, and `planet_osm_polygon` tables.
+
+Donc, je vais utiliser l'instruction de la forme : 
+
+
+  > When importing a large amount of data such as the complete planet, a typical command line would be
+  > ```osm2pgsql -c -d gis --slim -C <cache size> \
+  --flat-nodes <flat nodes> planet-latest.osm.pbf```
+  > where
+  >     `<cache size>` is about 75% of memory in MiB, to a maximum of about 30000. Additional RAM will not be used.
+  >     `<flat nodes>` is a location where a 36GiB+ file can be saved.
+
+et vérifier si cette fois , ma table `planet_osm_point` existera bien.
+
+
+
+
 # TODO du mataîng
 
 selon la doc d'openstreetmap, je dois exécuter aussi (le le gars n'as pas reporté cela dans son `./renderer/Dockerfile`) : 
