@@ -31,11 +31,12 @@ RUN rm -f ./project.mml
 # ADD ./my-mapnik-settings/project.yaml .
 ADD ./my-mapnik-settings/project.mml .
 RUN echo "TODO : build de l'image du service 'renderer' => faire des substitution sed au lieu d'écraser le fichier ? Il faut une sync avec la distribution chain de openstreetmap, et  tout récuperer dans l'infra en privé, ne serait que pour les téléchargements des dépendances"
-# RUN chmod +x ./get-shapefiles.sh
-RUN chmod +x ./scripts/get-shapefiles.sh
+RUN chmod +x ./get-shapefiles.sh
+# RUN chmod +x ./scripts/get-shapefiles.sh
 
 # dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md], which was coming from [https://github.com/mapnik/mapnik/blob/master/INSTALL.md]
 RUN ./scripts/get-shapefiles.sh
+RUN ./get-shapefiles.sh
 
 ADD shapes/ data/
 RUN shapeindex --shape_files \
