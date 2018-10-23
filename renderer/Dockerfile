@@ -35,7 +35,7 @@ RUN chmod +x ./get-shapefiles.sh
 # RUN chmod +x ./scripts/get-shapefiles.sh
 
 # dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md], which was coming from [https://github.com/mapnik/mapnik/blob/master/INSTALL.md]
-RUN ./scripts/get-shapefiles.sh
+# RUN ./scripts/get-shapefiles.sh
 RUN ./get-shapefiles.sh
 
 ADD shapes/ data/
