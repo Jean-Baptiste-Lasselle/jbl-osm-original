@@ -2,6 +2,10 @@
 
 set -e -u
 
+export PBF_FILENAME=planet-latest.osm.pbf
+# export PBF_DOWNLOAD_URI=https://download.geofabrik.de/australia-oceania-latest.osm.pb
+export PBF_DOWNLOAD_URI=https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf
+
 UNZIP_OPTS=-qqun
 SHAPES_DIR=renderer/shapes
 # pour télécharger en préliminaire du cycle IAAC, les fichiers PBF volmineux, au lieu de faire les téléchéargement dans le build de l'image renderer
@@ -10,15 +14,16 @@ PBF_VAULT_HOME=/home/jibl/carto-vault
 WHEREEVERIWASBEFORE=`pwd`
 mkdir -p ${PBF_VAULT_HOME}
 
+
 cd $PBF_VAULT_HOME
-echo "Téléchargement du fichier [australia-oceania-latest.osm.pbf] ... "
-if [ -f australia-oceania-latest.osm.pbf ]; then
+echo "Téléchargement du fichier [$PBF_FILENAME] ... "
+if [ -f ./$PBF_FILENAME ]; then
    echo "Le fichier if [australia-oceania-latest.osm.pbf] existe déjà : ";
-   ls -all ./australia-oceania-latest.osm.pbf
+   ls -all ./$PBF_FILENAME
 else 
-   wget "https://download.geofabrik.de/australia-oceania-latest.osm.pbf"
+   wget "$PBF_DOWNLOAD_URI"
    echo " Téléchargement du fichier [australia-oceania-latest.osm.pbf] terminé : "
-   ls -all ./australia-oceania-latest.osm.pbf
+   ls -all ./$PBF_FILENAME
 fi
 
 cd $WHEREEVERIWASBEFORE
