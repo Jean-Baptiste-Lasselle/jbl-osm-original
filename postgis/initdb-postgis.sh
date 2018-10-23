@@ -53,11 +53,13 @@ export PGUSER=$POSTGRES_USER
 
 # -> YO Michael, 
 # -> Let's start with just the same instruction, but with `--create` option instread of `--style` (have they even once imported data for their customer(s)...??)
-osm2pgsql --create --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U $POSTGRES_USER --slim -C 4096 /australia-oceania-latest.osm.pbf 
-osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U $POSTGRES_USER -k --slim /australia-oceania-latest.osm.pbf 
+# osm2pgsql --create --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U $POSTGRES_USER --slim -C 4096 /australia-oceania-latest.osm.pbf 
+# osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U $POSTGRES_USER -k --slim /australia-oceania-latest.osm.pbf 
 # && touch /var/lib/postgresql/data/DB_INITED
 # osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /australia-oceania/australia-latest.osm.pbf
 
+# --- skipping all his shit 
+osm2pgsql -U $POSTGRES_USER  --create --database gis /australia-oceania-latest.osm.pbf 
 
 
 # The following environment variables can be used to select default connection parameter values, which will be used by PQconnectdb, PQsetdbLogin and PQsetdb if no value is directly specified by the calling code. These are useful to avoid hard-coding database connection information into simple client applications, for example.
