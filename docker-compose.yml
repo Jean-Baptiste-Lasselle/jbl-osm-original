@@ -24,7 +24,15 @@ services:
     restart: always
   renderer:
     container_name: 'rendereurpoulet'
-    build: ./renderer
+    build: 
+      context: ./renderer
+      args:
+        # Is there no dad at shinesolutions.com?
+        - MAPNIK_POSTGRES_DB_HOST=postgis
+        - MAPNIK_POSTGRES_DB_PORT_NO=5432
+        - MAPNIK_POSTGRES_DB=gis
+        - MAPNIK_POSTGRES_USER=renderer-user
+        - MAPNIK_POSTGRES_PASSWORD=whereischarlie
     volumes:
       - ./renderer/map_data:/map_data
       - ./renderer/scripts:/scripts
@@ -34,12 +42,13 @@ services:
 #     volumes_from:
 #       - postgis:ro
     environment:
-      - MAPNIK_POSTGRES_DB=gis
       # Is there no dad at shinesolutions.com?
-      - MAPNIK_POSTGRES_USER=renderer-user
-      - MAPNIK_POSTGRES_PASSWORD=whereischarlie
       - MAPNIK_POSTGRES_DB_HOST=postgis
       - MAPNIK_POSTGRES_DB_PORT_NO=5432
+      - MAPNIK_POSTGRES_DB=gis
+      - MAPNIK_POSTGRES_USER=renderer-user
+      - MAPNIK_POSTGRES_PASSWORD=whereischarlie
+
     ports:
       - "8080:8080"
       - "9090:9090"
