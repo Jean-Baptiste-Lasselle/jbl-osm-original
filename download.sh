@@ -16,13 +16,14 @@ mkdir -p $PBF_VAULT_HOME
 
 
 cd $PBF_VAULT_HOME
-echo "Téléchargement du fichier [$PBF_FILENAME] ... "
+
 if [ -f ./$PBF_FILENAME ]; then
-   echo "Le fichier if [australia-oceania-latest.osm.pbf] existe déjà : ";
+   echo "Le fichier if [$PBF_FILENAME] existe déjà : ";
    ls -all ./$PBF_FILENAME
 else 
+   echo "Téléchargement du fichier [$PBF_FILENAME] ... "
    wget "$PBF_DOWNLOAD_URI"
-   echo " Téléchargement du fichier [australia-oceania-latest.osm.pbf] terminé : "
+   echo " Téléchargement du fichier [$PBF_FILENAME] terminé : "
    ls -all ./$PBF_FILENAME
 fi
 
