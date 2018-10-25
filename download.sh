@@ -146,17 +146,33 @@ fi
 
 # rm renderer/shapes/*.zip
 # rm renderer/shapes/*.tgz
+# PBF_VAULT content : 
+# -rw-rw-r--. 1 jibl jibl    53921335 Oct 25 20:52 antarctica-icesheet-outlines-3857.zip
+# -rw-rw-r--. 1 jibl jibl    52997121 Oct 25 20:42 antarctica-icesheet-polygons-3857.zip
+# -rw-rw-r--. 1 jibl jibl       45820 Oct 25 20:41 ne_110m_admin_0_boundary_lines_land.zip
+# -rw-rw-r--. 1 jibl jibl 38158221312 Oct 25 18:38 planet-latest.osm.pbf
+# -rw-rw-r--. 1 jibl jibl    23696302 Oct 25 20:41 simplified-water-polygons-complete-3857.zip
+# -rw-rw-r--. 1 jibl jibl   551960621 Oct 25 20:42 water-polygons-split-3857.zip
+# -rw-rw-r--. 1 jibl jibl    52857349 Oct 25 20:38 world_boundaries-spherical.tgz
 
 
 cd $WHEREEVERIWASBEFORE
-cp -f $PBF_VAULT_HOME/*.* ${SHAPES_DIR}
+
+cp -f $PBF_VAULT_HOME/antarctica-icesheet-outlines-3857.zip ${SHAPES_DIR}
+cp -f $PBF_VAULT_HOME/antarctica-icesheet-polygons-3857.zip ${SHAPES_DIR}
+cp -f $PBF_VAULT_HOME/ne_110m_admin_0_boundary_lines_land.zip ${SHAPES_DIR}
+cp -f $PBF_VAULT_HOME/simplified-water-polygons-complete-3857.zip ${SHAPES_DIR}
+cp -f $PBF_VAULT_HOME/water-polygons-split-3857.zip ${SHAPES_DIR}
+cp -f $PBF_VAULT_HOME/world_boundaries-spherical.tgz ${SHAPES_DIR}
+
+
 cp -Rf $PBF_VAULT_HOME/* ${SHAPES_DIR}
 
-echo "expanding world_boundaries into [PBF_VAULT_HOME=$PBF_VAULT_HOME] ..."
-tar -xzf ${SHAPES_DIR}/world_boundaries-spherical.tgz -C ${PBF_VAULT_HOME}/
+echo "expanding world_boundaries into [PBF_VAULT_HOME=$SHAPES_DIR] ..."
+tar -xzf ${SHAPES_DIR}/world_boundaries-spherical.tgz -C ${SHAPES_DIR}/
 
 echo "expanding simplified-water-polygons-complete-3857..."
-unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/simplified-water-polygons-complete-3857.zip \
+unzip $UNZIP_OPTS ${SHAPES_DIR}/simplified-water-polygons-complete-3857.zip \
   simplified-water-polygons-complete-3857/simplified_water_polygons.shp \
   simplified-water-polygons-complete-3857/simplified_water_polygons.shx \
   simplified-water-polygons-complete-3857/simplified_water_polygons.prj \
@@ -165,7 +181,7 @@ unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/simplified-water-polygons-complete-3857.zip 
   -d ${SHAPES_DIR}/
   
 echo "expanding ne_110m_admin_0_boundary_lines_land..."
-unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip \
+unzip $UNZIP_OPTS ${SHAPES_DIR}/ne_110m_admin_0_boundary_lines_land.zip \
   ne_110m_admin_0_boundary_lines_land.shp \
   ne_110m_admin_0_boundary_lines_land.shx \
   ne_110m_admin_0_boundary_lines_land.prj \
@@ -173,7 +189,7 @@ unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip \
   -d ${SHAPES_DIR}/ne_110m_admin_0_boundary_lines_land/
   
 echo "expanding water-polygons-split-3857..."
-unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/water-polygons-split-3857.zip \
+unzip $UNZIP_OPTS ${SHAPES_DIR}/water-polygons-split-3857.zip \
   water-polygons-split-3857/water_polygons.shp \
   water-polygons-split-3857/water_polygons.shx \
   water-polygons-split-3857/water_polygons.prj \
@@ -182,7 +198,7 @@ unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/water-polygons-split-3857.zip \
   -d ${SHAPES_DIR}/
 
 echo "expanding antarctica-icesheet-polygons-3857..."
-unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip \
+unzip $UNZIP_OPTS ${SHAPES_DIR}/antarctica-icesheet-polygons-3857.zip \
   antarctica-icesheet-polygons-3857/icesheet_polygons.shp \
   antarctica-icesheet-polygons-3857/icesheet_polygons.shx \
   antarctica-icesheet-polygons-3857/icesheet_polygons.prj \
@@ -190,7 +206,7 @@ unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip \
   -d ${SHAPES_DIR}/
 
 echo "expanding antarctica-icesheet-outlines-3857..."
-unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip \
+unzip $UNZIP_OPTS ${SHAPES_DIR}/antarctica-icesheet-outlines-3857.zip \
   antarctica-icesheet-outlines-3857/icesheet_outlines.shp \
   antarctica-icesheet-outlines-3857/icesheet_outlines.shx \
   antarctica-icesheet-outlines-3857/icesheet_outlines.prj \
