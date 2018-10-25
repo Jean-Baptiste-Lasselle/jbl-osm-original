@@ -46,10 +46,10 @@ if [ -f $PBF_VAULT_HOME/world_boundaries-spherical.tgz ]; then
 else 
    echo "Téléchargement du fichier [$PBF_VAULT_HOME/world_boundaries-spherical.tgz] ... "
    # world_boundaries
-   echo "downloading world_boundaries  [${SHAPES_DIR}/world_boundaries-spherical.tgz] into [PBF_VAULT_HOME=$PBF_VAULT_HOME] ..."
-   curl -z "${SHAPES_DIR}/world_boundaries-spherical.tgz" -L -o "${PBF_VAULT_HOME}/world_boundaries-spherical.tgz" "https://planet.openstreetmap.org/historical-shapefiles/world_boundaries-spherical.tgz"
+   echo "downloading world_boundaries  [${PBF_VAULT_HOME}/world_boundaries-spherical.tgz] into [PBF_VAULT_HOME=$PBF_VAULT_HOME] ..."
+   curl -z "${PBF_VAULT_HOME}/world_boundaries-spherical.tgz" -L -o "${PBF_VAULT_HOME}/world_boundaries-spherical.tgz" "https://planet.openstreetmap.org/historical-shapefiles/world_boundaries-spherical.tgz"
    echo "expanding world_boundaries into [PBF_VAULT_HOME=$PBF_VAULT_HOME] ..."
-   tar -xzf ${SHAPES_DIR}/world_boundaries-spherical.tgz -C ${PBF_VAULT_HOME}/
+   tar -xzf ${PBF_VAULT_HOME}/world_boundaries-spherical.tgz -C ${PBF_VAULT_HOME}/
    echo " Téléchargement du fichier [$PBF_VAULT_HOME/world_boundaries-spherical.tgz] terminé : "
    ls -all $PBF_VAULT_HOME/world_boundaries-spherical.tgz
 fi
