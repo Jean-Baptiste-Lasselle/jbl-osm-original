@@ -15,7 +15,7 @@ ENV POSTGRES_USER=$POSTGRES_USER
 # POSTGRES_PASSWORD (note: should not be built-in container, for the sake of security)
 ARG POSTGRES_PASSWORD=poulet
 # built-in default value et runtime, baby
-ENV POSTGRES_PASSWORD=whereischarlie
+ENV POSTGRES_PASSWORD=$POSTGRES_PASSWORD
 
 ENV PGHOST=localhost
 ENV PGUSER=$POSTGRES_USER
