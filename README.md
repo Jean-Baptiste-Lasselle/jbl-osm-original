@@ -1,6 +1,48 @@
 
 ![I love you  I miss you V.](https://www.youtube.com/watch?v=god7hAPv8f0)
 
+# passe-chaud
+
+là c'est bien comme cela qu'on créée la bdd postgres : 
+
+```bash
+[bobby@pc-100 proto]$ docker images
+REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
+proto_renderer                         latest              c63a50e006d6        15 minutes ago      3.84GB
+proto_postgis                          latest              90b581fdef27        21 minutes ago      681MB
+marguerite/mongo-replica-initializer   1.0.0               db13247e284b        4 days ago          381MB
+mdillon/postgis                        9.5                 9b3216877172        6 days ago          621MB
+marguerite/sonde-reseau                0.0.1               659b57e760e1        8 days ago          390MB
+marguerite/mongo                       1.0.0               ef13dded1a0b        8 days ago          381MB
+marguerite/meteor-ide                  1.0.0               40aa4823f46b        8 days ago          1.95GB
+marguerite/meteor-stack                1.0.0               927f459cbd8d        8 days ago          1.95GB
+nginx                                  latest              dbfc48660aeb        9 days ago          109MB
+kytes/sonde-reseau                     0.0.1               ab36c8aafd34        10 days ago         299MB
+coquelicot/rocket.chat                 1.0.0               45b56062ddad        10 days ago         1.42GB
+coquelicot/gitlab-ce                   11.2.1-ce.0         2a420615d8d3        10 days ago         1.48GB
+rocketchat/rocket.chat                 latest              c28b900ffce9        2 weeks ago         1.41GB
+centos                                 7                   75835a67d134        2 weeks ago         200MB
+mongo                                  latest              052ca8f03af8        3 weeks ago         381MB
+redis                                  3-alpine            6e94a98d3442        3 weeks ago         22.9MB
+gitlab/gitlab-ce                       11.2.1-ce.0         af0daec29652        2 months ago        1.48GB
+gitlab/gitlab-runner                   alpine-v11.2.0      2b8aaef78227        2 months ago        113MB
+postgres                               9.6.8-alpine        07cf49508e9e        5 months ago        39.2MB
+nginx                                  1.11-alpine         bedece1f06cc        18 months ago       54.3MB
+dpokidov/gopnik                        latest              f48c3ecbe95d        22 months ago       2.03GB
+
+[bobby@pc-100 proto]$ docker run -itd --restart=always --name testpgres -e POSTGRES_DB=bonjour -e POSTGRES_USER=poulasse -e POSTGRERS_PASSWORD=jibl 07cf49508e9e 
+00ab0002fbc964ea8f3c695349db974e5e50c0d8238be3cfb340259a3b5b2ac7
+[bobby@pc-100 proto]$ docker exec -it testpgres sh -c "psql -U poulasse --dbname=bonjour --host=localhost --port=5432 -W"
+Password for user poulasse: 
+psql (9.6.8)
+Type "help" for help.
+
+bonjour=# show tables;
+ERROR:  unrecognized configuration parameter "tables"
+
+bonjour=# \q
+[bobby@pc-100 proto]$ 
+```
 
 # À regarder
 
