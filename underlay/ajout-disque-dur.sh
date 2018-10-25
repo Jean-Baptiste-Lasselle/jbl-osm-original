@@ -1,6 +1,7 @@
 #!/bin/bash
 # Avant toute opération, voici l'affichage fdisk -l : 
 export USER_LX_OPERATEUR=bobby
+export NOUVEAU_DISQUE_DUR=/dev/sdb
 # [sudo] password for bobby:
 #
 # Disk /dev/sda: 107.4 GB, 107374182400 bytes, 209715200 sectors
@@ -73,7 +74,7 @@ export USER_LX_OPERATEUR=bobby
 # 
 
 # --->>>>> Maintenant, on va créer une partition  sur le nouveau disque dur inséré. Cette unique partition occupera la totalité de la capacité du disque.
-sudo fdisk /dev/sdb 
+sudo fdisk $NOUVEAU_DISQUE_DUR 
 
 # [bobby@pc-100 ops-underlay]$ sudo fdisk /dev/sdb
 # [sudo] password for bobby: 
@@ -184,7 +185,7 @@ sudo chown -R $USER_LX_OPERATEUR /infra-kytes
 #### -------------->>>  dans /infra-kytes , il y aura la provision infra-kytes, et je pourrai plus tard monter un autre disque dur plus gros là dessus, et migrer l'infra-kytes dasn ce répertoire
 #### -------------->>>  dans /carto/proto, il y aura le run de mon proto de carto
 #### -------------->>>  dans /carto/vault, c là qu'il y aura tout ce qui est gros fichiers PBF
-sudo mount /dev/sdb /carto
+sudo mount $NOUVEAU_DISQUE_DUR /carto
 
 df -Th
 # Filesystem              Type      Size  Used Avail Use% Mounted on
@@ -211,7 +212,7 @@ echo " You must be root to complete next commands "
 # I prefer 'sudo -s', such as I learned from éric levenez, my Master in Linux, instead of 'sudo -i', because 'sudo -s' expects and assumes less about the underlying linux instance.
 sudo -s
 echo "# disque dur prtotoype cartographie kytes " >> /etc/fstab
-echo "/dev/sdb   /carto   ext4   defaults    0    0" >> /etc/fstab
+echo "$NOUVEAU_DISQUE_DUR   /carto   ext4   defaults    0    0" >> /etc/fstab
 
 
 
