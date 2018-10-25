@@ -1,7 +1,7 @@
 #!/bin/bash
 # Avant toute opération, voici l'affichage fdisk -l : 
-
-# [sudo] password for jibl:
+export USER_LX_OPERATEUR=bobby
+# [sudo] password for bobby:
 #
 # Disk /dev/sda: 107.4 GB, 107374182400 bytes, 209715200 sectors
 # Units = sectors of 1 * 512 = 512 bytes
@@ -75,8 +75,8 @@
 # --->>>>> Maintenant, on va créer une partition  sur le nouveau disque dur inséré. Cette unique partition occupera la totalité de la capacité du disque.
 sudo fdisk /dev/sdb 
 
-# [jibl@pc-100 ops-underlay]$ sudo fdisk /dev/sdb
-# [sudo] password for jibl: 
+# [bobby@pc-100 ops-underlay]$ sudo fdisk /dev/sdb
+# [sudo] password for bobby: 
 # Welcome to fdisk (util-linux 2.23.2).
 # 
 # Changes will remain in memory only, until you decide to write them.
@@ -126,7 +126,7 @@ sudo fdisk /dev/sdb
 # 
 # Calling ioctl() to re-read partition table.
 # Syncing disks.
-# [jibl@pc-100 ops-underlay]$ df -Th
+# [bobby@pc-100 ops-underlay]$ df -Th
 # Filesystem              Type      Size  Used Avail Use% Mounted on
 # /dev/mapper/centos-root xfs        50G   12G   39G  24% /
 # devtmpfs                devtmpfs  3.9G     0  3.9G   0% /dev
@@ -136,10 +136,10 @@ sudo fdisk /dev/sdb
 # /dev/mapper/centos-home xfs        42G  2.4G   39G   6% /home
 # /dev/sda1               xfs      1014M  183M  832M  19% /boot
 # tmpfs                   tmpfs     783M     0  783M   0% /run/user/1000
-# [jibl@pc-100 ops-underlay]$ # sudo mkfs.ext4
+# [bobby@pc-100 ops-underlay]$ # sudo mkfs.ext4
 # 
-# [jibl@pc-100 ops-underlay]$ sudo mkfs.ext4 /dev/sdb
-# [sudo] password for jibl: 
+# [bobby@pc-100 ops-underlay]$ sudo mkfs.ext4 /dev/sdb
+# [sudo] password for bobby: 
 # mke2fs 1.42.9 (28-Dec-2013)
 # /dev/sdb is entire device, not just one partition!
 # Proceed anyway? (y,n) y
@@ -164,8 +164,8 @@ sudo fdisk /dev/sdb
 # Creating journal (32768 blocks): done
 # Writing superblocks and filesystem accounting information: done   
 # 
-# [jibl@pc-100 ops-underlay]$ 
-# [jibl@pc-100 ops-underlay]$ df -Th
+# [bobby@pc-100 ops-underlay]$ 
+# [bobby@pc-100 ops-underlay]$ df -Th
 # Filesystem              Type      Size  Used Avail Use% Mounted on
 # /dev/mapper/centos-root xfs        50G   12G   39G  24% /
 # devtmpfs                devtmpfs  3.9G     0  3.9G   0% /dev
