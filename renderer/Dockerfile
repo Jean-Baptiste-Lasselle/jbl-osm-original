@@ -1,11 +1,27 @@
 FROM dpokidov/gopnik
 
-ENV MAPNIK_POSTGRES_DB=gis
-# Is there no dad at shinesolutions.com?
-ENV MAPNIK_POSTGRES_USER=renderer-user
-ENV MAPNIK_POSTGRES_PASSWORD=whereischarlie
-ENV MAPNIK_POSTGRES_DB_HOST=postgis
+ARG MAPNIK_POSTGRES_DB_HOST=postgis
+ENV MAPNIK_POSTGRES_DB_HOST=$MAPNIK_POSTGRES_DB_HOST
 
+ARG MAPNIK_POSTGRES_DB_PORT_NO=5432
+ENV MAPNIK_POSTGRES_DB_PORT_NO=$MAPNIK_POSTGRES_DB_PORT_NO
+
+ARG MAPNIK_POSTGRES_DB=gis
+ENV MAPNIK_POSTGRES_DB=$MAPNIK_POSTGRES_DB
+# Is there no dad at shinesolutions.com?
+ARG MAPNIK_POSTGRES_USER=renderer-user
+ENV MAPNIK_POSTGRES_USER=$MAPNIK_POSTGRES_USER
+
+ARG MAPNIK_POSTGRES_PASSWORD=whereischarlie
+ENV MAPNIK_POSTGRES_PASSWORD=$MAPNIK_POSTGRES_PASSWORD
+
+
+      - MAPNIK_POSTGRES_DB=gis
+      # Is there no dad at shinesolutions.com?
+      - MAPNIK_POSTGRES_USER=renderer-user
+      - MAPNIK_POSTGRES_PASSWORD=whereischarlie
+      - MAPNIK_POSTGRES_DB_HOST=postgis
+- 
 # Hey! let's use ;;; the PostGreSQL client, to try and connect to PostGRESQL??
 RUN apt-get update -y && \
     apt-get install -y git curl unzip node-carto mapnik-utils fontconfig postgresql-client && \
