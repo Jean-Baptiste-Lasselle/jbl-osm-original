@@ -9,7 +9,7 @@ export PBF_DOWNLOAD_URI=https://planet.openstreetmap.org/pbf/planet-latest.osm.p
 UNZIP_OPTS=-qqun
 SHAPES_DIR=renderer/shapes
 # pour télécharger en préliminaire du cycle IAAC, les fichiers PBF volmineux, au lieu de faire les téléchéargement dans le build de l'image renderer
-PBF_VAULT_HOME=/home/jibl/carto-vault
+PBF_VAULT_HOME=/carto/vault
 
 WHEREEVERIWASBEFORE=`pwd`
 mkdir -p ${PBF_VAULT_HOME}
