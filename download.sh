@@ -138,13 +138,13 @@ fi
 # Je ne vérifie pas l'existence des fichiers *.shp *.shx *.prj *.dnf *.cpg , je me contente de l'existence du zip
 # (ça se dézippe, des shapefiles...?)
 # I don't check existence of  *.shp *.shx *.prj *.dnf *.cpg files, just rely on zip's
-if [ -f ${PBF_VAULT_HOME}/icesheet_polygons.zip ]; then
-   echo "Le fichier [${PBF_VAULT_HOME}/icesheet_polygons.zip] existe déjà : ";
-   ls -all ${PBF_VAULT_HOME}/icesheet_polygons.zip
+if [ -f ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip.zip ]; then
+   echo "Le fichier [${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip.zip] existe déjà : ";
+   ls -all ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip.zip
 else 
-   echo "Téléchargement du fichier [${PBF_VAULT_HOME}/icesheet_polygons.zip] ... "
+   echo "Téléchargement du fichier [${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip.zip] ... "
    # antarctica-icesheet-polygons-3857
-   echo "downloading antarctica-icesheet-polygons-3857..."
+   echo "antarctica-icesheet-polygons-3857.zip..."
    curl -z "${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip" -L -o "${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip" "http://data.openstreetmapdata.com/antarctica-icesheet-polygons-3857.zip"
    echo "expanding antarctica-icesheet-polygons-3857..."
    unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip \
@@ -153,8 +153,8 @@ else
      antarctica-icesheet-polygons-3857/icesheet_polygons.prj \
      antarctica-icesheet-polygons-3857/icesheet_polygons.dbf \
      -d ${PBF_VAULT_HOME}/
-   echo " Téléchargement du fichier [${PBF_VAULT_HOME}/icesheet_polygons.zip] terminé : "
-   ls -all ${PBF_VAULT_HOME}/icesheet_polygons.zip
+   echo " Téléchargement du fichier [${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip] terminé : "
+   ls -all ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip
 fi
 
 
@@ -162,11 +162,11 @@ fi
 # Je ne vérifie pas l'existence des fichiers *.shp *.shx *.prj *.dnf *.cpg , je me contente de l'existence du zip
 # (ça se dézippe, des shapefiles...?)
 # I don't check existence of  *.shp *.shx *.prj *.dnf *.cpg files, just rely on zip's
-if [ -f ${PBF_VAULT_HOME}/icesheet_outlines.zip ]; then
-   echo "Le fichier [${PBF_VAULT_HOME}/icesheet_outlines.zip] existe déjà : ";
-   ls -all ${PBF_VAULT_HOME}/icesheet_outlines.zip
+if [ -f ${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip ]; then
+   echo "Le fichier [${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip] existe déjà : ";
+   ls -all ${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip
 else 
-   echo "Téléchargement du fichier [${PBF_VAULT_HOME}/icesheet_outlines.zip] ... "
+   echo "Téléchargement du fichier [${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip] ... "
    # antarctica-icesheet-outlines-3857
    echo "downloading antarctica-icesheet-outlines-3857..."
    curl -z "${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip" -L -o "${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip" "http://data.openstreetmapdata.com/antarctica-icesheet-outlines-3857.zip"
@@ -177,7 +177,7 @@ else
      antarctica-icesheet-outlines-3857/icesheet_outlines.prj \
      antarctica-icesheet-outlines-3857/icesheet_outlines.dbf \
      -d ${PBF_VAULT_HOME}/
-   echo " Téléchargement du fichier [${PBF_VAULT_HOME}/icesheet_outlines.zip] terminé : "
+   echo " Téléchargement du fichier [${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip] terminé : "
    ls -all ${PBF_VAULT_HOME}/icesheet_outlines.zip
 fi
 
