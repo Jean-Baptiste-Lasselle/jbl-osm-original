@@ -17,6 +17,9 @@ ARG POSTGRES_PASSWORD=poulet
 # built-in default value et runtime, baby
 ENV POSTGRES_PASSWORD=whereischarlie
 
+ENV PGHOST=localhost
+ENV PGUSER=$POSTGRES_PASSWORD
+ENV PGPASSWORD=$PGPASSWORD
 
 WORKDIR /
 
