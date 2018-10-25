@@ -21,6 +21,10 @@ echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_USER=$POSTGRES_USER] "
 echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_PASSWORD=$POSTGRES_PASSWORD] "
 echo " VERIFICATION DEBUT INIT DB POSTGIS : [DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME] "
 echo " ------------------------------------------------------------------------------------------- "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [PG_HOST=$PG_HOST] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [PG_USER=$PG_USER] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [PG_PASSWORD=$PG_PASSWORD] "
+echo " ------------------------------------------------------------------------------------------- "
 
 psql -U $POSTGRES_USER --dbname="$POSTGRES_DB" <<- 'EOSQL'
 CREATE DATABASE template_postgis;
@@ -28,9 +32,9 @@ UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
 EOSQL
 
 # Load PostGIS into both template_database and $POSTGRES_DB
-for DB in template_postgis "$POSTGRES_DB"; do
+for CURRENT_DB in template_postgis "$POSTGRES_DB"; do
 	echo "Loading PostGIS extensions into $DB"
-	psql -U $POSTGRES_USER --dbname="$POSTGRES_DB" <<-'EOSQL'
+	psql --dbname="$CURRENT_DB" <<-'EOSQL'
 		CREATE EXTENSION postgis;
 		CREATE EXTENSION postgis_topology;
 		CREATE EXTENSION fuzzystrmatch;
