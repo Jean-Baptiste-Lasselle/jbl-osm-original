@@ -1,6 +1,7 @@
 version: '3'
 services:
   postgis:
+    image: carto-proto/postgis:0.0.1
     container_name: 'postgis'
     build: 
       context: './postgis'
@@ -25,6 +26,7 @@ services:
       - devops
     restart: always
   renderer:
+    image: carto-proto/gopnik-mapnik:0.0.1
     container_name: 'rendereurpoulet'
     build: 
       context: ./renderer
@@ -67,6 +69,7 @@ services:
     restart: always
     
   web:
+    image: carto-proto/nginx:0.0.1
     image: nginx:1.11-alpine
     volumes:
       - ./web:/usr/share/nginx/html
