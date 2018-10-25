@@ -8,6 +8,13 @@ https://affinitybridge.com/blog/server-side-mapping
 
 Là je vais avoir quelques combinaisons à tester, une fois débarrassé des dernières erreurs de la version en cours 
 
+
+* appel d'unwebservice geoloc / meteo avec promises et meteorjs : 
+
+https://www.youtube.com/watch?v=KLQFFeVHI8s
+
+
+
 # Dernière erreur
 
 ```bash
