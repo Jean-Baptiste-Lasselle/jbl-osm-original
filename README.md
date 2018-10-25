@@ -878,9 +878,27 @@ Selon [cette source officielle Redhat](https://access.redhat.com/articles/312989
 > 
 > For detailed information about the size limits of filesystem, files, and directories, see the File systems and storage section of the Red Hat Enterprise Linux technology capabilities and limits article.
 
+RHEL 6 => CentOS 7 (upstream project)
 
+Donc théoriquement, 'jai une limite de 300 Tera Bytes de disuque dur, par instance CentOS 7
 
+Mais :
 
+> XFS has a relatively poor performance for single threaded, metadata-intensive workloads, for example, a workload that creates or deletes large numbers of small files in a single thread
+ Alors, es-ce que Mapnik exécute des threads qui "crééent ou détruisent beaucoup de petits fichiers, ayant de grosse charges de méta-données?"
+  Séparons la question en trois : 
+  * es-ce que Mapnik exécute des threads qui "crééent beaucoup de petits fichiers, ayant de grosse charges de méta-données?"
+  * es-ce que Mapnik exécute des threads qui "détruisent beaucoup de petits fichiers, ayant de grosse charges de méta-données?"
+  * es-ce que Mapnik exécute des threads qui _à la fois_ "crééent et détruisent beaucoup de petits fichiers, ayant de grosse charges de méta-données?"
+ 
+ Les réponses à ces questions seront consolidées : 
+ 
+ * par des tests sur le présent prototype
+ * revues des documentations Mapnik
+ * revue des sources d'information non-officielles (repos github, et autres publications)
+ 
+ 
+ 
 
 
 
