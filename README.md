@@ -400,97 +400,6 @@ psql -U $POSTGRES_USER -d $DATABASE_NAME < ./requete-test-sql.sql
 
 # TODO du mataîng
 
-selon la doc d'openstreetmap, je dois exécuter aussi (le le gars n'as pas reporté cela dans son `./renderer/Dockerfile`) : 
-
-```bash
-./get-shapefiles.sh
-```
-
-Automatisation de la récupération du fichier `project.yaml` du projet OSM git cloné dans le conteneur renderer : 
-
-```bash
-jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ # mkdir -p renderer-of-osm/ && scp jibl@production-docker-host-1.kytes.io:/home/jibl/carto-proto/renderer/project.yaml 
-jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ mkdir -p renderer-of-osm/ && scp jibl@production-docker-host-1.kytes.io:/home/jibl/carto-proto/renderer/project.yaml 
-usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]
-           [-l limit] [-o ssh_option] [-P port] [-S program]
-           [[user@]host1:]file1 ... [[user@]host2:]file2
-jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ mkdir -p renderer-of-osm/ && scp jibl@production-docker-host-1.kytes.io:/home/jibl/carto-proto/renderer/project.yaml  .
-jibl@production-docker-host-1.kytes.io's password: 
-project.yaml                                                                                                                                                100%  107KB  23.0MB/s   00:00    
-jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ ls -all
-total 44727644
-drwxr-xr-x  4 jibl jibl        4096 Oct 22 13:56 .
-drwxr-xr-x 41 jibl jibl        4096 Oct 22 11:55 ..
--rw-r--r--  1 jibl jibl     1376256 Oct 22 12:01 australia-oceania-latest.osm.bz2
--rw-r--r--  1 jibl jibl   633086720 Oct 22 00:08 australia-oceania-latest.osm.pbf
-drwxr-xr-x  5 jibl jibl        4096 Oct 22 11:56 openstreetmap-carto
--rw-r--r--  1 jibl jibl 45166498303 Oct 18 04:06 planet-latest.osm.pbf
--rw-r--r--  1 jibl jibl      109892 Oct 22 13:56 project.yaml
-drwxr-xr-x  2 jibl jibl        4096 Oct 22 13:56 renderer-of-osm
-jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ mv project.yaml ./renderer-of-osm/
-jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ # ssh jibl@production-docker-host-1.kytes.io < copier-fichier-du-conteneur-vers-dockhost.sh
-jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ vi ./copier-fichier-du-conteneur-vers-dockhost.sh
-jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ cat ./copier-fichier-du-conteneur-vers-dockhost.sh 
-#!/bin/bash
-docker cp rendereurpoulet:/openstreetmap-carto/project.yaml ./renderer/
-jibl@pc-alienware-jib:~/OSM_mes_pretelechargements$ 
-
-```
-
-AH! :
-
-```bash
-Success. You can now start the database server using:
-
-    pg_ctl -D /var/lib/postgresql/data -l logfile start
-
-
-WARNING: enabling "trust" authentication for local connections
-You can change this by editing pg_hba.conf or using the option -A, or
---auth-local and --auth-host, the next time you run initdb.
-****************************************************
-WARNING: No password has been set for the database.
-         This will allow anyone with access to the
-         Postgres port to access your database. In
-         Docker's default configuration, this is
-         effectively any other container on the same
-         system.
-
-         Use "-e POSTGRES_PASSWORD=password" to set
-         it in "docker run".
-****************************************************
-waiting for server to start....LOG:  database system was shut down at 2018-10-22 15:42:37 UTC
-LOG:  MultiXact member wraparound protections are now enabled
-LOG:  database system is ready to accept connections
-LOG:  autovacuum launcher started
- done
-server started
-CREATE DATABASE
-
-
-/usr/local/bin/docker-entrypoint.sh: sourcing /docker-entrypoint-initdb.d/postgis.sh
-CREATE DATABASE
-UPDATE 1
-Loading PostGIS extensions into template_postgis
-CREATE EXTENSION
-CREATE EXTENSION
-CREATE EXTENSION
-CREATE EXTENSION
-CREATE EXTENSION
-Loading PostGIS extensions into gis
-CREATE EXTENSION
-CREATE EXTENSION
-CREATE EXTENSION
-CREATE EXTENSION
-CREATE EXTENSION
-osm2pgsql version 0.92.0 (64 bit id space)
-
-Using built-in tag processing pipeline
-Using projection SRS 3857 (Spherical Mercator)
-FATAL:  role "postgres" does not exist
-Osm2pgsql failed due to ERROR: Connection to database failed: FATAL:  role "postgres" does not exist
-```
-
 # Utilisation
 
 ### Initialisation IAAC 
@@ -525,7 +434,7 @@ _overcommit config _
 Commande en une seule ligne : 
 
 ```bash
-export PBF_VAULT_HOME=$(pwd)/carto-vault && export PROVISIONING_HOME=$HOME/carto-proto && cd /carto && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
+export PBF_VAULT_HOME=/carto/vault && export PROVISIONING_HOME=/carto/proto && cd /carto && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
 
 ### IAAC
