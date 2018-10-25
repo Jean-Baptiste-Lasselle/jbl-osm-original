@@ -185,12 +185,32 @@ sudo mkdir -p /carto/proto
 #### -------------->>>  dans /carto/vault, c là qu'il y aura tout ce qui est gros fichiers PBF
 sudo mount /dev/sdb /carto
 
+df -Th
+# Filesystem              Type      Size  Used Avail Use% Mounted on
+# /dev/mapper/centos-root xfs        50G   12G   39G  24% /
+# devtmpfs                devtmpfs  3.9G     0  3.9G   0% /dev
+# tmpfs                   tmpfs     3.9G     0  3.9G   0% /dev/shm
+# tmpfs                   tmpfs     3.9G  9.2M  3.9G   1% /run
+# tmpfs                   tmpfs     3.9G     0  3.9G   0% /sys/fs/cgroup
+# /dev/mapper/centos-home xfs        42G  2.4G   39G   6% /home
+# /dev/sda1               xfs      1014M  183M  832M  19% /boot
+# tmpfs                   tmpfs     783M     0  783M   0% /run/user/1000
+# tmpfs                   tmpfs     783M     0  783M   0% /run/user/0
+# /dev/sdb                ext4       99G   61M   94G   1% /carto
+df -Th /carto
+# Filesystem     Type  Size  Used Avail Use% Mounted on
+# /dev/sdb       ext4   99G   61M   94G   1% /carto
+# 
+
+
+
 # Le montage doit être autmatique au démarrage OS
 echo " You must be root to complete next commands "
 # I prefer 'sudo -s', such as I learned from éric levenez, my Master in Linux, instead of 'sudo -i', because 'sudo -s' expects and assumes less about the underlying linux instance.
 sudo -s
 echo "# disque dur prtotoype cartographie kytes " >> /etc/fstab
-echo "/dev/sdb	/carto	ext4	defaults     0   0" >> /etc/fstab
+echo "/dev/sdb   /carto   ext4   defaults    0    0" >> /etc/fstab
+
 
 
 
