@@ -15,10 +15,10 @@ echo " VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [M
 echo " ----- "
 echo "  "
 
-DS='<Parameter name=\"$MAPNIK_POSTGRES_DB\"><![CDATA[gis]]><\/Parameter>\
-    <Parameter name=\"MAPNIK_POSTGRES_DB_HOST\"><![CDATA[postgis]]><\/Parameter>\
-    <Parameter name=\"$MAPNIK_POSTGRES_DB_PORT_NO\"><![CDATA[5432]]><\/Parameter>\
-    <Parameter name=\"$MAPNIK_POSTGRES_USER\"><![CDATA[postgres]]><\/Parameter>\
-    <Parameter name=\"$MAPNIK_POSTGRES_PASSWORD\"><![CDATA[postgres]]><\/Parameter>'
+DS="<Parameter name=\"dbname\"><![CDATA[$MAPNIK_POSTGRES_DB]]><\/Parameter>\
+    <Parameter name=\"host\"><![CDATA[$MAPNIK_POSTGRES_DB_HOST]]><\/Parameter>\
+    <Parameter name=\"port\"><![CDATA[$MAPNIK_POSTGRES_DB_PORT_NO]]><\/Parameter>\
+    <Parameter name=\"user\"><![CDATA[$MAPNIK_POSTGRES_USER]]><\/Parameter>\
+    <Parameter name=\"password\"><![CDATA[$MAPNIK_POSTGRES_PASSWORD]]><\/Parameter>"
 sed "s/<Parameter name=\"dbname\">.*<\/Parameter>/${DS}/" /map_data/stylesheet_.xml > /map_data/stylesheet.xml
 rm /map_data/stylesheet_.xml
