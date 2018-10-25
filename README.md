@@ -511,7 +511,7 @@ cd $PROVISIONING_HOME
 git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . 
 # copy of all big PBF' files to docker-compose mapped directory ./postgis/ 
 # it is mmapped inside postgis container to PBF 's Home directory, cf. $DOWNLOADED_PBF_FILES_HOME './postgis/Dockerfile' 
-cp $PBF_VAULT_HOME/*.pbf ./postgis
+# cp $PBF_VAULT_HOME/*.pbf ./postgis
 chmod +x *.sh 
 ./download.sh 
 ./set-underneath-vm-overcomit-config.sh 
@@ -532,8 +532,10 @@ _overcommit config _
 Commande en une seule ligne : 
 
 ```bash
-export PBF_VAULT_HOME=/carto/vault && export PROVISIONING_HOME=/carto/proto && cd /carto && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
+export PBF_VAULT_HOME=/carto/vault && export PROVISIONING_HOME=/carto/proto && cd /carto && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
+
+retiré : `&& cp $PBF_VAULT_HOME/*.pbf ./postgis`
 
 ### IAAC
 
@@ -550,7 +552,7 @@ cd $PROVISIONING_HOME
 git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . 
 # copy of all big PBF' files to docker-compose mapped directory ./postgis/ 
 # it is mmapped inside postgis container to PBF 's HOme directory, cf. $DOWNLOADED_PBF_FILES_HOME './postgis/Dockerfile' 
-cp $PBF_VAULT_HOME/*.pbf ./postgis
+# cp $PBF_VAULT_HOME/*.pbf ./postgis
 chmod +x *.sh 
 ./download.sh 
 ./set-underneath-vm-overcomit-config.sh 
@@ -562,7 +564,7 @@ docker ps -a
 Commande idempotente en une seule ligne:
 
 ```bash
-docker-compose down --rmi all && cd .. && export PBF_VAULT_HOME=/carto/vault && export PROVISIONING_HOME=/carto/proto && cd  /carto && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
+docker-compose down --rmi all && cd .. && export PBF_VAULT_HOME=/carto/vault && export PROVISIONING_HOME=/carto/proto && cd  /carto && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
 
 
