@@ -507,7 +507,6 @@ git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" .
 cp $PBF_VAULT_HOME/*.pbf ./postgis
 chmod +x *.sh 
 ./download.sh 
-
 ./set-underneath-vm-overcomit-config.sh 
 docker system prune -f 
 docker-compose up -d --build 
@@ -515,18 +514,18 @@ docker ps -a
 ```
 _overcommit config _
 
-OS' RAM Memory mamangement configuration, especially designed for Mapnik's execution (so First things first, we'll need
-Kubernetes cluster nodes labelled renderers : those nodes, and only those among K8s cluster, will have that special OS RAM 
-Memory configuration. Eventually,we will have a kickstart config plus terraform recipe for 
-provisioning those 'renderer-nodes' Il faut se faire des kickstart (puis terraform) pour provisionner des 
-VMs avec terraform, spécialement configuraes overcommit, et elles seront labelisées etiquettées 'renderer' dans mon
-cluster kubernetes. Dans mon cluster Kubernetes, d'autres nodes, seront provisionnés sans cette configuration overcommit
-de la mémoire RAM niveau hôte Docker. kubeadm à bientôt 
+  OS' RAM Memory mamangement configuration, especially designed for Mapnik's execution (so First things first, we'll need
+  Kubernetes cluster nodes labelled renderers : those nodes, and only those among K8s cluster, will have that special OS RAM 
+  Memory configuration. Eventually,we will have a kickstart config plus terraform recipe for 
+  provisioning those 'renderer-nodes' Il faut se faire des kickstart (puis terraform) pour provisionner des 
+  VMs avec terraform, spécialement configuraes overcommit, et elles seront labelisées etiquettées 'renderer' dans mon
+  cluster kubernetes. Dans mon cluster Kubernetes, d'autres nodes, seront provisionnés sans cette configuration overcommit
+  de la mémoire RAM niveau hôte Docker. kubeadm à bientôt 
 
 Commande en une seule ligne : 
 
 ```bash
-export PBF_VAULT_HOME=$(pwd)/carto-vault && export PROVISIONING_HOME=$HOME/carto-proto && cd $HOME && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
+export PBF_VAULT_HOME=$(pwd)/carto-vault && export PROVISIONING_HOME=$HOME/carto-proto && cd /carto && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
 
 ### IAAC
@@ -538,7 +537,7 @@ docker-compose down --rmi all
 cd ..
 export PBF_VAULT_HOME=/carto/vault
 export PROVISIONING_HOME=/carto/proto 
-cd $HOME && sudo rm -rf $PROVISIONING_HOME 
+cd /carto && sudo rm -rf $PROVISIONING_HOME 
 mkdir -p $PROVISIONING_HOME 
 cd $PROVISIONING_HOME 
 git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . 
@@ -556,14 +555,10 @@ docker ps -a
 Commande idempotente en une seule ligne:
 
 ```bash
-docker-compose down --rmi all && cd .. && export PBF_VAULT_HOME=/carto/vault && export PROVISIONING_HOME=/carto/proto && cd $HOME && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
+docker-compose down --rmi all && cd .. && export PBF_VAULT_HOME=/carto/vault && export PROVISIONING_HOME=/carto/proto && cd  /carto && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
 
-### Tout détruire 
 
-```bash
-sudo rm -rf ./data && sudo rm -rf ./renderer/shapes/  && docker-compose down --rmi all && docker system prune -f
-```
 ### Source infos sympas
 
 https://www.flocondetoile.fr/blog/switch-google-maps-leaflet-and-openstreetmap-geolocation-drupal-8
