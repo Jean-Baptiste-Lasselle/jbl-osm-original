@@ -40,14 +40,14 @@ mkdir -p ${SHAPES_DIR}/water-polygons-split-3857
 
 cd $PBF_VAULT_HOME
 
-if [ -f $PBF_VAULT_HOME/world_boundaries-spherical.tgz ]; then
+if [ -f world_boundaries-spherical.tgz ]; then
    echo "Le fichier [$PBF_VAULT_HOME/world_boundaries-spherical.tgz] existe déjà : ";
    ls -all $PBF_VAULT_HOME/world_boundaries-spherical.tgz
 else 
    echo "Téléchargement du fichier [$PBF_VAULT_HOME/world_boundaries-spherical.tgz] ... "
    # world_boundaries
    echo "downloading world_boundaries  [${PBF_VAULT_HOME}/world_boundaries-spherical.tgz] into [PBF_VAULT_HOME=$PBF_VAULT_HOME] ..."
-   curl -z "${PBF_VAULT_HOME}/world_boundaries-spherical.tgz" -L -o "${PBF_VAULT_HOME}/world_boundaries-spherical.tgz" "https://planet.openstreetmap.org/historical-shapefiles/world_boundaries-spherical.tgz"
+   curl -z "world_boundaries-spherical.tgz" -L -o "world_boundaries-spherical.tgz" "https://planet.openstreetmap.org/historical-shapefiles/world_boundaries-spherical.tgz"
    echo " Téléchargement du fichier [$PBF_VAULT_HOME/world_boundaries-spherical.tgz] terminé : "
    ls -all $PBF_VAULT_HOME/world_boundaries-spherical.tgz
 fi
@@ -61,15 +61,15 @@ fi
 # Je ne vérifie pas l'existence des fichiers *.shp *.shx *.prj *.dnf *.cpg , je me contente de l'existence du zip
 # (ça se dézippe, des shapefiles...?)
 # I don't check existence of  *.shp *.shx *.prj *.dnf *.cpg files, just rely on zip's
-if [ -f $PBF_VAULT_HOME/simplified-water-polygons-complete-3857.zip ]; then
+if [ -f simplified-water-polygons-complete-3857.zip ]; then
    echo "Le fichier [$PBF_VAULT_HOME/simplified-water-polygons-complete-3857.zip] existe déjà : ";
    ls -all $PBF_VAULT_HOME/simplified-water-polygons-complete-3857.zip
 else 
    echo "Téléchargement du fichier [$PBF_VAULT_HOME/simplified-water-polygons-complete-3857.zip] ... "
    # simplified-water-polygons-complete-3857
    echo "downloading simplified-water-polygons-complete-3857..."
-   curl -z "${PBF_VAULT_HOME}/simplified-water-polygons-complete-3857.zip" -L -o "${PBF_VAULT_HOME}/simplified-water-polygons-complete-3857.zip" "http://data.openstreetmapdata.com/simplified-water-polygons-complete-3857.zip"
-   echo " Téléchargement du fichier [${PBF_VAULT_HOME}/simplified-water-polygons-complete-3857.zip] terminé : "
+   curl -z "simplified-water-polygons-complete-3857.zip" -L -o "simplified-water-polygons-complete-3857.zip" "http://data.openstreetmapdata.com/simplified-water-polygons-complete-3857.zip"
+   echo " Téléchargement du fichier [simplified-water-polygons-complete-3857.zip] terminé : "
    ls -all ${PBF_VAULT_HOME}/simplified-water-polygons-complete-3857.zip
 fi
 
@@ -78,16 +78,16 @@ fi
 # Je ne vérifie pas l'existence des fichiers *.shp *.shx *.prj *.dnf *.cpg , je me contente de l'existence du zip
 # (ça se dézippe, des shapefiles...?)
 # I don't check existence of  *.shp *.shx *.prj *.dnf *.cpg files, just rely on zip's
-if [ -f ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip ]; then
+if [ -f ne_110m_admin_0_boundary_lines_land.zip ]; then
    echo "Le fichier [${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip] existe déjà : ";
    ls -all ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip
 else 
    echo "Téléchargement du fichier [${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip] ... "
    # ne_110m_admin_0_boundary_lines_land
    echo "downloading ne_110m_admin_0_boundary_lines_land..."
-   curl -z ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip -L -o ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_boundary_lines_land.zip
+   curl -z ne_110m_admin_0_boundary_lines_land.zip -L -o ne_110m_admin_0_boundary_lines_land.zip https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_boundary_lines_land.zip
    echo " Téléchargement du fichier [${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip] terminé : "
-   ls -all ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip
+   ls -all ./ne_110m_admin_0_boundary_lines_land.zip
 fi
 
 
@@ -96,14 +96,14 @@ fi
 # Je ne vérifie pas l'existence des fichiers *.shp *.shx *.prj *.dnf *.cpg , je me contente de l'existence du zip
 # (ça se dézippe, des shapefiles...?)
 # I don't check existence of  *.shp *.shx *.prj *.dnf *.cpg files, just rely on zip's
-if [ -f ${PBF_VAULT_HOME}/water-polygons-split-3857.zip ]; then
+if [ -f water-polygons-split-3857.zip ]; then
    echo "Le fichier [${PBF_VAULT_HOME}/water-polygons-split-3857.zip] existe déjà : ";
    ls -all ${PBF_VAULT_HOME}/water-polygons-split-3857.zip
 else 
    echo "Téléchargement du fichier [${PBF_VAULT_HOME}/water-polygons-split-3857.zip] ... "
    # water-polygons-split-3857
    echo "downloading water-polygons-split-3857..."
-   curl -z "${PBF_VAULT_HOME}/water-polygons-split-3857.zip" -L -o "${PBF_VAULT_HOME}/water-polygons-split-3857.zip" "http://data.openstreetmapdata.com/water-polygons-split-3857.zip"
+   curl -z "water-polygons-split-3857.zip" -L -o "water-polygons-split-3857.zip" "http://data.openstreetmapdata.com/water-polygons-split-3857.zip"
    echo " Téléchargement du fichier [${PBF_VAULT_HOME}/water-polygons-split-3857.zip] terminé : "
    ls -all ${PBF_VAULT_HOME}/water-polygons-split-3857.zip
 fi
@@ -113,14 +113,14 @@ fi
 # Je ne vérifie pas l'existence des fichiers *.shp *.shx *.prj *.dnf *.cpg , je me contente de l'existence du zip
 # (ça se dézippe, des shapefiles...?)
 # I don't check existence of  *.shp *.shx *.prj *.dnf *.cpg files, just rely on zip's
-if [ -f ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip ]; then
+if [ -f antarctica-icesheet-polygons-3857.zip ]; then
    echo "Le fichier [${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip] existe déjà : ";
    ls -all ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip
 else 
    echo "Téléchargement du fichier [${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip] ... "
    # antarctica-icesheet-polygons-3857
    echo "antarctica-icesheet-polygons-3857.zip..."
-   curl -z "${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip" -L -o "${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip" "http://data.openstreetmapdata.com/antarctica-icesheet-polygons-3857.zip"
+   curl -z "antarctica-icesheet-polygons-3857.zip" -L -o "antarctica-icesheet-polygons-3857.zip" "http://data.openstreetmapdata.com/antarctica-icesheet-polygons-3857.zip"
    echo " Téléchargement du fichier [${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip] terminé : "
    ls -all ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip
 fi
@@ -130,14 +130,14 @@ fi
 # Je ne vérifie pas l'existence des fichiers *.shp *.shx *.prj *.dnf *.cpg , je me contente de l'existence du zip
 # (ça se dézippe, des shapefiles...?)
 # I don't check existence of  *.shp *.shx *.prj *.dnf *.cpg files, just rely on zip's
-if [ -f ${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip ]; then
+if [ -f antarctica-icesheet-outlines-3857.zip ]; then
    echo "Le fichier [${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip] existe déjà : ";
    ls -all ${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip
 else 
    echo "Téléchargement du fichier [${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip] ... "
    # antarctica-icesheet-outlines-3857
    echo "downloading antarctica-icesheet-outlines-3857..."
-   curl -z "${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip" -L -o "${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip" "http://data.openstreetmapdata.com/antarctica-icesheet-outlines-3857.zip"
+   curl -z "antarctica-icesheet-outlines-3857.zip" -L -o "antarctica-icesheet-outlines-3857.zip" "http://data.openstreetmapdata.com/antarctica-icesheet-outlines-3857.zip"
    echo " Téléchargement du fichier [${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip] terminé : "
    ls -all ${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip
 fi
