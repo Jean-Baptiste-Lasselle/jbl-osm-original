@@ -162,7 +162,7 @@ unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/simplified-water-polygons-complete-3857.zip 
   simplified-water-polygons-complete-3857/simplified_water_polygons.prj \
   simplified-water-polygons-complete-3857/simplified_water_polygons.dbf \
   simplified-water-polygons-complete-3857/simplified_water_polygons.cpg \
-  -d ${PBF_VAULT_HOME}/
+  -d ${SHAPES_DIR}/
   
 echo "expanding ne_110m_admin_0_boundary_lines_land..."
 unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip \
@@ -170,7 +170,7 @@ unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land.zip \
   ne_110m_admin_0_boundary_lines_land.shx \
   ne_110m_admin_0_boundary_lines_land.prj \
   ne_110m_admin_0_boundary_lines_land.dbf \
-  -d ${PBF_VAULT_HOME}/ne_110m_admin_0_boundary_lines_land/
+  -d ${SHAPES_DIR}/ne_110m_admin_0_boundary_lines_land/
   
 echo "expanding water-polygons-split-3857..."
 unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/water-polygons-split-3857.zip \
@@ -179,7 +179,7 @@ unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/water-polygons-split-3857.zip \
   water-polygons-split-3857/water_polygons.prj \
   water-polygons-split-3857/water_polygons.dbf \
   water-polygons-split-3857/water_polygons.cpg \
-  -d ${PBF_VAULT_HOME}/
+  -d ${SHAPES_DIR}/
 
 echo "expanding antarctica-icesheet-polygons-3857..."
 unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip \
@@ -187,7 +187,7 @@ unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/antarctica-icesheet-polygons-3857.zip \
   antarctica-icesheet-polygons-3857/icesheet_polygons.shx \
   antarctica-icesheet-polygons-3857/icesheet_polygons.prj \
   antarctica-icesheet-polygons-3857/icesheet_polygons.dbf \
-  -d ${PBF_VAULT_HOME}/
+  -d ${SHAPES_DIR}/
 
 echo "expanding antarctica-icesheet-outlines-3857..."
 unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip \
@@ -195,4 +195,4 @@ unzip $UNZIP_OPTS ${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip \
   antarctica-icesheet-outlines-3857/icesheet_outlines.shx \
   antarctica-icesheet-outlines-3857/icesheet_outlines.prj \
   antarctica-icesheet-outlines-3857/icesheet_outlines.dbf \
-  -d ${PBF_VAULT_HOME}/
+  -d ${SHAPES_DIR}/
