@@ -39,6 +39,7 @@ services:
       - MAPNIK_POSTGRES_USER=renderer-user
       - MAPNIK_POSTGRES_PASSWORD=whereischarlie
       - MAPNIK_POSTGRES_DB_HOST=postgis
+      - MAPNIK_POSTGRES_DB_PORT_NO=5432
     ports:
       - "8080:8080"
       - "9090:9090"
