@@ -32,9 +32,9 @@ UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
 EOSQL
 
 # Load PostGIS into both template_database and $POSTGRES_DB
-for CURRENT_DB in template_postgis "$POSTGRES_DB"; do
+for DB in template_postgis "$POSTGRES_DB"; do
 	echo "Loading PostGIS extensions into $DB"
-	psql --dbname="$CURRENT_DB" <<-'EOSQL'
+	psql --dbname="$DB" <<-'EOSQL'
 		CREATE EXTENSION postgis;
 		CREATE EXTENSION postgis_topology;
 		CREATE EXTENSION fuzzystrmatch;
