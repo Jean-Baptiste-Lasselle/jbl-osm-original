@@ -178,7 +178,7 @@ else
      antarctica-icesheet-outlines-3857/icesheet_outlines.dbf \
      -d ${PBF_VAULT_HOME}/
    echo " Téléchargement du fichier [${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip] terminé : "
-   ls -all ${PBF_VAULT_HOME}/icesheet_outlines.zip
+   ls -all ${PBF_VAULT_HOME}/antarctica-icesheet-outlines-3857.zip.zip
 fi
 
 
