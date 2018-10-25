@@ -175,10 +175,11 @@ sudo fdisk /dev/sdb
 # /dev/mapper/centos-home xfs        42G  2.4G   39G   6% /home
 # /dev/sda1               xfs      1014M  183M  832M  19% /boot
 # tmpfs                   tmpfs     783M     0  783M   0% /run/user/1000
+
 sudo mkdir-p /infra-kytes
-sudo mkdir -p /infra-kytes
-sudo mkdir -p /carto/vault
-sudo mkdir -p /carto/proto
+sudo chown -R $USER_LX_OPERATEUR /infra-kytes
+
+
 #### ---->>>> Ok, donc on va monter ler nouveau disque dur de 100 Go, sur /carto
 #### -------------->>>  dans /infra-kytes , il y aura la provision infra-kytes, et je pourrai plus tard monter un autre disque dur plus gros là dessus, et migrer l'infra-kytes dasn ce répertoire
 #### -------------->>>  dans /carto/proto, il y aura le run de mon proto de carto
@@ -201,8 +202,9 @@ df -Th /carto
 # Filesystem     Type  Size  Used Avail Use% Mounted on
 # /dev/sdb       ext4   99G   61M   94G   1% /carto
 # 
-
-
+sudo chown -R $USER_LX_OPERATEUR /carto
+sudo mkdir -p /carto/vault
+sudo mkdir -p /carto/proto
 
 # Le montage doit être autmatique au démarrage OS
 echo " You must be root to complete next commands "
