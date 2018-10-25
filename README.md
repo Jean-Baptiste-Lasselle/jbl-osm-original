@@ -496,22 +496,32 @@ Osm2pgsql failed due to ERROR: Connection to database failed: FATAL:  role "post
 ### Initialisation IAAC 
 
 ```bash
-export PBF_VAULT_HOME=$(pwd)/carto-vault
-export PROVISIONING_HOME=$HOME/carto-proto 
-cd $HOME && sudo rm -rf $PROVISIONING_HOME 
+export PBF_VAULT_HOME=/carto/vault
+export PROVISIONING_HOME=/carto/proto 
+cd /carto && sudo rm -rf $PROVISIONING_HOME 
 mkdir -p $PROVISIONING_HOME 
 cd $PROVISIONING_HOME 
 git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . 
 # copy of all big PBF' files to docker-compose mapped directory ./postgis/ 
-# it is mmapped inside postgis container to PBF 's HOme directory, cf. $DOWNLOADED_PBF_FILES_HOME './postgis/Dockerfile' 
+# it is mmapped inside postgis container to PBF 's Home directory, cf. $DOWNLOADED_PBF_FILES_HOME './postgis/Dockerfile' 
 cp $PBF_VAULT_HOME/*.pbf ./postgis
 chmod +x *.sh 
 ./download.sh 
+
 ./set-underneath-vm-overcomit-config.sh 
 docker system prune -f 
 docker-compose up -d --build 
 docker ps -a
 ```
+_overcommit config _
+
+OS' RAM Memory mamangement configuration, especially designed for Mapnik's execution (so First things first, we'll need
+Kubernetes cluster nodes labelled renderers : those nodes, and only those among K8s cluster, will have that special OS RAM 
+Memory configuration. Eventually,we will have a kickstart config plus terraform recipe for 
+provisioning those 'renderer-nodes' Il faut se faire des kickstart (puis terraform) pour provisionner des 
+VMs avec terraform, spécialement configuraes overcommit, et elles seront labelisées etiquettées 'renderer' dans mon
+cluster kubernetes. Dans mon cluster Kubernetes, d'autres nodes, seront provisionnés sans cette configuration overcommit
+de la mémoire RAM niveau hôte Docker. kubeadm à bientôt 
 
 Commande en une seule ligne : 
 
