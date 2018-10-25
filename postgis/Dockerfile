@@ -18,8 +18,25 @@ ARG POSTGRES_PASSWORD=poulet
 ENV POSTGRES_PASSWORD=whereischarlie
 
 ENV PGHOST=localhost
-ENV PGUSER=$POSTGRES_PASSWORD
-ENV PGPASSWORD=$PGPASSWORD
+ENV PGUSER=$POSTGRES_USER
+ENV PGPASSWORD=$POSTGRES_PASSWORD
+
+
+RUN echo " ----------------------------------------------------------- "
+RUN echo " Vérification [PGHOST=$PGHOST] : "
+RUN echo " Vérification [PGUSER=$PGUSER] : "
+RUN echo " Vérification [PGPASSWORD=$PGPASSWORD] : "
+RUN echo " Vérification [POSTGRES_DB=$POSTGRES_DB] : "
+RUN echo " Vérification [POSTGRES_USER=$POSTGRES_USER] : "
+RUN echo " Vérification [POSTGRES_PASSWORD=$POSTGRES_PASSWORD] : "
+RUN echo " Vérification [DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME] : "
+RUN echo " Vérification [PGHOST=$PGHOST] : "
+RUN echo " Vérification [PGHOST=$PGHOST] : "
+RUN echo " Vérification [PGHOST=$PGHOST] : "
+RUN echo " Vérification [PGHOST=$PGHOST] : "
+RUN echo " Vérification [PGHOST=$PGHOST] : "
+RUN echo " ----------------------------------------------------------- "
+
 
 WORKDIR /
 
