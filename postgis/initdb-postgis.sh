@@ -84,7 +84,7 @@ export PGUSER=$POSTGRES_USER
 #     These also need to be added to the style file. "
 # 
 # --- > je vais utiliser l'option "--extra-attributes", le premier test retour que je ferais consistera à enlever cette option. Eneffet, que se passe-t-il si le fichier de stle ne comprend pas une définition du modèle de méta-données utilisateur OSM, compatible avec celui supposé dans les données importées (le fichier PBF) ?
-osm2pgsql -U $POSTGRES_USER --create --flat-nodes --extra-attributes --slim --drop --style /openstreetmap-carto/openstreetmap-carto.style --database gis /australia-oceania-latest.osm.pbf 
+osm2pgsql -U $POSTGRES_USER --create --flat-nodes --extra-attributes --slim --drop --style /openstreetmap-carto/openstreetmap-carto.style --database gis $DOWNLOADED_PBF_FILES_HOME/panet-latest.osm.pbf 
 
 
 # JBL JBL JBL ==>>> Et moi je pense qu'près avoir importé la planète entière, pour "ajouter de la donnée en plus", comma par exemple la ville de Melbourne, il FAUT
