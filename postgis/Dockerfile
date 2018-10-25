@@ -1,4 +1,6 @@
-FROM mdillon/postgis:9.5
+FROM postgres:9.5.14
+# FROM postgres:9.5.14-alpine
+# FROM mdillon/postgis:9.5
 
 ARG DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
 # built-in default value et runtime, baby
