@@ -1,6 +1,12 @@
 
 ![I love you  I miss you V.](https://www.youtube.com/watch?v=god7hAPv8f0)
 
+# À regarder
+
+https://affinitybridge.com/blog/server-side-mapping
+
+Là je vais avoir quelques combinaisons à tester, une fois débarrassé des dernières erreurs de la version en cours 
+
 # Dernière erreur
 
 ```bash
