@@ -186,7 +186,11 @@ sudo mkdir -p /carto/proto
 sudo mount /dev/sdb /carto
 
 # Le montage doit être autmatique au démarrage OS
-echo "# disque dur prtotoype cartographie kytes " >> ./etc.fstab.temp
-echo "/dev/sdb	/carto	ext4	defaults     0   0" >> ./etc.fstab.temp
-sudo cat ./etc.fstab.temp >> /etc/fstab
+echo " You must be root to complete next commands "
+# I prefer 'sudo -s', such as I learned from éric levenez, my Master in Linux, instead of 'sudo -i', because 'sudo -s' expects and assumes less about the underlying linux instance.
+sudo -s
+echo "# disque dur prtotoype cartographie kytes " >> /etc/fstab
+echo "/dev/sdb	/carto	ext4	defaults     0   0" >> /etc/fstab
+
+
 
