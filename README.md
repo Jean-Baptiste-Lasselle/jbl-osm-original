@@ -1,6 +1,7 @@
 
 ![I love you  I miss you V.](https://www.youtube.com/watch?v=god7hAPv8f0)
 
+
 # À regarder
 
 https://affinitybridge.com/blog/server-side-mapping
@@ -849,6 +850,39 @@ cd $DADDYS_HOME
 wget https://s3.amazonaws.com/metro-extracts.mapzen.com/melbourne_australia.osm.pbf
 
 ```
+
+
+
+# Le filesystem de l'instance OS dans laquelle tourne Mapnik 
+
+Selon [cette source officielle Redhat](https://access.redhat.com/articles/3129891) : 
+
+> The XFS File System
+> 
+> XFS is a robust and mature 64-bit journaling file system that supports very large files and file systems on a single host. It is the default file system in Red Hat Enterprise Linux 7. Journaling ensures file system integrity after system crashes (for example, due to power outages) by keeping a record of file system operations that can be replayed when the system is restarted and the file system remounted. XFS was originally developed in the early 1990s by SGI and has a long history of running on extremely large servers and storage arrays. XFS supports a wealth of features including the following:
+> 
+>     Delayed allocation
+>     Dynamically allocated inodes
+>     B-tree indexing for scalability of free space management
+>     Ability to support a large number of concurrent operations
+>     Extensive run-time metadata consistency checking
+>     Sophisticated metadata read-ahead algorithms
+>     Tightly integrated backup and restore utilities
+>     Online defragmentation
+>     Online filesystem growing
+>     Comprehensive diagnostics capabilities
+>     Scalable and fast repair utilities
+>     Optimizations for streaming video workloads
+> 
+> While XFS scales to exabytes, Red Hat’s maximum supported XFS file system image is 100TB for Red Hat Enterprise Linux 5, 300TB for Red Hat Enterprise Linux 6, and 500TB for Red Hat Enterprise Linux 7. Given its long history in environments that require high performance and scalability, it is not surprising that XFS is routinely measured as one of the highest performing file systems on large systems with enterprise workloads. For instance, a large system would be one with a relatively high number of CPUs, multiple HBAs, and connections to external disk arrays. XFS also performs well on smaller systems that have a multi-threaded, parallel I/O workload. XFS has a relatively poor performance for single threaded, metadata-intensive workloads, for example, a workload that creates or deletes large numbers of small files in a single thread.
+> 
+> For detailed information about the size limits of filesystem, files, and directories, see the File systems and storage section of the Red Hat Enterprise Linux technology capabilities and limits article.
+
+
+
+
+
+
 
 # Melbourne map
 
