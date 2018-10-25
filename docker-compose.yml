@@ -23,7 +23,7 @@ services:
       - POSTGRES_PASSWORD=whereischarlie
       - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
     networks:
-      - devops
+      - cartoproto
     restart: always
   renderer:
     image: carto-proto/gopnik-mapnik:0.0.1
@@ -52,7 +52,6 @@ services:
       - MAPNIK_POSTGRES_DB=gis
       - MAPNIK_POSTGRES_USER=renderer-user
       - MAPNIK_POSTGRES_PASSWORD=whereischarlie
-
     ports:
       - "8080:8080"
       - "9090:9090"
@@ -65,7 +64,7 @@ services:
     depends_on:
       - postgis
     networks:
-      - devops
+      - cartoproto
     restart: always
     
   web:
@@ -76,11 +75,11 @@ services:
     ports:
       - "8888:80"
     networks:
-      - devops
+      - cartoproto
     restart: always
 
 networks:
-  devops:
+  cartoproto:
     # name: 'reseau-devops'
     driver: bridge
 #     external: true 
