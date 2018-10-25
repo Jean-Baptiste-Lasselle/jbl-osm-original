@@ -398,6 +398,104 @@ psql -U $POSTGRES_USER -d $DATABASE_NAME < ./requete-test-sql.sql
 ```
 
 
+### Essai 4 : `osm2pgsql -U $POSTGRES_USER --create --flat-nodes --style /openstreetmap-carto/openstreetmap-carto.style --database gis /australia-oceania-latest.osm.pbf`
+
+```bash
+logs
+```
+
+Résultat: ,
+
+J'ajoute un test, qui me permettra de vérifier l'existence d'une table PostGreSQL / PostGIS :  
+
+```bash
+export POSTGRES_USER=renderer-user
+export POSTGRES_PASSWD=whereischarlie
+export DATABASE_NAME=gis
+export TABLE_NAME=
+echo "SELECT * FROM $TABLE_NAME LIMIT 5;" >> ./requete-test-sql.sql
+export PGPASSWORD=$POSTGRES_PASSWD
+psql -U $POSTGRES_USER -d $DATABASE_NAME < ./requete-test-sql.sql
+```
+
+
+### Essai 4bis : `osm2pgsql -U $POSTGRES_USER --create --flat-nodes --slim --drop --style /openstreetmap-carto/openstreetmap-carto.style --database gis /australia-oceania-latest.osm.pbf`
+
+```bash
+logs
+```
+
+Résultat: ,
+
+J'ajoute un test, qui me permettra de vérifier l'existence d'une table PostGreSQL / PostGIS :  
+
+```bash
+export POSTGRES_USER=renderer-user
+export POSTGRES_PASSWD=whereischarlie
+export DATABASE_NAME=gis
+export TABLE_NAME=
+echo "SELECT * FROM $TABLE_NAME LIMIT 5;" >> ./requete-test-sql.sql
+export PGPASSWORD=$POSTGRES_PASSWD
+psql -U $POSTGRES_USER -d $DATABASE_NAME < ./requete-test-sql.sql
+```
+
+
+### Essai 5 : `osm2pgsql -U $POSTGRES_USER --create --flat-nodes --slim --drop --style /openstreetmap-carto/openstreetmap-carto.style --database gis /australia-oceania-latest.osm.pbf`
+
+```bash
+logs
+```
+
+Résultat: ,
+
+J'ajoute un test, qui me permettra de vérifier l'existence d'une table PostGreSQL / PostGIS :  
+
+```bash
+export POSTGRES_USER=renderer-user
+export POSTGRES_PASSWD=whereischarlie
+export DATABASE_NAME=gis
+export TABLE_NAME=
+echo "SELECT * FROM $TABLE_NAME LIMIT 5;" >> ./requete-test-sql.sql
+export PGPASSWORD=$POSTGRES_PASSWD
+psql -U $POSTGRES_USER -d $DATABASE_NAME < ./requete-test-sql.sql
+```
+
+# Essai 6 : `osm2pgsql -U $POSTGRES_USER --create --flat-nodes --extra-attributes --slim --drop --style /openstreetmap-carto/openstreetmap-carto.style --database gis /australia-oceania-latest.osm.pbf`
+
+ 
+* En vertu de [https://github.com/openstreetmap/osm2pgsql/blob/master/docs/usage.md#database-options]  : 
+> 
+> " This should only be used on full planet imports or very large extracts (e.g. Europe) but in 
+> those situations offers significant space savings and speed increases, particularly on mechanical
+> drives. The file takes approximately 8 bytes * maximum node ID, or about 23 GiB, regardless of the size of the extract. "
+
+ Je vais utiliser l'options `--flat-nodes`, parce que j'importe la terre entière, ici un fichier de 42 Go quand même...
+
+* En vertu de [https://github.com/openstreetmap/osm2pgsql/blob/master/docs/usage.md#middle-layer-options] : 
+> 
+> " A --slim --drop import is generally the fastest way to import the planet if updates are not required. "
+> 
+ Je vais utiliser aussi la combinaison d'options ` --slim --drop`
+ 
+* En vertu de [https://github.com/openstreetmap/osm2pgsql/blob/master/docs/usage.md#output-columns-options] : 
+> 
+> " --style specifies the location of the style file. This defines what columns are created, what tags denote #
+>  areas, and what tags can be ignored. The default.style contains more documentation on this file. "
+> 
+ Je vais utiliser l'option : 
+   ` --style /openstreetmap-carto/openstreetmap-carto.style " pour appliquer le style d'openstreemp carto`
+ Remarquez que je reprends le ficheir de style provenant du git clone du repo de ce cher 'dooman84'
+* En vertu de [https://github.com/openstreetmap/osm2pgsql/blob/master/docs/usage.md#column-options] : 
+> 
+> " `--extra-attributes` :  creates pseudo-tags with OSM meta-data like user, last edited, and changeset. 
+>     These also need to be added to the style file. "
+> 
+ Je vais utiliser l'option `--extra-attributes`, le premier test retour que je ferais consistera à enlever cette option. En effet, que se passe-t-il si le fichier de stle ne comprend pas une définition du modèle de méta-données utilisateur OSM, compatible avec celui supposé dans les données importées (le fichier PBF) ?
+
+`osm2pgsql -U $POSTGRES_USER --create --flat-nodes --extra-attributes --slim --drop --style /openstreetmap-carto/openstreetmap-carto.style --database gis /australia-oceania-latest.osm.pbf`
+
+
+
 # TODO du mataîng
 
 # Utilisation
