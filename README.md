@@ -512,8 +512,8 @@ Commande idempotente en une multi-ligne (en clair) :
 ```bash
 docker-compose down --rmi all 
 cd ..
-export PBF_VAULT_HOME=$(pwd)/carto-vault
-export PROVISIONING_HOME=$HOME/carto-proto 
+export PBF_VAULT_HOME=/carto/vault
+export PROVISIONING_HOME=/carto/proto 
 cd $HOME && sudo rm -rf $PROVISIONING_HOME 
 mkdir -p $PROVISIONING_HOME 
 cd $PROVISIONING_HOME 
@@ -532,7 +532,7 @@ docker ps -a
 Commande idempotente en une seule ligne:
 
 ```bash
-docker-compose down --rmi all && cd .. && export PBF_VAULT_HOME=$(pwd)/carto-vault && export PROVISIONING_HOME=$HOME/carto-proto && cd $HOME && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
+docker-compose down --rmi all && cd .. && export PBF_VAULT_HOME=/carto/vault && export PROVISIONING_HOME=/carto/proto && cd $HOME && sudo rm -rf $PROVISIONING_HOME && mkdir -p $PROVISIONING_HOME && cd $PROVISIONING_HOME && git clone "https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original" . && cp $PBF_VAULT_HOME/*.pbf ./postgis && docker-compose down --rmi all && chmod +x *.sh && ./download.sh && ./set-underneath-vm-overcomit-config.sh && docker system prune -f && docker-compose up -d --build && docker ps -a
 ```
 
 ### Tout détruire 
