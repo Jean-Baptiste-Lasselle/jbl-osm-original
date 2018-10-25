@@ -183,3 +183,10 @@ sudo mkdir -p /carto/proto
 #### -------------->>>  dans /infra-kytes , il y aura la provision infra-kytes, et je pourrai plus tard monter un autre disque dur plus gros là dessus, et migrer l'infra-kytes dasn ce répertoire
 #### -------------->>>  dans /carto/proto, il y aura le run de mon proto de carto
 #### -------------->>>  dans /carto/vault, c là qu'il y aura tout ce qui est gros fichiers PBF
+sudo mount /dev/sdb /carto
+
+# Le montage doit être autmatique au démarrage OS
+echo "# disque dur prtotoype cartographie kytes " >> ./etc.fstab.temp
+echo "/dev/sdb	/carto	ext4	defaults     0   0" >> ./etc.fstab.temp
+sudo cat ./etc.fstab.temp >> /etc/fstab
+
