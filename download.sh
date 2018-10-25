@@ -165,8 +165,8 @@ cp -f $PBF_VAULT_HOME/simplified-water-polygons-complete-3857.zip ${SHAPES_DIR}
 cp -f $PBF_VAULT_HOME/water-polygons-split-3857.zip ${SHAPES_DIR}
 cp -f $PBF_VAULT_HOME/world_boundaries-spherical.tgz ${SHAPES_DIR}
 
-
-cp -Rf $PBF_VAULT_HOME/* ${SHAPES_DIR}
+# i dont wanna copy the planet-latest.osm.pbf, too big, stays here
+# cp -Rf $PBF_VAULT_HOME/* ${SHAPES_DIR}
 
 echo "expanding world_boundaries into [PBF_VAULT_HOME=$SHAPES_DIR] ..."
 tar -xzf ${SHAPES_DIR}/world_boundaries-spherical.tgz -C ${SHAPES_DIR}/
