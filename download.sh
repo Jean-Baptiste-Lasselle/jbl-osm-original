@@ -12,7 +12,7 @@ SHAPES_DIR=renderer/shapes
 PBF_VAULT_HOME=/carto/vault
 
 WHEREEVERIWASBEFORE=`pwd`
-mkdir -p ${PBF_VAULT_HOME}
+mkdir -p $PBF_VAULT_HOME
 
 
 cd $PBF_VAULT_HOME
