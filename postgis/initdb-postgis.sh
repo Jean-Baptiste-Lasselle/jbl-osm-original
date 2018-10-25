@@ -87,7 +87,13 @@ export PGUSER=$POSTGRES_USER
 osm2pgsql -U $POSTGRES_USER --create --flat-nodes --extra-attributes --slim --drop --style /openstreetmap-carto/openstreetmap-carto.style --database gis /australia-oceania-latest.osm.pbf 
 
 
+# JBL JBL JBL ==>>> Et moi je pense qu'près avoir importé la planète entière, pour "ajouter de la donnée en plus", comma par exemple la ville de Melbourne, il FAUT
+#                   utiliser le principe expliqué dans la doc osm2pgsql : on fait un '--create', et après pour ajouter des données, on fait du '--append'
+# Bon, bien sûr il faudra ajouter le téléchargmeent du fichier 'Melbourne.osm.pbf', etc... 
+# osm2pgsql --append --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /Melbourne.osm.pbf
+# echo "Okey Dookie, Michael?"
 # The following environment variables can be used to select default connection parameter values, which will be used by PQconnectdb, PQsetdbLogin and PQsetdb if no value is directly specified by the calling code. These are useful to avoid hard-coding database connection information into simple client applications, for example.
+# ==>> Bref, pour le append, il faut faire un microservice différent, un conteneur dédié. À faire 2 fois : avant / après cluster
 
 #     PGHOST behaves the same as the host connection parameter.
 #     PGHOSTADDR behaves the same as the hostaddr connection parameter. This can be set instead of or in addition to PGHOST to avoid DNS lookup overhead.
