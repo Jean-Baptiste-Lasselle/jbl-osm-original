@@ -46,7 +46,9 @@ RUN chmod +x ./get-shapefiles.sh
 
 # dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md], which was coming from [https://github.com/mapnik/mapnik/blob/master/INSTALL.md]
 # RUN ./scripts/get-shapefiles.sh
-RUN ./get-shapefiles.sh
+# je n'exécute pas "./get-shapefiles.sh" , le fichier './download.sh' à la racine du repo fait déjà le boulot, et mieux.
+# les fichiers sont déjà présents dans '/map_data/shapes', à causeed des mapped volumes définis dans le './docker-compose.yml'
+# RUN ./get-shapefiles.sh
 
 ADD shapes/ data/
 RUN shapeindex --shape_files \
