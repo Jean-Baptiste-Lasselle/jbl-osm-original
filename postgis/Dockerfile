@@ -79,7 +79,7 @@ RUN git clone https://github.com/dooman87/openstreetmap-carto.git
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 RUN chmod 755 /docker-entrypoint-initdb.d/postgis.sh
 
-# EXPOSE 5432
+EXPOSE 5432
 
 # parce que la copie dans /docker-entrypoint-initdb.d/ ne suffit / Millenium
 ENTRYPOINT ["/docker-entrypoint-initdb.d/postgis.sh"]
