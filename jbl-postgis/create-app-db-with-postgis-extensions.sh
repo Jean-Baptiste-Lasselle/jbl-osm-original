@@ -23,14 +23,14 @@
 # 
 # I'll have to check, but if ....
 
-ARG APP_DB_NAME=bddgeoloc
-ENV APP_DB_NAME=$APP_DB_NAME
+# ARG APP_DB_NAME=bddgeoloc
+# ENV APP_DB_NAME=$APP_DB_NAME
 
-ARG APP_DB_USER_NAME=tolkien
-ENV APP_DB_USER_NAME=$APP_DB_USER_NAME
+# ARG APP_DB_USER_NAME=tolkien
+# ENV APP_DB_USER_NAME=$APP_DB_USER_NAME
 
-ARG APP_DB_USER_PWD=tolkien
-ENV APP_DB_USER_PWD=$APP_DB_USER_PWD
+# ARG APP_DB_USER_PWD=tolkien
+# ENV APP_DB_USER_PWD=$APP_DB_USER_PWD
 
 
 echo " ------------------------------------------------- "
