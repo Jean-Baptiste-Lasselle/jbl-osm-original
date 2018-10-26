@@ -1,6 +1,8 @@
-FROM postgres:9.5.14
+FROM mdillon/postgis:9.5
+# FROM postgres:9.5.14
 # FROM postgres:9.5.14-alpine
 # FROM mdillon/postgis:9.5
+MAINTAINER Jean-Baptiste Lasselle <jean.baptiste.lasselle@gmail.com>
 
 ARG DOWNLOADED_PBF_FILES_HOME
 # built-in default value et runtime, baby
@@ -76,6 +78,9 @@ RUN git clone https://github.com/dooman87/openstreetmap-carto.git
 # Overriding init script to add hstore extension that osm2pgsql requires
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 RUN chmod 755 /docker-entrypoint-initdb.d/postgis.sh
+
+# EXPOSE 5432
+
 # parce que la copie dans /docker-entrypoint-initdb.d/ ne suffit / Millenium
 ENTRYPOINT ["/docker-entrypoint-initdb.d/postgis.sh"]
 # Right, Michael?
