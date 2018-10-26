@@ -7,22 +7,22 @@ ARG DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
 ENV DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME
 
 # POSTGRES_DB
-ARG POSTGRES_DB=gis
+ARG POSTGRES_DB
 # built-in default value et runtime, baby
 ENV POSTGRES_DB=$POSTGRES_DB
 # POSTGRES_USER
-ARG POSTGRES_USER=poulet
+ARG POSTGRES_USER
 # built-in default value et runtime, baby
 ENV POSTGRES_USER=$POSTGRES_USER
 # POSTGRES_PASSWORD (note: should not be built-in container, for the sake of security)
-ARG POSTGRES_PASSWORD=poulet
+ARG POSTGRES_PASSWORD
 # built-in default value et runtime, baby
 ENV POSTGRES_PASSWORD=$POSTGRES_PASSWORD
 
 ENV PGHOST=localhost
 ENV PGUSER=$POSTGRES_USER
 ENV PGPASSWORD=$POSTGRES_PASSWORD
-
+ENV PGDATABASE=$POSTGRES_DB
 
 RUN echo " ----------------------------------------------------------- "
 RUN echo " Vérification [PGHOST=$PGHOST] : "
