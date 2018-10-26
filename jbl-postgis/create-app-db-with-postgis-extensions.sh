@@ -35,6 +35,12 @@
 # les autres paramètres de connexion psql seront spécifiés comme arguments d'invocation de psql
 export PGPASSWORD=$POSTGRES_PASSWORD
 
+echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- "
+echo " ----+|+--------++|--------|++--------+|+--------++|--------|++--------+|+---- "
+echo "        JBL SCRIPT create-app-db-with-postgis-extensions.sh COMMENCE !!!       "
+echo " ----++|--------+|+--------|++--------++|--------+|+--------|++--------+|+---- "
+echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- "
+
 echo " ------------------------------------------------- "
 echo "   VERIFICATIONS : [POSTGRES_USER=$POSTGRES_USER]"
 echo " ------------------------------------------------- "
@@ -96,6 +102,6 @@ psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "Granting privileges on $
 
 echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- "
 echo " ----+|+--------++|--------|++--------+|+--------++|--------|++--------+|+---- "
-echo "      JBL SCRIPT create-app-db-with-postgis-extensions.sh TERMINE !!!     "
+echo "        JBL SCRIPT create-app-db-with-postgis-extensions.sh TERMINE !!!        "
 echo " ----++|--------+|+--------|++--------++|--------+|+--------|++--------+|+---- "
 echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- "
