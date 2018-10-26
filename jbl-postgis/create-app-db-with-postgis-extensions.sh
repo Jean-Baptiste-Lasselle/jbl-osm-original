@@ -50,11 +50,13 @@ echo "   VERIFICATIONS : [PGHOST=$PGHOST]"
 echo " ------------------------------------------------- "
 echo "   VERIFICATIONS : [PGPORT=$PGPORT]"
 echo " ------------------------------------------------- "
-# echo "   VERIFICATIONS : [CCCC=$CCCC]"
-# echo " ------------------------------------------------- "
-# echo "   VERIFICATIONS : [CCCC=$CCCC]"
-# echo " ------------------------------------------------- "
-
+echo "   VERIFICATIONS : [APP_DB_NAME=$APP_DB_NAME]"
+echo " ------------------------------------------------- "
+echo "   VERIFICATIONS : [APP_DB_USER_NAME=$APP_DB_USER_NAME]"
+echo " ------------------------------------------------- "
+echo "   VERIFICATIONS : [APP_DB_USER_PWD=$APP_DB_USER_PWD]"
+echo " ------------------------------------------------- "
+  
 # 
 # -- 1 - Let's install postgis, plus postgres client :
 # 
@@ -89,7 +91,7 @@ psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis
 
 # - > And finally, let's create APP_DB_USER_NAME in postgres, with access rights and all priviliges on the APP_DB_NAME database
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "createuser $APP_DB_USER_NAME"
-psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "alter user $APP_DB_USER_NAME with encrypted password '$APP_DB_USER_NAME';"
+psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "alter user $APP_DB_USER_NAME with encrypted password '$APP_DB_USER_PWD';"
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "Granting privileges on $APP_DB_NAME"
 
 echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- "
