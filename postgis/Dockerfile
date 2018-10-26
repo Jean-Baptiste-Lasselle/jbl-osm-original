@@ -79,10 +79,10 @@ RUN git clone https://github.com/dooman87/openstreetmap-carto.git
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 RUN chmod 755 /docker-entrypoint-initdb.d/postgis.sh
 
-EXPOSE 5432
+# EXPOSE 5432
 
-# parce que la copie dans /docker-entrypoint-initdb.d/ ne suffit / Millenium
-ENTRYPOINT ["/docker-entrypoint-initdb.d/postgis.sh"]
+# parce que la copie dans /docker-entrypoint-initdb.d/ ne suffit pas  / Millenium
+# ENTRYPOINT ["/docker-entrypoint-initdb.d/postgis.sh"]
 # Right, Michael?
 # - à cause de mon erreur network unreachable
 # HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $POSTGRES_USER --dbname=$POSTGRES_DB || exit 1
