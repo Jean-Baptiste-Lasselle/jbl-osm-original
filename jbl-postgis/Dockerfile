@@ -55,7 +55,12 @@ RUN echo " ------------------------------------------------- "
 
 
 
-RUN apt-get update -y && apt-get install -y apt-utils curl net-tools top iperf3 
+RUN apt-get update -y 
+RUN apt-get install -y apt-utils 
+RUN apt-get install -y curl
+RUN apt-get install -y net-tools
+RUN apt-get install -y iperf
+
 # 
 # -- 1 - Let's install postgis, plus postgres client :
 # 
