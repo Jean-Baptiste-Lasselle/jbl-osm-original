@@ -39,6 +39,7 @@ RUN echo " Vérification [PGHOST=$PGHOST] : "
 RUN echo " Vérification [PGHOST=$PGHOST] : "
 RUN echo " ----------------------------------------------------------- "
 
+USER root
 
 WORKDIR /
 
