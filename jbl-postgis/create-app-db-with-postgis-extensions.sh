@@ -32,6 +32,8 @@
 # ARG APP_DB_USER_PWD=tolkien
 # ENV APP_DB_USER_PWD=$APP_DB_USER_PWD
 
+# les autres paramètres de connexion psql seront spécifiés comme arguments d'invocation de psql
+export PGPASSWORD=$POSTGRES_PASSWORD
 
 echo " ------------------------------------------------- "
 echo "   VERIFICATIONS : [POSTGRES_USER=$POSTGRES_USER]"
@@ -72,7 +74,7 @@ echo "Okay, now we run the postgres-specific commands, that trigger postgis exte
 echo "Note : we'lldo that (creating the \"$APP_DB_NAME\" database),  with the first created, surper admin user : \"$POSTRES_USER\""
 echo "Nevertheless, still logged in PostGreSQL as [$POSTGRES_USER], we will the create the APP's database management user, namely [$APP_DB_USER], and  "
 echo "the developer will use that user, to operate the $APP_DB_NAME database from his code "
-export PGPASSWORD=$POSTGRES_PASSWORD
+
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis;"
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis_topology;"
 # -- if you built with sfcgal support --
