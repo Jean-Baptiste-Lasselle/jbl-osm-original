@@ -40,15 +40,15 @@ WORKDIR /openstreetmap-carto
 # ADD ./my-mapnik-settings/project.yaml .
 # ADD ./my-mapnik-settings/project.mml .
 # https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/6
-RUN echo "TODO : build de l'image du service 'renderer' => faire des substitution sed au lieu d'écraser le fichier ? Il faut une sync avec la distribution chain de openstreetmap, et  tout récuperer dans l'infra en privé, ne serait que pour les téléchargements des dépendances"
-RUN chmod +x ./get-shapefiles.sh
-# RUN chmod +x ./scripts/get-shapefiles.sh
 
-# dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md], which was coming from [https://github.com/mapnik/mapnik/blob/master/INSTALL.md]
-# RUN ./scripts/get-shapefiles.sh
+# dixit [https://github.com/dooman87/openstreetmap-carto/blob/master/INSTALL.md], which was coming
+# from [https://github.com/mapnik/mapnik/blob/master/INSTALL.md]
+
+
 # je n'exécute pas "./get-shapefiles.sh" , le fichier './download.sh' à la racine du repo fait déjà le boulot, et mieux.
 # les fichiers sont déjà présents dans '/map_data/shapes', à causeed des mapped volumes définis dans le './docker-compose.yml'
-# RUN ./get-shapefiles.sh
+# RUN chmod +x ./get-shapefiles.sh
+# RUN ./get-shapefiles.sh
 
 ADD shapes/ data/
 RUN shapeindex --shape_files \
