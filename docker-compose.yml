@@ -49,7 +49,7 @@ services:
       # Is there no dad at shinesolutions.com?
       - MAPNIK_POSTGRES_DB_HOST=postgis
       - MAPNIK_POSTGRES_DB_PORT_NO=5432
-      - MAPNIK_POSTGRES_DB=gis
+      - MAPNIK_POSTGRES_DB=$NOM_BDD_GEOLOC
       - MAPNIK_POSTGRES_USER=renderer-user
       - MAPNIK_POSTGRES_PASSWORD=whereischarlie
     ports:
