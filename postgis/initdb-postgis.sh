@@ -12,8 +12,9 @@ export PGUSER="$POSTGRES_USER"
 # Lorsque l'on définit la variable PGUSER, psql prend en compte celle-ci pour s'authentifier avec ce username  
 # Lorsque l'on définit la variable PGPASSWORD, psql prend en compte celle-ci pour s'authentifier avec le username spécifié 
 export PGHOST=localhost
-export PGPASSWORD=$POSTGRES_PASSWORD
 export PGUSER=$POSTGRES_USER
+export PGPASSWORD=$POSTGRES_PASSWORD
+export PGDATABASE=$POSTGRES_DB
 
 echo " ------------------------------------------------------------------------------------------- "
 echo " VERIFICATION DEBUT INIT DB POSTGIS : [POSTGRES_DB=$POSTGRES_DB] "
@@ -24,6 +25,7 @@ echo " -------------------------------------------------------------------------
 echo " VERIFICATION DEBUT INIT DB POSTGIS : [PGHOST=$PGHOST] "
 echo " VERIFICATION DEBUT INIT DB POSTGIS : [PGUSER=$PGUSER] "
 echo " VERIFICATION DEBUT INIT DB POSTGIS : [PGPASSWORD=$PGPASSWORD] "
+echo " VERIFICATION DEBUT INIT DB POSTGIS : [PGDATABASE=$PGPASSWORD] "
 echo " ------------------------------------------------------------------------------------------- "
 
 psql -U $POSTGRES_USER --dbname="$POSTGRES_DB" <<- 'EOSQL'
@@ -45,8 +47,9 @@ done
 
 
 export PGHOST=localhost
-export PGPASSWORD=$POSTGRES_PASSWORD
 export PGUSER=$POSTGRES_USER
+export PGPASSWORD=$POSTGRES_PASSWORD
+export PGDATABASE=$POSTGRES_DB
 
 # useradd -G sudo $POSTGRES_USER
 # su $POSTGRES_USER
