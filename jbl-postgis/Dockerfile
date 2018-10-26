@@ -75,7 +75,7 @@ RUN apt-get install -y iperf
 # - > So, what happensis this : you don't globally install POostGIS extensions to a whole PostGres instance, no, you EXTEND a PostGreSQL Database, to get to be a PostGIS database ( a spatial/geometry oriented DB, in other words)
 # - > And we need PostGresSQL client, to create a PostGreSQL, and perform its extension to PostGIS
 RUN echo "# - dependency management : installing PostGIS 2.5.x, which requires PostGres 9.4 or higher, see : http://postgis.net/docs/manual-2.5/ "
-RUN apt-get install -y postgres-client
+# RUN apt-get install -y postgres-client
 RUN echo "Okay, now we run the postgres-specific commands, that trigger postgis extensions installations"
 RUN echo "Note : we'lldo that (creating the \"$APP_DB_NAME\" database),  with the first created, surper admin user : \"$POSTRES_USER\""
 RUN echo "Nevertheless, still logged in PostGreSQL as [$POSTGRES_USER], we will the create the APP's database management user, namely [$APP_DB_USER], and  "
