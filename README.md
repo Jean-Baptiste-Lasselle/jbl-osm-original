@@ -43,6 +43,72 @@ ERROR:  unrecognized configuration parameter "tables"
 bonjour=# \q
 [bobby@pc-100 proto]$ 
 ```
+Aller, on y est preque là, dernière erreur : 
+```bash
+[jibl@pc-100 proto]$ docker logs -f postgis
+LOG:  database system was shut down at 2018-10-26 01:14:23 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+^C
+[jibl@pc-100 proto]$ docker logs -f rendereurpoulet
+ ------------------------------------------------------------------------------------------- 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_USER=renderer-user] 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_DB=gis] 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_DB_HOST=postgis] 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_PASSWORD=whereischarlie] 
+ VERIFICATION RENDERER ENNTRYPOINT : [PGUSER=renderer-user] 
+ VERIFICATION RENDERER ENNTRYPOINT  : [PGPASSWORD=whereischarlie] 
+ ------------------------------------------------------------------------------------------- 
+  
+ ----- 
+ VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_DB_HOST=postgis]
+ VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_DB_PORT_NO=5432]
+ VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_DB=gis]
+ VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_USER=renderer-user]
+ VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_PASSWORD=whereischarlie]
+ ----- 
+  
+DB successfully created, waiting for restart
+Starting renderer
+2018/10/26 01:24:50 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9090
+2018/10/26 01:24:50 app.go:267: [INFO] Serving monitoring xml data on %s... :9090
+2018/10/26 01:24:50 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9080
+2018/10/26 01:24:50 app.go:267: [INFO] Serving monitoring xml data on %s... :9080
+2018/10/26 01:24:50 renderselector.go:209: [DEBUG] ping error %v dial tcp 127.0.0.1:8090: getsockopt: connection refused
+2018/10/26 01:24:50 renderselector.go:117: [DEBUG] '%v' is %v localhost:8090 Offline
+2018/10/26 01:24:50 main.go:118: [INFO] Starting on %s... :8080
+2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v Exception: Postgis Plugin: FATAL:  database "gis" does not exist
+
+2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v 
+
+2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v Connection string: 'host=postgis port=5432 dbname=gis user=renderer-user connect_timeout=4'
+
+2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v   encountered during parsing of layer 'landcover-low-zoom' in Layer at line 334 of '/openstreetmap-carto/stylesheet.xml'
+
+2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v Exception: Postgis Plugin: FATAL:  database "gis" does not exist
+
+2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v 
+
+2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v Connection string: 'host=postgis port=5432 dbname=gis user=renderer-user connect_timeout=4'
+
+2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v   encountered during parsing of layer 'landcover-low-zoom' in Layer at line 334 of '/openstreetmap-carto/stylesheet.xml'
+
+2018/10/26 01:24:52 main.go:91: [CRITICAL] Failed to create tile server: Failed to create some renders: [Invalid read uint64: EOF Invalid read uint64: EOF]
+2018/10/26 01:25:20 renderselector.go:209: [DEBUG] ping error %v dial tcp 127.0.0.1:8090: getsockopt: connection refused
+2018/10/26 01:25:20 renderselector.go:117: [DEBUG] '%v' is %v localhost:8090 Offline
+^C
+[jibl@pc-100 proto]$ docker logs -f postgis
+LOG:  database system was shut down at 2018-10-26 01:14:23 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "gis" does not exist
+FATAL:  database "gis" does not exist
+^C
+[jibl@pc-100 proto]$ 
+```
+
 
 # À regarder
 
