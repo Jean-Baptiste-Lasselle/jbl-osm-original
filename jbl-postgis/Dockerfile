@@ -23,9 +23,9 @@ MAINTAINER Jean-Baptiste Lasselle <@j-b.l@jean.baptiste.lasselle@gmail.com>
 # built-in default value et runtime, baby
 # ENV POSTGRES_DB=$POSTGRES_DB
 # POSTGRES_USER
-# ARG POSTGRES_USER
+ARG POSTGRES_USER
 # built-in default value et runtime, baby
-# ENV POSTGRES_USER=$POSTGRES_USER
+ENV POSTGRES_USER=$POSTGRES_USER
 # POSTGRES_PASSWORD (note: should not be built-in container, for the sake of security)
 ARG POSTGRES_PASSWORD
 # built-in default value et runtime, baby
