@@ -16,18 +16,19 @@ MAINTAINER Jean-Baptiste Lasselle <@j-b.l@jean.baptiste.lasselle@gmail.com>
 
 
 # - those should already exists, inherited FROM postgres:9.5.14
-# ARG POSTGRES_USER
-# ENV POSTGRES_USER
-# ARG POSTGRES_PASSWORD
-# ENV POSTGRES_PASSWORD
-# POSTGRES_DB
-ARG POSTGRES_DB
+
+# - En partant de l'image distribuée par PostGreSQL, je n'ai aucun 
+#   changement, en utilisant les varibles d'environnement, et arguments de
+#   build : POSTGRES_DB et POSTGRES_USER
+# - alors je vais essayer sans. DOnc en utilisant l'utilsiateur ADMIN 
+
+# ARG POSTGRES_DB
 # built-in default value et runtime, baby
-ENV POSTGRES_DB=$POSTGRES_DB
+# ENV POSTGRES_DB=$POSTGRES_DB
 # POSTGRES_USER
-ARG POSTGRES_USER
+# ARG POSTGRES_USER
 # built-in default value et runtime, baby
-ENV POSTGRES_USER=$POSTGRES_USER
+# ENV POSTGRES_USER=$POSTGRES_USER
 # POSTGRES_PASSWORD (note: should not be built-in container, for the sake of security)
 ARG POSTGRES_PASSWORD
 # built-in default value et runtime, baby
