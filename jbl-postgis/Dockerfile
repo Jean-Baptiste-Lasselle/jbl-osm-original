@@ -1,4 +1,6 @@
-FROM postgres:9.5.14
+FROM postgres:10
+# FROM postgres:9.5.14
+
 
 MAINTAINER Jean-Baptiste Lasselle <@j-b.l@jean.baptiste.lasselle@gmail.com>
 
@@ -13,7 +15,9 @@ MAINTAINER Jean-Baptiste Lasselle <@j-b.l@jean.baptiste.lasselle@gmail.com>
 # => create a database : This image assumes the user wants to create a PostGreSQL database that will be used by an application : 
 #    This image will use APP_DB_NAME to create the database with that name
 # => set one application user : this user will be created by
-
+# piqué à : https://github.com/appropriate/docker-postgis/blob/f6d28e4a1871b1f72e1c893ff103f10b6d7cb6e1/10-2.4/Dockerfile
+ENV POSTGIS_MAJOR 2.4
+ENV POSTGIS_VERSION 2.4.3+dfsg-2.pgdg90+1
 
 # - Le répertoire dans le conteneru à l'intérieur duquel on trouvera le fichier planet-latest.osm.pbf, par exemple  
 # ARG DOWNLOADED_PBF_FILES_HOME
