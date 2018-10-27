@@ -36,6 +36,8 @@
 export PGUSER=$POSTGRES_USER
 export PGPASSWORD=$POSTGRES_PASSWORD
 export PGDATABASE=$POSTGRES_DB
+export PGHOST=localhost
+
 echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- "
 echo " ----+|+--------++|--------|++--------+|+--------++|--------|++--------+|+---- "
 echo "        JBL SCRIPT create-app-db-with-postgis-extensions.sh COMMENCE !!!       "
@@ -82,7 +84,7 @@ echo " ------------------------------------------------- "
 echo "# - dependency management : installing PostGIS 2.5.x, which requires PostGres 9.4 or higher, see : http://postgis.net/docs/manual-2.5/ "
 # apt-get install -y postgres-client # -+|+- >>> already installed budy, we'e in a native postgres inherited docker container image
 echo "Okay, now we run the postgres-specific commands, that trigger postgis extensions installations"
-echo "Note : we'lldo that (creating the \"$APP_DB_NAME\" database),  with the first created, surper admin user : \"$POSTRES_USER\""
+echo "Note : we'lldo that (creating the \"$APP_DB_NAME\" database),  with the first created, surper admin user : \"$POSTGRES_USER\""
 echo "Nevertheless, still logged in PostGreSQL as [$POSTGRES_USER], we will the create the APP's database management user, namely [$APP_DB_USER], and  "
 echo "the developer will use that user, to operate the $APP_DB_NAME database from his code "
 echo " So, first let(s create the database as a regular PostGresQL database, then we'll extend it to be a plain PostGIS database "
