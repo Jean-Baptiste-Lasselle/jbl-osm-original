@@ -33,7 +33,7 @@
 # ENV APP_DB_USER_PWD=$APP_DB_USER_PWD
 
 # les autres paramètres de connexion psql/pg_isready seront spécifiés comme arguments d'invocation de psql
-export PGUSER=$PGUSER
+export PGUSER=$POSTGRES_USER
 export PGPASSWORD=$POSTGRES_PASSWORD
 export PGDATABASE=$POSTGRES_DB
 echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- "
