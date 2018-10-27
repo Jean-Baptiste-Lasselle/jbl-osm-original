@@ -15,14 +15,12 @@ apt-get update -y
 # sudo apt install postgresql-10-postgis-scripts
 
 
-#to get the commandline tools shp2pgsql, raster2pgsql you need to do this
-sudo apt install postgis
-
-
-
 apt-get update \
     && apt-get install -y --no-install-recommends \
          postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR=$POSTGIS_VERSION \
          postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR-scripts=$POSTGIS_VERSION \
          postgis=$POSTGIS_VERSION \
          && rm -rf /var/lib/apt/lists/*
+         
+# To get the commandline tools shp2pgsql, raster2pgsql you need to do this ? Well I'll let taht aside, I have tests to run
+# sudo apt-get install postgis
