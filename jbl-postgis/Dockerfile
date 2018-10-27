@@ -93,7 +93,8 @@ ADD install-postgis.sh .
 
 
 # RUN apt-get install -y osm2pgsql
-# RUN rm -rf /var/lib/apt/lists/*
+#I don't have a clue why it was put there by dooman84, I'll just do the same for blackbox test purposes
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
 # ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
