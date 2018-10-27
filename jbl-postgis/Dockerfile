@@ -36,7 +36,7 @@ ENV POSTGRES_PASSWORD=$POSTGRES_PASSWORD
 # I'll have to check, but if ....
 # les autres paramètres de connexion psql/pg_isready seront spécifiés comme arguments d'invocation de psql, lorsque nécessaire
 ARG PGDATABASE
-ENV PGDATABASE=$PGDATABASE
+ENV PGDATABASE=$POSTGRES_DB
 
 
 ARG APP_DB_NAME=bddgeoloc
