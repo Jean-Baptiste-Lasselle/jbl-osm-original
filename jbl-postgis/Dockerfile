@@ -83,4 +83,4 @@ RUN chmod +x /docker-entrypoint-initdb.d/create-app-db-with-postgis-extensions.s
 
 # HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $POSTGRES_USER --dbname=$POSTGRES_DB || exit 1
 
-HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $POSTGRES_USER --dbname=postgres || exit 1
+HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $APP_DB_USER --dbname=postgres || exit 1
