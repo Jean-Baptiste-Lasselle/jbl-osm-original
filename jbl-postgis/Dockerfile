@@ -66,6 +66,7 @@ RUN echo " ------------------------------------------------- "
 # RUN echo " ------------------------------------------------- "
 
 
+WORKDIR /
 
 RUN apt-get update -y 
 RUN apt-get install -y apt-utils 
@@ -73,8 +74,11 @@ RUN apt-get install -y curl
 RUN apt-get install -y net-tools
 RUN apt-get install -y iperf
 
+RUN apt-get update && \
+    apt-get install -y osm2pgsql git wget && \
+rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
+# RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
 # ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
 RUN echo " ----------------------------------------------------------- "
 RUN echo " Vérification DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME "
@@ -83,12 +87,6 @@ RUN echo " Vérification de la présence des fichiers PBFs téléchargés : "
 RUN echo " ----------------------------------------------------------- "
 RUN ls -all $DOWNLOADED_PBF_FILES_HOME
 RUN echo " ----------------------------------------------------------- "
-RUN echo " Finalement,on copie les fichiers PBF au même emplacement que celui déduit par le'excutable 'wget' :  "
-RUN cp $DOWNLOADED_PBF_FILES_HOME/*.pbf .
-RUN echo " ----------------------------------------------------------- "
-RUN echo " Vérification de la présence des fichiers PBFs téléchargés : "
-RUN echo " ----------------------------------------------------------- "
-RUN echo "  REPERTOIRE=$(pwd)" && ls -all 
 RUN echo " ----------------------------------------------------------- "
 
 # 
