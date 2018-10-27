@@ -81,6 +81,8 @@ RUN apt-get install -y iperf
 ADD create-app-db-with-postgis-extensions.sh /docker-entrypoint-initdb.d
 RUN chmod +x /docker-entrypoint-initdb.d/create-app-db-with-postgis-extensions.sh
 
+HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $POSTGRES_USER --dbname=$POSTGRES_DB || exit 1
+
 # HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $POSTGRES_USER --dbname=$POSTGRES_DB || exit 1
 
-HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $APP_DB_USER --dbname=postgres || exit 1
+# HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $APP_DB_USER --dbname=postgres || exit 1
