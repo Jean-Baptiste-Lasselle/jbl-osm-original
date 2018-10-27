@@ -80,6 +80,15 @@ RUN apt-get install -y curl
 RUN apt-get install -y net-tools
 RUN apt-get install -y git
 
+
+ADD install-postgis.sh .
+RUN chmod +x ./install-postgis.sh
+RUN echo "exécution de l'=>>> [./install-postgis.sh] "
+RUN ./install-postgis.sh
+
+ADD install-postgis.sh .
+
+
 # RUN apt-get install -y osm2pgsql
 # RUN rm -rf /var/lib/apt/lists/*
 
