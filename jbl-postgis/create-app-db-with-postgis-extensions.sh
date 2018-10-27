@@ -91,7 +91,7 @@ echo " So, first let(s create the database as a regular PostGresQL database, the
 # Ok, so basically,I have to create a database, or a user, indside the first dba's database... Ok. Let's do that : 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     CREATE USER $APP_DB_USER_NAME;
-    ALTER USER $APP_DB_USER_NAME WITH ENCRYOTED PASSWORD '$APP_DB_USER_PWD';
+    ALTER USER $APP_DB_USER_NAME WITH ENCRYPTED PASSWORD '$APP_DB_USER_PWD';
     CREATE DATABASE $APP_DB_NAME;
     GRANT ALL PRIVILEGES ON DATABASE $APP_DB_NAME TO $APP_DB_USER_NAME;
 EOSQL
