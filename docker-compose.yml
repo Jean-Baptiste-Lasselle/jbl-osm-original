@@ -1,6 +1,6 @@
 version: '3'
 services:
-  jbl_postgis:
+  postgis:
     image: jbl-carto/postgis:0.0.1
     container_name: 'postgis'
     build: 
