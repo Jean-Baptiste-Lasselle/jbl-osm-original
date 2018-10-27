@@ -13,7 +13,7 @@ services:
         - POSTGRES_USER=dba_user
         - POSTGRES_PASSWORD=firstcutisthedeppest
         - APP_DB_NAME=$NOM_BDD_GEOLOC
-        - APP_DB_USER_NAME=renderer-user
+        - APP_DB_USER_NAME=renderer_user
         - APP_DB_USER_PWD=whereischarlie
     volumes:
       # - geodata-volume:/var/lib/postgresql/data
