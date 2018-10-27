@@ -3,10 +3,9 @@
 # cf. [https://gist.github.com/robert-claypool/e725aa310e0d2b63bbb7]
 
 echo "deb http://apt.postgresql.org/pub/repos/apt/ YOUR_DEBIAN_VERSION_HERE-pgdg main" >> ./pgdg.malitste
-sudo cp ./pgdg.list /etc/apt/sources.list.d/pgdg.list
+cp ./pgdg.list /etc/apt/sources.list.d/pgdg.list
 
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
-  sudo apt-key add -
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 apt-get update -y
 
 # Je suppose que mes chers amis de chez appropriate, ...on bie fait les installations
