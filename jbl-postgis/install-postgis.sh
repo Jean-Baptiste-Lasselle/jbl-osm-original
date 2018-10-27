@@ -2,7 +2,7 @@
 
 # cf. [https://gist.github.com/robert-claypool/e725aa310e0d2b63bbb7]
 
-echo "deb http://apt.postgresql.org/pub/repos/apt/ YOUR_DEBIAN_VERSION_HERE-pgdg main" >> ./pgdg.malitste
+echo "deb http://apt.postgresql.org/pub/repos/apt/ YOUR_DEBIAN_VERSION_HERE-pgdg main" >> ./pgdg.list
 cp ./pgdg.list /etc/apt/sources.list.d/pgdg.list
 
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
@@ -13,7 +13,7 @@ apt-get update -y
 # sudo apt install postgresql-10-postgis-2.4 
 # sudo apt install postgresql-10-postgis-scripts
 
-apt-get installl -y postgis
+apt-get install -y postgis
 rm -rf /var/lib/apt/lists/*
 # apt-get update -y \
 #     && apt-get install -y --no-install-recommends \
