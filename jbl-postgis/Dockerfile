@@ -16,9 +16,9 @@ MAINTAINER Jean-Baptiste Lasselle <@j-b.l@jean.baptiste.lasselle@gmail.com>
 
 
 # - Le répertoire dans le conteneru à l'intérieur duquel on trouvera le fichier planet-latest.osm.pbf, par exemple  
-ARG DOWNLOADED_PBF_FILES_HOME
+# ARG DOWNLOADED_PBF_FILES_HOME
 # built-in default value et runtime, baby
-ENV DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME
+# ENV DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME
 # ARG POSTGRES_DB
 # built-in default value et runtime, baby
 # ENV POSTGRES_DB=$POSTGRES_DB
@@ -79,16 +79,16 @@ RUN apt-get install -y git
 # RUN apt-get install -y osm2pgsql
 # RUN rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
+# RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
 # ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
-RUN echo " ----------------------------------------------------------- "
-RUN echo " Vérification DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME "
-RUN echo " ----------------------------------------------------------- "
-RUN echo " Vérification de la présence des fichiers PBFs téléchargés : "
-RUN echo " ----------------------------------------------------------- "
-RUN ls -all $DOWNLOADED_PBF_FILES_HOME
-RUN echo " ----------------------------------------------------------- "
-RUN echo " ----------------------------------------------------------- "
+# RUN echo " ----------------------------------------------------------- "
+# RUN echo " Vérification DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME "
+# RUN echo " ----------------------------------------------------------- "
+# RUN echo " Vérification de la présence des fichiers PBFs téléchargés : "
+# RUN echo " ----------------------------------------------------------- "
+# RUN ls -all $DOWNLOADED_PBF_FILES_HOME
+# RUN echo " ----------------------------------------------------------- "
+# RUN echo " ----------------------------------------------------------- "
 
 # 
 # - > Un problème se pose : pour créer la bdd APP_DB_NAME et le user APP_USER_NAME, le serveur PostGreSQL doit être démarré !
