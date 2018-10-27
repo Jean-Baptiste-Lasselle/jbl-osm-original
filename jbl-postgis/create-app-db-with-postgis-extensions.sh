@@ -45,6 +45,8 @@ echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+
 echo " ------------------------------------------------- "
 echo "   VERIFICATIONS : [POSTGRES_USER=$POSTGRES_USER]"
 echo " ------------------------------------------------- "
+echo "   VERIFICATIONS : [POSTGRES_DB=$POSTGRES_DB]"
+echo " ------------------------------------------------- "
 echo "   VERIFICATIONS : [POSTGRES_PASSWORD=$POSTGRES_PASSWORD]"
 echo " ------------------------------------------------- "
 echo "   VERIFICATIONS : [PGUSER=$PGUSER]"
