@@ -65,6 +65,7 @@ RUN echo " ------------------------------------------------- "
 # RUN echo "   VERIFICATIONS : [CCCC=$CCCC]"
 # RUN echo " ------------------------------------------------- "
 
+USER root
 
 WORKDIR /
 
@@ -78,7 +79,7 @@ RUN apt-get update && \
     apt-get install -y osm2pgsql git wget && \
 rm -rf /var/lib/apt/lists/*
 
-# RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
+RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
 # ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
 RUN echo " ----------------------------------------------------------- "
 RUN echo " Vérification DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME "
