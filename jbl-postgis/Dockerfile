@@ -71,12 +71,12 @@ WORKDIR /
 
 RUN apt-get update -y 
 RUN apt-get install -y apt-utils 
+RUN apt-get install -y wget
 RUN apt-get install -y curl
 RUN apt-get install -y net-tools
-RUN apt-get install -y iperf
+RUN apt-get install -y git
 
-RUN apt-get update && \
-    apt-get install -y osm2pgsql git wget && \
+RUN apt-get install -y osm2pgsql
 rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
