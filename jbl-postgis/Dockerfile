@@ -44,7 +44,6 @@ ENV APP_DB_USER_NAME=$APP_DB_USER_NAME
 ARG APP_DB_USER_PWD=tolkien
 ENV APP_DB_USER_PWD=$APP_DB_USER_PWD
 
-
 RUN echo " ------------------------------------------------- "
 RUN echo "   VERIFICATIONS : [POSTGRES_USER=$POSTGRES_USER]"
 RUN echo " ------------------------------------------------- "
