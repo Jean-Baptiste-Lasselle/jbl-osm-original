@@ -94,7 +94,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 EOSQL
 
 
-psql -U $POSTGRES_USER -h localhost -c "createdb $APP_DB_NAME"
+# psql -U $POSTGRES_USER -h localhost -c "createdb $APP_DB_NAME"
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis;"
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis_topology;"
 # -- if you built with sfcgal support --
@@ -108,9 +108,9 @@ psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis
 # psql -d yourdatabase -c "CREATE EXTENSION address_standardizer;"
 
 # - > And finally, let's create APP_DB_USER_NAME in postgres, with access rights and all priviliges on the APP_DB_NAME database
-psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "createuser $APP_DB_USER_NAME"
-psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "alter user $APP_DB_USER_NAME with encrypted password '$APP_DB_USER_PWD';"
-psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "Granting privileges on $APP_DB_NAME"
+# psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "createuser $APP_DB_USER_NAME"
+# psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "alter user $APP_DB_USER_NAME with encrypted password '$APP_DB_USER_PWD';"
+# psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "Granting privileges on $APP_DB_NAME"
 
 echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- "
 echo " ----+|+--------++|--------|++--------+|+--------++|--------|++--------+|+---- "
