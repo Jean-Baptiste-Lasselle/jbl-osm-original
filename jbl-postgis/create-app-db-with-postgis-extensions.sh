@@ -82,7 +82,8 @@ echo "Okay, now we run the postgres-specific commands, that trigger postgis exte
 echo "Note : we'lldo that (creating the \"$APP_DB_NAME\" database),  with the first created, surper admin user : \"$POSTRES_USER\""
 echo "Nevertheless, still logged in PostGreSQL as [$POSTGRES_USER], we will the create the APP's database management user, namely [$APP_DB_USER], and  "
 echo "the developer will use that user, to operate the $APP_DB_NAME database from his code "
-
+echo " So, first let(s create the database as a regular PostGresQL database, then we'll extend it to be a plain PostGIS database "
+psql -U $POSTGRES_USER -h localhost -c "createdb $APP_DB_NAME"
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis;"
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis_topology;"
 # -- if you built with sfcgal support --
