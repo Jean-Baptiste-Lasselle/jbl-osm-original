@@ -8,8 +8,8 @@ services:
       args:
         # because it's our custom diretrory, not present ion base postgis image, cf. ./postgis/Dockerfile
         # - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
-        - POSTGRES_DB=$NOM_BDD_GEOLOC
-        - POSTGRES_USER=dba-user
+        - POSTGRES_DB=dba_datab
+        - POSTGRES_USER=dba_user
         - POSTGRES_PASSWORD=firstcutisthedeppest
         - APP_DB_NAME=$NOM_BDD_GEOLOC
         - APP_DB_USER_NAME=renderer-user
@@ -20,7 +20,7 @@ services:
       # cf. './.env' file , PBF_VAULT_HOME=/carto/vault
       - $PBF_VAULT_HOME:/downloaded-pbf-files
     environment:
-      - POSTGRES_DB=$NOM_BDD_GEOLOC
+      - POSTGRES_DB=dba_datab
       # Is there no dad at shinesolutions.com?
       - POSTGRES_USER=dba_user
       - POSTGRES_PASSWORD=firstcutisthedeppest
