@@ -93,6 +93,7 @@ RUN apt-get install -y iperf
 # "
 # - > Je remarque enfin que c'est la technique que 'dooman84' a utilisé.
 # 
+RUN mksir -p /docker-entrypoint-initdb.d
 ADD create-app-db-with-postgis-extensions.sh /docker-entrypoint-initdb.d
 RUN chmod +x /docker-entrypoint-initdb.d/create-app-db-with-postgis-extensions.sh
 
