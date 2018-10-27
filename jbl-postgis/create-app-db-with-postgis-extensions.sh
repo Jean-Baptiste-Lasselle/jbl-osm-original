@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 # 
 # --
 # - Abstract
@@ -83,6 +83,17 @@ echo "Note : we'lldo that (creating the \"$APP_DB_NAME\" database),  with the fi
 echo "Nevertheless, still logged in PostGreSQL as [$POSTGRES_USER], we will the create the APP's database management user, namely [$APP_DB_USER], and  "
 echo "the developer will use that user, to operate the $APP_DB_NAME database from his code "
 echo " So, first let(s create the database as a regular PostGresQL database, then we'll extend it to be a plain PostGIS database "
+
+
+# Ok, so basically,I have to create a database, or a user, indside the first dba's database... Ok. Let's do that : 
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+    CREATE USER $APP_DB_USER_NAME;
+    ALTER USER $APP_DB_USER_NAME WITH ENCRYOTED PASSWORD '$APP_DB_USER_PWD';
+    CREATE DATABASE $APP_DB_NAME;
+    GRANT ALL PRIVILEGES ON DATABASE $APP_DB_NAME TO $APP_DB_USER_NAME;
+EOSQL
+
+
 psql -U $POSTGRES_USER -h localhost -c "createdb $APP_DB_NAME"
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis;"
 psql -U $POSTGRES_USER -d $APP_DB_NAME -h localhost -c "CREATE EXTENSION postgis_topology;"
