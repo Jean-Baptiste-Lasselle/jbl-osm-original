@@ -1,6 +1,188 @@
 # Dernière erreur :
 
 ```bash
+[jibl@pc-100 proto]$ docker logs -f postgis
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_US.utf8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/data ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+
+WARNING: enabling "trust" authentication for local connections
+You can change this by editing pg_hba.conf or using the option -A, or
+--auth-local and --auth-host, the next time you run initdb.
+    pg_ctl -D /var/lib/postgresql/data -l logfile start
+
+waiting for server to start....2018-10-27 06:45:24.442 UTC [43] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2018-10-27 06:45:24.483 UTC [44] LOG:  database system was shut down at 2018-10-27 06:45:23 UTC
+2018-10-27 06:45:24.489 UTC [43] LOG:  database system is ready to accept connections
+ done
+server started
+CREATE DATABASE
+
+
+/usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/create-app-db-with-postgis-extensions.sh
+ ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- 
+ ----+|+--------++|--------|++--------+|+--------++|--------|++--------+|+---- 
+        JBL SCRIPT create-app-db-with-postgis-extensions.sh COMMENCE !!!       
+ ----++|--------+|+--------|++--------++|--------+|+--------|++--------+|+---- 
+ ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- 
+ ------------------------------------------------- 
+   VERIFICATIONS : [POSTGRES_USER=dba_user]
+ ------------------------------------------------- 
+   VERIFICATIONS : [POSTGRES_DB=dba_user]
+ ------------------------------------------------- 
+   VERIFICATIONS : [POSTGRES_PASSWORD=firstcutisthedeppest]
+ ------------------------------------------------- 
+   VERIFICATIONS : [PGUSER=dba_user]
+ ------------------------------------------------- 
+   VERIFICATIONS : [PGPASSWORD=firstcutisthedeppest]
+ ------------------------------------------------- 
+   VERIFICATIONS : [PGDATABASE=dba_user]
+ ------------------------------------------------- 
+   VERIFICATIONS : [PGHOST=localhost]
+ ------------------------------------------------- 
+   VERIFICATIONS : [PGPORT=]
+ ------------------------------------------------- 
+   VERIFICATIONS : [APP_DB_NAME=bddgeoloc]
+ ------------------------------------------------- 
+   VERIFICATIONS : [APP_DB_USER_NAME=renderer_user]
+ ------------------------------------------------- 
+   VERIFICATIONS : [APP_DB_USER_PWD=whereischarlie]
+ ------------------------------------------------- 
+# - dependency management : installing PostGIS 2.5.x, which requires PostGres 9.4 or higher, see : http://postgis.net/docs/manual-2.5/ 
+Okay, now we run the postgres-specific commands, that trigger postgis extensions installations
+Note : we'lldo that (creating the "bddgeoloc" database),  with the first created, surper admin user : "dba_user"
+Nevertheless, still logged in PostGreSQL as [dba_user], we will the create the APP's database management user, namely [], and  
+the developer will use that user, to operate the bddgeoloc database from his code 
+ So, first let(s create the database as a regular PostGresQL database, then we'll extend it to be a plain PostGIS database 
+psql: could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+could not connect to server: Network is unreachable
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5432?
+psql: could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+could not connect to server: Network is unreachable
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5432?
+psql: could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+could not connect to server: Network is unreachable
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5432?
+psql: could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+could not connect to server: Network is unreachable
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5432?
+psql: could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+could not connect to server: Network is unreachable
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5432?
+psql: could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+could not connect to server: Network is unreachable
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5432?
+ ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- 
+ ----+|+--------++|--------|++--------+|+--------++|--------|++--------+|+---- 
+        JBL SCRIPT create-app-db-with-postgis-extensions.sh TERMINE !!!        
+ ----++|--------+|+--------|++--------++|--------+|+--------|++--------+|+---- 
+ ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- 
+
+waiting for server to shut down....2018-10-27 06:45:26.227 UTC [43] LOG:  received fast shutdown request
+2018-10-27 06:45:26.231 UTC [43] LOG:  aborting any active transactions
+2018-10-27 06:45:26.244 UTC [43] LOG:  worker process: logical replication launcher (PID 50) exited with exit code 1
+2018-10-27 06:45:26.254 UTC [45] LOG:  shutting down
+2018-10-27 06:45:26.416 UTC [43] LOG:  database system is shut down
+ done
+server stopped
+
+PostgreSQL init process complete; ready for start up.
+
+2018-10-27 06:45:26.452 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2018-10-27 06:45:26.452 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2018-10-27 06:45:26.471 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2018-10-27 06:45:26.636 UTC [110] LOG:  database system was shut down at 2018-10-27 06:45:26 UTC
+2018-10-27 06:45:26.653 UTC [1] LOG:  database system is ready to accept connections
+^C
+[jibl@pc-100 proto]$ docker exec -it postgis "ping -c 4 localhost"
+OCI runtime exec failed: exec failed: container_linux.go:348: starting container process caused "exec: \"ping -c 4 localhost\": executable file not found in $PATH": unknown
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c ping -c 4 localhost""
+-c: 1: -c: ping: not found
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "ping -c 4 localhost"
+sh: 1: ping: not found
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "ping -c 4 localhost"
+sh: 1: ping: not found
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "apt-get install -y net-tools
+> ^C
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "apt-get install -y net-tools"
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+net-tools is already the newest version (1.60+git20161116.90da8a0-1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "apt-get install -y net-utils"
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: Unable to locate package net-utils
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "apt-get install -y ping"
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: Unable to locate package ping
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "ping -c 4 localhost"
+sh: 1: ping: not found
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "tenet"
+sh: 1: tenet: not found
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "telnet"
+sh: 1: telnet: not found
+[jibl@pc-100 proto]$ docker exec -it postgis sh -c "psql -U dba_user --dbname=postgres -W"Password for user dba_user: 
+psql (10.5 (Debian 10.5-2.pgdg90+1))
+Type "help" for help.
+
+postgres=# \l
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ dba_user  | dba_user | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres  | dba_user | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | dba_user | UTF8     | en_US.utf8 | en_US.utf8 | =c/dba_user          +
+           |          |          |            |            | dba_user=CTc/dba_user
+ template1 | dba_user | UTF8     | en_US.utf8 | en_US.utf8 | =c/dba_user          +
+           |          |          |            |            | dba_user=CTc/dba_user
+(4 rows)
+
+postgres=# 
+```
+
+précédente : 
+```bash
 [jibl@pc-100 proto]$ docker exec -it postgis sh -c "/docker-entrypoint-initdb.d/create-app-db-with-postgis-extensions.sh"
  ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- 
  ----+|+--------++|--------|++--------+|+--------++|--------|++--------+|+---- 
