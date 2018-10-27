@@ -16,7 +16,7 @@ services:
         - APP_DB_USER_PWD=whereischarlie
         - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
     volumes:
-      # - geodata-volume:/var/lib/postgresql/data
+      - geodata-volume:/var/lib/postgresql/data
       # - ./data:/var/lib/postgresql/data
       # cf. './.env' file , PBF_VAULT_HOME=/carto/vault
       - $PBF_VAULT_HOME:/downloaded-pbf-files
@@ -32,31 +32,31 @@ services:
     networks:
       - cartoproto
     restart: always
-  jbl_postgis:
-    image: carto-proto/postgis:0.0.1
-    container_name: 'jblpostgis'
-    build: 
-      context: './postgis'
-      args:
-        # because it's our custom diretrory, not present ion base postgis image, cf. ./postgis/Dockerfile
-        - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
-        - POSTGRES_DB=$NOM_BDD_GEOLOC
-        - POSTGRES_USER=renderer-user
-        - POSTGRES_PASSWORD=whereischarlie
-    volumes:
-      - geodata-volume:/var/lib/postgresql/data
-      # - ./data:/var/lib/postgresql/data
-      # cf. './.env' file , PBF_VAULT_HOME=/carto/vault
-      - $PBF_VAULT_HOME:/downloaded-pbf-files
-    environment:
-      - POSTGRES_DB=$NOM_BDD_GEOLOC
-      # Is there no dad at shinesolutions.com?
-      - POSTGRES_USER=renderer-user
-      - POSTGRES_PASSWORD=whereischarlie
-      - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
-    networks:
-      - cartoproto
-    restart: always
+#   jbl_postgis:
+#     image: carto-proto/postgis:0.0.1
+#     container_name: 'jblpostgis'
+#     build: 
+#       context: './postgis'
+#       args:
+#         # because it's our custom diretrory, not present ion base postgis image, cf. ./postgis/Dockerfile
+#         - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
+#         - POSTGRES_DB=$NOM_BDD_GEOLOC
+#         - POSTGRES_USER=renderer-user
+#         - POSTGRES_PASSWORD=whereischarlie
+#     volumes:
+#       - geodata-volume:/var/lib/postgresql/data
+#       # - ./data:/var/lib/postgresql/data
+#       # cf. './.env' file , PBF_VAULT_HOME=/carto/vault
+#       - $PBF_VAULT_HOME:/downloaded-pbf-files
+#     environment:
+#       - POSTGRES_DB=$NOM_BDD_GEOLOC
+#       # Is there no dad at shinesolutions.com?
+#       - POSTGRES_USER=renderer-user
+#       - POSTGRES_PASSWORD=whereischarlie
+#       - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
+#     networks:
+#       - cartoproto
+#     restart: always
   renderer:
     image: carto-proto/gopnik-mapnik:0.0.1
     container_name: 'rendereurpoulet'
