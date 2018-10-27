@@ -1,5 +1,12 @@
 FROM ubuntu
 
+MAINTAINER Jean-Baptiste Lasselle <@j-b-l@jean.baptiste.lasselle@gmail.com>
+
+ENV POSTGRES_USER=biloute
+ARG POSTGRES_USER=$POSTGRES_USER
+
+ARG POSTGRES_PASSSWORD=biloute
+ENV POSTGRES_PASSSWORD=$POSTGRES_PASSSWORD
 #
 # example Dockerfile from https://docs.docker.com/engine/examples/postgresql_service/#install-postgresql-on-docker
 #
