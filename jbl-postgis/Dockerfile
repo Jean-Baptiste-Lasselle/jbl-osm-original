@@ -76,8 +76,8 @@ RUN apt-get install -y curl
 RUN apt-get install -y net-tools
 RUN apt-get install -y git
 
-RUN apt-get install -y osm2pgsql
-RUN rm -rf /var/lib/apt/lists/*
+# RUN apt-get install -y osm2pgsql
+# RUN rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
 # ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
