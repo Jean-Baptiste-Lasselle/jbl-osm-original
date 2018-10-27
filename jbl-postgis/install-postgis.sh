@@ -14,8 +14,9 @@ apt-get update -y
 # sudo apt install postgresql-10-postgis-scripts
 
 apt-get install -y postgis
-apt-get update -y 
 rm -rf /var/lib/apt/lists/*
+apt-get update -y 
+
 # apt-get update -y \
 #     && apt-get install -y --no-install-recommends \
 #          postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR=$POSTGIS_VERSION \
