@@ -1,4 +1,4 @@
-# DErnière erreur :
+# Dernière erreur :
 
 ```bash
 [jibl@pc-100 proto]$ docker exec -it postgis sh -c "/docker-entrypoint-initdb.d/create-app-db-with-postgis-extensions.sh"
