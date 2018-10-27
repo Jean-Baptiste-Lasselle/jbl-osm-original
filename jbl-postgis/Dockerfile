@@ -15,13 +15,10 @@ MAINTAINER Jean-Baptiste Lasselle <@j-b.l@jean.baptiste.lasselle@gmail.com>
 # => set one application user : this user will be created by
 
 
-# - those should already exists, inherited FROM postgres:9.5.14
-
-# - En partant de l'image distribuée par PostGreSQL, je n'ai aucun 
-#   changement, en utilisant les varibles d'environnement, et arguments de
-#   build : POSTGRES_DB et POSTGRES_USER
-# - alors je vais essayer sans. DOnc en utilisant l'utilsiateur ADMIN 
-
+# - Le répertoire dans le conteneru à l'intérieur duquel on trouvera le fichier planet-latest.osm.pbf, par exemple  
+ARG DOWNLOADED_PBF_FILES_HOME
+# built-in default value et runtime, baby
+ENV DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME
 # ARG POSTGRES_DB
 # built-in default value et runtime, baby
 # ENV POSTGRES_DB=$POSTGRES_DB
@@ -75,6 +72,25 @@ RUN apt-get install -y apt-utils
 RUN apt-get install -y curl
 RUN apt-get install -y net-tools
 RUN apt-get install -y iperf
+
+
+RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
+ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
+RUN echo " ----------------------------------------------------------- "
+RUN echo " Vérification DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME "
+RUN echo " ----------------------------------------------------------- "
+RUN echo " Vérification de la présence des fichiers PBFs téléchargés : "
+RUN echo " ----------------------------------------------------------- "
+RUN ls -all $DOWNLOADED_PBF_FILES_HOME
+RUN echo " ----------------------------------------------------------- "
+RUN echo " Finalement,on copie les fichiers PBF au même emplacement que celui déduit par le'excutable 'wget' :  "
+RUN cp $DOWNLOADED_PBF_FILES_HOME/*.pbf .
+RUN echo " ----------------------------------------------------------- "
+RUN echo " Vérification de la présence des fichiers PBFs téléchargés : "
+RUN echo " ----------------------------------------------------------- "
+RUN echo "  REPERTOIRE=$(pwd)" && ls -all 
+RUN echo " ----------------------------------------------------------- "
+
 # 
 # - > Un problème se pose : pour créer la bdd APP_DB_NAME et le user APP_USER_NAME, le serveur PostGreSQL doit être démarré !
 #      - on pourrait essayer de démarrer le SGBDR PostGreSQL dans le processus de build docker, mais alors, il faudrai exécuter en paralèlle psql.
