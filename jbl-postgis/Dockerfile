@@ -76,6 +76,10 @@ RUN echo " ------------------------------------------------- "
 
 # WORKDIR /
 
+#I don't have a clue why it was put there by dooman84, I'll just do the same for blackbox test purposes
+# Found on web that pakage manager apt-get stores downloaded packages there.
+RUN rm -rf /var/lib/apt/lists/*
+
 RUN apt-get update -y 
 RUN apt-get install -y apt-utils 
 RUN apt-get install -y wget
@@ -91,10 +95,7 @@ RUN ./install-postgis.sh
 
 ADD install-postgis.sh .
 
-
 # RUN apt-get install -y osm2pgsql
-#I don't have a clue why it was put there by dooman84, I'll just do the same for blackbox test purposes
-RUN rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
 # ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
