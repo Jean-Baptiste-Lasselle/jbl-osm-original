@@ -22,4 +22,25 @@ export DISTRIBUTED_PRODUCT_VERSION_ID=0.0.1
 
 export NOM_DE_MON_IMAGE=$DOCKER_REGISTRY_NET_HOST_ID/$DISTRIBUTOR_ORGANIZATION/$DISTRIBUTED_PRODUCT_DISTRIBUTION_NAME-$POSTGRESQL_VERSION_ID:$DISTRIBUTED_PRODUCT_VERSION_ID
 
-sudo docker build -t $NOM_DE_MON_IMAGE:9.3 .
+sudo docker build -t $NOM_DE_MON_IMAGE .
+
+# -       - #
+# -  RUN  - #
+# -       - #
+export RESEAU_DOCKER_DEVOPS_TESTS=reseau-tests-devops
+# - Je créée un réseau docker de type bridge
+docker network create --driver bridge $RESEAU_DOCKER_DEVOPS_TESTS
+# - Je lance 2 conteneur dans ce réseau, différant seulement par les variables d'environnements / build args 
+export RESEAU_DOCKER_DEVOPS_TESTS=reseau-tests-devops2
+export JEU_OPTIONS=""
+export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_USER=kytes"
+export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_PASSSWORD=kytes"
+# export JEU_OPTIONS="$JEU_OPTIONS -e VVV=VVV"
+# export JEU_OPTIONS="$JEU_OPTIONS -e VVV=VVV"
+# export JEU_OPTIONS="$JEU_OPTIONS -e VVV=VVV"
+
+docker run --name test-jbl-postgres-docker2 --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS -d $NOM_DE_MON_IMAGE
+
+
+# Test 1 : me connecter à la BDD avecle client postgresql
+docker run -it --rm --network postgres-network postgresondocker:9.3 psql -h postgresondocker -U postgresondocker --password
