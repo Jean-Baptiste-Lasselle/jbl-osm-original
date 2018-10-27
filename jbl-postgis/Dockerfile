@@ -20,9 +20,9 @@ ENV POSTGIS_MAJOR 2.4
 ENV POSTGIS_VERSION 2.4.3+dfsg-2.pgdg90+1
 
 # - Le répertoire dans le conteneru à l'intérieur duquel on trouvera le fichier planet-latest.osm.pbf, par exemple  
-# ARG DOWNLOADED_PBF_FILES_HOME
+ARG DOWNLOADED_PBF_FILES_HOME
 # built-in default value et runtime, baby
-# ENV DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME
+ENV DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME
 # ARG POSTGRES_DB
 # built-in default value et runtime, baby
 # ENV POSTGRES_DB=$POSTGRES_DB
@@ -124,6 +124,8 @@ ADD install-postgis.sh .
 RUN mkdir -p /docker-entrypoint-initdb.d
 ADD create-app-db-with-postgis-extensions.sh /docker-entrypoint-initdb.d
 RUN chmod +x /docker-entrypoint-initdb.d/create-app-db-with-postgis-extensions.sh
+
+VOLUME $DOWNLOADED_PBF_FILES_HOME
 
 # HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $APP_DB_USER_NAME -d $APP_DB_NAME -h localhost && psql -U $APP_DB_USER_NAME -d $APP_DB_NAME -h localhost -c "SELECT 1 as OSM_DB_HEALTHCHECK;"
 # HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $POSTGRES_USER --dbname=$POSTGRES_DB || exit 1
