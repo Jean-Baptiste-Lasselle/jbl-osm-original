@@ -7,7 +7,7 @@ services:
       context: './jbl-postgis'
       args:
         # because it's our custom diretrory, not present ion base postgis image, cf. ./postgis/Dockerfile
-        # - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
+        - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
         # - POSTGRES_DB=dba_datab
         # - POSTGRES_DB=peuimporte
         - POSTGRES_USER=dba_user
