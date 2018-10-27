@@ -32,9 +32,9 @@
 # ARG APP_DB_USER_PWD=tolkien
 # ENV APP_DB_USER_PWD=$APP_DB_USER_PWD
 
-# les autres paramètres de connexion psql seront spécifiés comme arguments d'invocation de psql
+# les autres paramètres de connexion psql/pg_isready seront spécifiés comme arguments d'invocation de psql
 export PGPASSWORD=$POSTGRES_PASSWORD
-
+export PGDATABASE=$POSTGRES_DB
 echo " ----+|+--------+|+--------+|+--------+|+--------+|+--------+|+--------+|+---- "
 echo " ----+|+--------++|--------|++--------+|+--------++|--------|++--------+|+---- "
 echo "        JBL SCRIPT create-app-db-with-postgis-extensions.sh COMMENCE !!!       "
