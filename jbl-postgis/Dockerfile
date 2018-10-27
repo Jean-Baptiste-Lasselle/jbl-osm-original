@@ -92,15 +92,15 @@ ADD install-postgis.sh .
 # RUN apt-get install -y osm2pgsql
 # RUN rm -rf /var/lib/apt/lists/*
 
-# RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
+RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
 # ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
-# RUN echo " ----------------------------------------------------------- "
-# RUN echo " Vérification DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME "
-# RUN echo " ----------------------------------------------------------- "
-# RUN echo " Vérification de la présence des fichiers PBFs téléchargés : "
-# RUN echo " ----------------------------------------------------------- "
-# RUN ls -all $DOWNLOADED_PBF_FILES_HOME
-# RUN echo " ----------------------------------------------------------- "
+RUN echo " ----------------------------------------------------------- "
+RUN echo " Vérification DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME "
+RUN echo " ----------------------------------------------------------- "
+RUN echo " Vérification de la présence des fichiers PBFs téléchargés : "
+RUN echo " ----------------------------------------------------------- "
+RUN ls -all $DOWNLOADED_PBF_FILES_HOME
+RUN echo " ----------------------------------------------------------- "
 # RUN echo " ----------------------------------------------------------- "
 
 # 
