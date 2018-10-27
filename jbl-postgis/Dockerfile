@@ -65,9 +65,9 @@ RUN echo " ------------------------------------------------- "
 # RUN echo "   VERIFICATIONS : [CCCC=$CCCC]"
 # RUN echo " ------------------------------------------------- "
 
-USER root
+# USER root
 
-WORKDIR /
+# WORKDIR /
 
 RUN apt-get update -y 
 RUN apt-get install -y apt-utils 
@@ -112,7 +112,7 @@ RUN mkdir -p /docker-entrypoint-initdb.d
 ADD create-app-db-with-postgis-extensions.sh /docker-entrypoint-initdb.d
 RUN chmod +x /docker-entrypoint-initdb.d/create-app-db-with-postgis-extensions.sh
 
-HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $APP_DB_USER_NAME -d $APP_DB_NAME -h localhost && psql -U $APP_DB_USER_NAME -d $APP_DB_NAME -h localhost -c "SELECT 1 as OSM_DB_HEALTHCHECK;"
+# HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $APP_DB_USER_NAME -d $APP_DB_NAME -h localhost && psql -U $APP_DB_USER_NAME -d $APP_DB_NAME -h localhost -c "SELECT 1 as OSM_DB_HEALTHCHECK;"
 # HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $POSTGRES_USER --dbname=$POSTGRES_DB || exit 1
 
 # HEALTHCHECK  --interval=5s --timeout=3s --retries=30 CMD pg_isready -U $POSTGRES_USER --dbname=$POSTGRES_DB || exit 1
