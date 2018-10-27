@@ -75,7 +75,7 @@ RUN apt-get install -y iperf
 
 
 RUN mkdir -p $DOWNLOADED_PBF_FILES_HOME
-ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
+# ADD ./australia-oceania-latest.osm.pbf $DOWNLOADED_PBF_FILES_HOME
 RUN echo " ----------------------------------------------------------- "
 RUN echo " Vérification DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME "
 RUN echo " ----------------------------------------------------------- "
