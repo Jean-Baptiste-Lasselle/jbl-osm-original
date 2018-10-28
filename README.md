@@ -10,11 +10,18 @@ Observez aussi la mention `starting renderer`, juste après la mention `DB succe
 
 Oh purée, le fameux fichier `./renderer/map_data/config.json` :+1: 
 
-Nom dé diou, c'est [un template gopnik](https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json) pour "graver" la topologie du cluster .. Dans la confgiuration Docker `/etc/docker/daemon.json`  !!!  :-o
+Nom dé diou, c'est [un template gopnik](https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json) pour "graver" la topologie du cluster ..  !!!  :-o
 
 cf. https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json
 
 Tu crois qu'ils auraient ne serait-ce que mentionné cela, dansle tutoriel originel shinemachin... :-o :-o !!?? :skull: 
+les quelques références de doc gopnik : 
+
+* http://sputnik-maps.github.io/gopnik/
+* http://sputnik-maps.github.io/gopnik/configuration.html
+* http://sputnik-maps.github.io/gopnik/utils.html
+
+Je ferai donc une série de tests, piour essayer les différentes possibilités de configuration.
 
 
 Et pour en terminer avec Gopnik, il est à noter que Gopnik semble de toute évidence un projet mort-né : 
