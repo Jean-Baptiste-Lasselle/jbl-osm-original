@@ -65,9 +65,9 @@ docker network create --driver bridge $RESEAU_DOCKER_DEVOPS_TESTS
 # - RUN TEST / J'exéute le test : option " --rm" pou rne pas être importuné par les répertoires créés par Docker Engine
 
 
-echo " "
+echo "   "
 echo " - ==>>> AVANT DOCKER RUN (setup test)"
-echo " "
+echo "   "
 echo " - "
 echo " VERIF : [NOM_CONTENEUR_TESTRUNNER=$NOM_CONTENEUR_TESTRUNNER]"
 echo " - "
@@ -77,7 +77,9 @@ echo " VERIF : [JEU_OPTIONS=$JEU_OPTIONS]"
 echo " - "
 echo " VERIF : [NOM_DE_MON_IMAGE=$NOM_DE_MON_IMAGE]"
 echo " - "
-echo " "
+echo " You currently have those test images : "
+docker images|grep postgres
+echo "   "
 read ATTENDS1
 
 docker run --rm -it --name $NOM_CONTENEUR_TESTRUNNER --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS -d $NOM_DE_MON_IMAGE
