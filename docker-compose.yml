@@ -85,15 +85,20 @@ services:
       - MAPNIK_POSTGRES_DB=$NOM_BDD_GEOLOC
       - MAPNIK_POSTGRES_USER=renderer_user
       - MAPNIK_POSTGRES_PASSWORD=whereischarlie
+    
     ports:
+      # - cf. `./renderer/map_data/config.json`
       - "8080:8080"
       - "9090:9090"
       - "8090:8090"
+      - "8088:8088"
     expose:
+      # - cf. `./renderer/map_data/config.json`
       - 8080/tcp
       - 9090/tcp
       # I saw in docker logs, gopnik/mapnik trying to connect to 127.0.0.1:8090, with connection refused error
       - 8090/tcp
+      - 8088/tcp
     depends_on:
       - postgis
     networks:
