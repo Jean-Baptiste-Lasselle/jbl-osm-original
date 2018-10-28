@@ -17,3 +17,37 @@ cd jbl-postgres/
 chmod +x ./build-mon-image.sh
 ./build-mon-image.sh
 ```
+
+
+# Analyse
+
+## Image ubuntu sous-jacente, dans le conteneur
+
+Enfin, j'ai une réponse :  le user linux `postgres` est créé par le procesus d'installation de PostGreSQL, pendant le build de l'image. Pour le vérifier, il suffit d'insérer deux directives `USER` dans le dockerfile : 
+```yaml
+FROM ubuntu
+...
+# - 
+# This one BEFORE the RUN dockerfile commands that install postgres from linux packages
+# This one will trigger a Docker error, prompting "linux spec user: unable to find user biloute: no matching entries in passwd file" 
+# - 
+USER postgres
+...
+# Here the postgres commands that install postgresql db server
+# Ici, les commandes linux qui installent PostGreSQL
+
+# This one AFTER the RUN dockerfile commands that install postgres from linux packages
+# This one will NOT trigger any Docker error, cause use now exists
+USER postgres
+
+```
+Indeed, you will then, at docker build time, get an error looking like  
+```bash
+ ---> Running in 2302110ac00e
+linux spec user: unable to find user biloute: no matching entries in passwd file
+```
+    ccc
+
+```bash
+ccc
+```
