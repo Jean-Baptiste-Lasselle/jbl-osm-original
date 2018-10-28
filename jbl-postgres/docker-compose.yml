@@ -3,7 +3,7 @@ services:
   postgis:
     image: $DISTRIBUTOR_ORGANIZATION/$DISTRIBUTED_PRODUCT_DISTRIBUTION_NAME-$POSTGRESQL_VERSION_ID-$UNEDERLYING_CONTAINER_OS_IMAGE
     # image: kytes/postgres-9.5.14-ubuntu:0.0.1
-    container_name: 'postgres-test-runner'
+    container_name: $NOM_CONTENEUR_EXECUTION_TESTS
     build: 
       context: '.'
       args:
