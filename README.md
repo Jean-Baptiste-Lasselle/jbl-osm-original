@@ -10,7 +10,7 @@ Observez aussi la mention `starting renderer`, juste après la mention `DB succe
 
 Oh purée, le fameux fichier `./renderer/map_data/config.json` :+1: 
 
-Nom dé diou, c'est [un template gopnik](https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json) pour graver la topologie du cluster .. Dans la confgiuration Docker `/etc/docker/daemon.json`  !!!  :-o
+Nom dé diou, c'est [un template gopnik](https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json) pour "graver" la topologie du cluster .. Dans la confgiuration Docker `/etc/docker/daemon.json`  !!!  :-o
 
 cf. https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json
 
