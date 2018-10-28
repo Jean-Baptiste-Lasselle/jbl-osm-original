@@ -39,6 +39,17 @@ RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97
 #     of PostgreSQL, ``VERSION_PACKAGE_UBUNTU_POSTGRESQL``.
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
+
+# - 
+# This one BEFORE the RUN dockerfile commands that install postgres from linux packages
+# This one will trigger a Docker error, prompting "linux spec user: unable to find user biloute: no matching entries in passwd file" 
+# - 
+RUN echo "This one BEFORE the RUN dockerfile commands that install postgres from linux packages"
+RUN echo "  This one will trigger a Docker error, prompting  "
+RUN echo " \"linux spec user: unable to find user biloute: no matching entries in passwd file\" "
+USER postgres
+
+
 # RUN rm -rf /var/lib/apt/lists/*
 # RUN apt-get update -y
 # Install ``python-software-properties``, ``software-properties-common`` and PostgreSQL $VERSION_PACKAGE_UBUNTU_POSTGRESQL
