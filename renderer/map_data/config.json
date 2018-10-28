@@ -16,7 +16,7 @@
 		"ClusterPlugin": {
 			"Plugin":       "ClusterConfigPlugin",
 			"PluginConfig": {
-				"Nodes":    ["localhost:8090"]
+				"Nodes":    [":8090"]
 			}
 		}
 	},
