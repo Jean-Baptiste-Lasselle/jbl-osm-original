@@ -35,11 +35,11 @@ RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 # RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get update -y
+# RUN apt-get update -y
 # Install ``python-software-properties``, ``software-properties-common`` and PostgreSQL $VERSION_POSTGRESQL
 #  There are some warnings (in red) that show up during the build. You can hide
 #  them by prefixing each apt-get statement with DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -y python-software-properties software-properties-common postgresql-$VERSION_POSTGRESQL postgresql-client-$VERSION_POSTGRESQL postgresql-contrib-$VERSION_POSTGRESQL
+RUN apt-get update -y && apt-get install -y python-software-properties software-properties-common postgresql-$VERSION_POSTGRESQL postgresql-client-$VERSION_POSTGRESQL postgresql-contrib-$VERSION_POSTGRESQL
 
 # final clean-up
 RUN rm -rf /var/lib/apt/lists/*
