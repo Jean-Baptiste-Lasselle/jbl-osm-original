@@ -21,7 +21,7 @@ ENV POSTGRES_PASSSWORD=$POSTGRES_PASSSWORD
 # Linux told me those packages are required for postgres installation process, so...
 # - waking uo apt-cache
 RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get update -y gnupg gnupg2 gnupg1
+RUN apt-get update -y && apt-get install -y gnupg gnupg2 gnupg1
 # Add the PostgreSQL PGP key to verify their Debian packages.
 # It should be the same key as https://www.postgresql.org/media/keys/ACCC4CF8.asc
 RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
