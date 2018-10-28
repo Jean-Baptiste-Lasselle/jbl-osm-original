@@ -1,1 +1,40 @@
-#
+rsion: '3'
+services:
+  postgis:
+    image: kytes/postgres-9.5.14-ubuntu:0.0.1
+    container_name: 'postgres-test-runner'
+    build: 
+      context: '.'
+      args:
+        # because it's our custom diretrory, not present ion base postgis image, cf. ./postgis/Dockerfile
+        - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
+        # - POSTGRES_DB=dba_datab
+        # - POSTGRES_DB=peuimporte
+        - POSTGRES_USER=dba_user
+        - POSTGRES_PASSWORD=firstcutisthedeppest
+        - APP_DB_NAME=$NOM_BDD_GEOLOC
+        - APP_DB_USER_NAME=renderer_user
+        - APP_DB_USER_PWD=whereischarlie
+#     volumes:
+      # - geodata-volume:/var/lib/postgresql/data
+      # - ./data:/var/lib/postgresql/data
+      # cf. './.env' file , PBF_VAULT_HOME=/carto/vault
+      # - $PBF_VAULT_HOME:/downloaded-pbf-files
+    environment:
+      # - POSTGRES_DB=dba_datab
+      # - POSTGRES_DB=peuimporte
+      # Is there no dad at shinesolutions.com?
+      - POSTGRES_USER=dba_user
+      - POSTGRES_PASSWORD=firstcutisthedeppest
+      - DOWNLOADED_PBF_FILES_HOME=/downloaded-pbf-files
+      - APP_DB_NAME=$NOM_BDD_GEOLOC
+      - APP_DB_USER_NAME=renderer_user
+      - APP_DB_USER_PWD=whereischarlie
+    networks:
+      - cartoproto
+    restart: always
+
+networks:
+  postgres-tests:
+    # name: 'reseau-devops'
+    driver: bridge
