@@ -3,7 +3,7 @@
 
 # passe-chaud
 
-Effectivement, [retirer la mention `localhost` du fichier de configuration `./renderer/map_data/config.json`](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/8) a bien inféré un changeement dans les logs du renderer :+1: 
+Effectivement, [retirer la mention `localhost` du fichier de configuration `./renderer/map_data/config.json`](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/8) a bien inféré un changement dans les logs du renderer :+1: 
 
 J'observe cependant, que j'ai toujours une erreur, pour la connexion à  "`:8090`".
 Observez aussi la mention `starting renderer`, juste après la mention `DB successfully created, waiting for restart`
