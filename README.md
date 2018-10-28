@@ -18,7 +18,8 @@ Tu crois qu'ils auraient ne serait-ce que mentionné cela, dansle tutoriel origi
 
 
 Et pour terminer avec Gopnik, il est à noter que Gopnik semble de toute évidence un projet mort-né : 
-* Très peu de documentation(s) sur le repo [github](https://github.com/sputnik-maps/gopnik) et référenes sur le web
+* Très peu de documentation(s) sur le repo [github](https://github.com/sputnik-maps/gopnik),
+*  Aussi peu de référenes sur le web (tutoriaux, ré-utilisations).
 * De plus sur [la page "wiki" du projet](http://sputnik-maps.github.io/gopnik/), il est clairement indiqué un ATTNETION!! Totelement instable !!! : 
 
   ![Born Dead Gopnik](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/raw/master/issues-memory/gopnik-unstable-fais-chier.png)
