@@ -17,12 +17,16 @@ cf. https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json
 Tu crois qu'ils auraient ne serait-ce que mentionné cela, dansle tutoriel originel shinemachin... :-o :-o !!?? :skull: 
 
 
-Et pour terminer avec Gopnik, il est à noter que Gopnik semble de toute évidence un projet mort-né : 
+Et pour en terminer avec Gopnik, il est à noter que Gopnik semble de toute évidence un projet mort-né : 
 * Très peu de documentation(s) sur le repo [github](https://github.com/sputnik-maps/gopnik),
 *  Aussi peu de référenes sur le web (tutoriaux, ré-utilisations).
 * De plus sur [la page "wiki" du projet](http://sputnik-maps.github.io/gopnik/), il est clairement indiqué un ATTNETION!! Totelement instable !!! : 
 
   ![Born Dead Gopnik](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/raw/master/issues-memory/gopnik-unstable-fais-chier.png)
+ * Eet parce que les mots ont une importance (nous travaillons avec des _languages_ de programmation, non?), j'ai avec ammusement découvert le [sens du mot Gopnik en Russe](https://en.wikipedia.org/wiki/Gopnik) : 
+ 
+ > Gopnik (Russian: го́пник, IPA: [ˈɡopnʲɪk])[1] is a pejorative stereotype describing a particular subculture in Russia, Ukraine, Belarus and other former Soviet republics to refer to young men or women of sometimes lower-class suburban areas (usually under 25 years of age)[2] coming from families of poor education and (sometimes) income. The female form is gopnitsa (Russian: го́пница), and the collective noun is gopota (Russian: гопота́). The subculture of Gopniks has its roots in the late Russian Empire, and evolved during the 20th century in many cities in the Soviet Union.[3][4] 
+
  
  Les logs de ma dernière erreur sur l'autheitfiation à PostgreSQL : 
 
