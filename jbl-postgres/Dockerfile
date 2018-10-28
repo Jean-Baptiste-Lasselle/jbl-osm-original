@@ -44,30 +44,27 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc
 # This one BEFORE the RUN dockerfile commands that install postgres from linux packages
 # This one will trigger a Docker error, prompting "linux spec user: unable to find user biloute: no matching entries in passwd file" 
 # - 
-RUN echo "This one BEFORE the RUN dockerfile commands that install postgres from linux packages"
-RUN echo "  This one will trigger a Docker error, prompting  "
-RUN echo " \"linux spec user: unable to find user biloute: no matching entries in passwd file\" "
-USER postgres
+# RUN echo "This one BEFORE the RUN dockerfile commands that install postgres from linux packages"
+# RUN echo "  This one will trigger a Docker error, prompting you \"linux spec user: unable to find user biloute: no matching entries in passwd file\" "
+# USER postgres
 
-
-# RUN rm -rf /var/lib/apt/lists/*
-# RUN apt-get update -y
+RUN apt-get update -y
 # Install ``python-software-properties``, ``software-properties-common`` and PostgreSQL $VERSION_PACKAGE_UBUNTU_POSTGRESQL
 #  There are some warnings (in red) that show up during the build. You can hide
 #  them by prefixing each apt-get statement with DEBIAN_FRONTEND=noninteractive
 # "python-software-properties package will only be available for the versions below 12.04"
 # RUN apt-get update -y && apt-get install -y python-software-properties software-properties-common postgresql-$VERSION_PACKAGE_UBUNTU_POSTGRESQL postgresql-client-$VERSION_PACKAGE_UBUNTU_POSTGRESQL postgresql-contrib-$VERSION_PACKAGE_UBUNTU_POSTGRESQL
-RUN apt-get update -y && apt-get install -y software-properties-common postgresql-$VERSION_PACKAGE_UBUNTU_POSTGRESQL postgresql-client-$VERSION_PACKAGE_UBUNTU_POSTGRESQL postgresql-contrib-$VERSION_PACKAGE_UBUNTU_POSTGRESQL
-# final clean-up
-RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get update -y
+RUN apt-get install -y software-properties-common postgresql-$VERSION_PACKAGE_UBUNTU_POSTGRESQL postgresql-client-$VERSION_PACKAGE_UBUNTU_POSTGRESQL postgresql-contrib-$VERSION_PACKAGE_UBUNTU_POSTGRESQL
+# final clean-up? 
+# RUN rm -rf /var/lib/apt/lists/*
+# RUN apt-get update -y
 # Note: The official Debian and Ubuntu images automatically ``apt-get clean``
 # after each ``apt-get``
 
 # Run the rest of the commands as the ``postgres`` user created by the ``postgres-$VERSION_PACKAGE_UBUNTU_POSTGRESQL`` package when it was ``apt-get installed``
 # USER postgres
 # When, where is 'postgres' user created ?
-USER $POSTGRES_USER
+USER postgres
 
 # Create a PostgreSQL role named ``docker`` with ``docker`` as the password and
 # then create a database `docker` owned by the ``docker`` role.
@@ -98,6 +95,7 @@ RUN mkdir -p /kytes/go/postgres/cmd
 RUN cp ./startup.sh /kytes/go/postgres/cmd
 RUN chown -R postgres:postgres /kytes
 RUN chmod +x /kytes/go/postgres/cmd/startup.sh
-USER $POSTGRES_USER
+
+USER postgres
 # Set the default command to run when starting the container
 CMD ["/kytes/go/postgres/cmd/startup.sh"]
