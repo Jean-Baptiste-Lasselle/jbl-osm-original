@@ -3,7 +3,7 @@
 
 # passe-chaud
 
-Effectivement, [retirer la mention `localhost` du ficheir de configuration `./renderer/map_data/config.json`](ccc) cela a bien changé les logs du renderer :+1: 
+Effectivement, [retirer la mention `localhost` du ficheir de configuration `./renderer/map_data/config.json`](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/8) cela a bien changé les logs du renderer :+1: 
 
 Désormais, le seul problème qui reste est un erreur d'authentification du serveur GOPNIK, au serveur PostGreSQL. 
 
