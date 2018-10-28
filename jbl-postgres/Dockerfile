@@ -81,7 +81,7 @@ RUN echo " generating CMD script, so that I can interpolate PostGreSQL's version
 # Need root to do that
 USER root
 RUN echo "/usr/lib/postgresql/$VERSION_PACKAGE_UBUNTU_POSTGRESQL/bin/postgres -D /var/lib/postgresql/$VERSION_PACKAGE_UBUNTU_POSTGRESQL/main -c config_file=/etc/postgresql/$VERSION_PACKAGE_UBUNTU_POSTGRESQL/main/postgresql.conf" >> ./startup.sh
-RUN mkdir /kytes/go/postgres/cmd
+RUN mkdir -p /kytes/go/postgres/cmd
 RUN cp ./startup.sh /kytes/go/postgres/cmd
 RUN chown -R postgres:postgres /kytes
 RUN chmod +x /kytes/go/postgres/cmd/startup.sh
