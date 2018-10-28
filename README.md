@@ -3,110 +3,62 @@
 
 # passe-chaud
 
-là c'est bien comme cela qu'on créée la bdd postgres : 
+Effectivement, [retirer la mention `localhost` du ficheir de configuration `./renderer/map_data/config.json`](ccc) cela a bien changé les logs du renderer :+1: 
+
+Désormais, le seul problème qui reste est un erreur d'authentification du serveur GOPNIK, au serveur PostGreSQL. 
+
+Et c'est logique, puisque je suis en train de résoudre ce dernier problème, en reconstruisantt de zéro mon stack postgresql / postgis dockerisé (les images et Dockerfiles trouvées dans les repos et doc parcourues présntent souvent le problème de référencer la 'latest', et bien evidemment,  12 mois plus tard, on obtient un plantage.
+Exemple : dans le [fichier dockerfile suggéré par la documentation Docker](), et que otu ce petit monde semble utiliser sans se poser de question, on un `FROM ubuntu`. Sauf que `python-software-properties` n'existe plus sur les repository Ubuntu des releases >= 12.04, et pas de chance, aujourd'hui on est bien plus loin que la rrelease 12.04, dans les latest publiée par Ubuntu.
+
 
 ```bash
-[bobby@pc-100 proto]$ docker images
-REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
-proto_renderer                         latest              c63a50e006d6        15 minutes ago      3.84GB
-proto_postgis                          latest              90b581fdef27        21 minutes ago      681MB
-marguerite/mongo-replica-initializer   1.0.0               db13247e284b        4 days ago          381MB
-mdillon/postgis                        9.5                 9b3216877172        6 days ago          621MB
-marguerite/sonde-reseau                0.0.1               659b57e760e1        8 days ago          390MB
-marguerite/mongo                       1.0.0               ef13dded1a0b        8 days ago          381MB
-marguerite/meteor-ide                  1.0.0               40aa4823f46b        8 days ago          1.95GB
-marguerite/meteor-stack                1.0.0               927f459cbd8d        8 days ago          1.95GB
-nginx                                  latest              dbfc48660aeb        9 days ago          109MB
-kytes/sonde-reseau                     0.0.1               ab36c8aafd34        10 days ago         299MB
-coquelicot/rocket.chat                 1.0.0               45b56062ddad        10 days ago         1.42GB
-coquelicot/gitlab-ce                   11.2.1-ce.0         2a420615d8d3        10 days ago         1.48GB
-rocketchat/rocket.chat                 latest              c28b900ffce9        2 weeks ago         1.41GB
-centos                                 7                   75835a67d134        2 weeks ago         200MB
-mongo                                  latest              052ca8f03af8        3 weeks ago         381MB
-redis                                  3-alpine            6e94a98d3442        3 weeks ago         22.9MB
-gitlab/gitlab-ce                       11.2.1-ce.0         af0daec29652        2 months ago        1.48GB
-gitlab/gitlab-runner                   alpine-v11.2.0      2b8aaef78227        2 months ago        113MB
-postgres                               9.6.8-alpine        07cf49508e9e        5 months ago        39.2MB
-nginx                                  1.11-alpine         bedece1f06cc        18 months ago       54.3MB
-dpokidov/gopnik                        latest              f48c3ecbe95d        22 months ago       2.03GB
-
-[bobby@pc-100 proto]$ docker run -itd --restart=always --name testpgres -e POSTGRES_DB=bonjour -e POSTGRES_USER=poulasse -e POSTGRERS_PASSWORD=jibl 07cf49508e9e 
-00ab0002fbc964ea8f3c695349db974e5e50c0d8238be3cfb340259a3b5b2ac7
-[bobby@pc-100 proto]$ docker exec -it testpgres sh -c "psql -U poulasse --dbname=bonjour --host=localhost --port=5432 -W"
-Password for user poulasse: 
-psql (9.6.8)
-Type "help" for help.
-
-bonjour=# show tables;
-ERROR:  unrecognized configuration parameter "tables"
-
-bonjour=# \q
-[bobby@pc-100 proto]$ 
-```
-Aller, on y est preque là, dernière erreur : 
-```bash
-[jibl@pc-100 proto]$ docker logs -f postgis
-LOG:  database system was shut down at 2018-10-26 01:14:23 UTC
-LOG:  MultiXact member wraparound protections are now enabled
-LOG:  database system is ready to accept connections
-LOG:  autovacuum launcher started
-^C
 [jibl@pc-100 proto]$ docker logs -f rendereurpoulet
  ------------------------------------------------------------------------------------------- 
- VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_USER=renderer-user] 
- VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_DB=gis] 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_USER=renderer_user] 
+ VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_DB=bddgeoloc] 
  VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_DB_HOST=postgis] 
  VERIFICATION RENDERER ENNTRYPOINT : [MAPNIK_POSTGRES_PASSWORD=whereischarlie] 
- VERIFICATION RENDERER ENNTRYPOINT : [PGUSER=renderer-user] 
+ VERIFICATION RENDERER ENNTRYPOINT : [PGUSER=renderer_user] 
  VERIFICATION RENDERER ENNTRYPOINT  : [PGPASSWORD=whereischarlie] 
  ------------------------------------------------------------------------------------------- 
   
  ----- 
  VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_DB_HOST=postgis]
  VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_DB_PORT_NO=5432]
- VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_DB=gis]
- VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_USER=renderer-user]
+ VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_DB=bddgeoloc]
+ VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_USER=renderer_user]
  VERIF JBL dans complie_style.sh de monsieur catactrophe aka 'domman84' [MAPNIK_POSTGRES_PASSWORD=whereischarlie]
  ----- 
   
 DB successfully created, waiting for restart
 Starting renderer
-2018/10/26 01:24:50 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9090
-2018/10/26 01:24:50 app.go:267: [INFO] Serving monitoring xml data on %s... :9090
-2018/10/26 01:24:50 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9080
-2018/10/26 01:24:50 app.go:267: [INFO] Serving monitoring xml data on %s... :9080
-2018/10/26 01:24:50 renderselector.go:209: [DEBUG] ping error %v dial tcp 127.0.0.1:8090: getsockopt: connection refused
-2018/10/26 01:24:50 renderselector.go:117: [DEBUG] '%v' is %v localhost:8090 Offline
-2018/10/26 01:24:50 main.go:118: [INFO] Starting on %s... :8080
-2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v Exception: Postgis Plugin: FATAL:  database "gis" does not exist
+2018/10/28 02:48:23 renderselector.go:209: [DEBUG] ping error %v dial tcp :8090: getsockopt: connection refused
+2018/10/28 02:48:23 renderselector.go:117: [DEBUG] '%v' is %v :8090 Offline
+2018/10/28 02:48:23 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9080
+2018/10/28 02:48:23 app.go:267: [INFO] Serving monitoring xml data on %s... :9080
+2018/10/28 02:48:23 main.go:118: [INFO] Starting on %s... :8080
+2018/10/28 02:48:23 app.go:266: [INFO] Serving debug data (/debug/vars) on %s... :9090
+2018/10/28 02:48:23 app.go:267: [INFO] Serving monitoring xml data on %s... :9090
+2018/10/28 02:48:23 render.go:35: [ERROR] Render child error: %v Exception: Postgis Plugin: FATAL:  password authentication failed for user "renderer_user"
 
-2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v 
+2018/10/28 02:48:23 render.go:35: [ERROR] Render child error: %v 
 
-2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v Connection string: 'host=postgis port=5432 dbname=gis user=renderer-user connect_timeout=4'
+2018/10/28 02:48:23 render.go:35: [ERROR] Render child error: %v Connection string: 'host=postgis port=5432 dbname=bddgeoloc user=renderer_user connect_timeout=4'
 
-2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v   encountered during parsing of layer 'landcover-low-zoom' in Layer at line 334 of '/openstreetmap-carto/stylesheet.xml'
+2018/10/28 02:48:23 render.go:35: [ERROR] Render child error: %v   encountered during parsing of layer 'landcover-low-zoom' in Layer at line 334 of '/openstreetmap-carto/stylesheet.xml'
 
-2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v Exception: Postgis Plugin: FATAL:  database "gis" does not exist
+2018/10/28 02:48:23 render.go:35: [ERROR] Render child error: %v Exception: Postgis Plugin: FATAL:  password authentication failed for user "renderer_user"
 
-2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v 
+2018/10/28 02:48:23 render.go:35: [ERROR] Render child error: %v 
 
-2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v Connection string: 'host=postgis port=5432 dbname=gis user=renderer-user connect_timeout=4'
+2018/10/28 02:48:23 render.go:35: [ERROR] Render child error: %v Connection string: 'host=postgis port=5432 dbname=bddgeoloc user=renderer_user connect_timeout=4'
 
-2018/10/26 01:24:52 render.go:35: [ERROR] Render child error: %v   encountered during parsing of layer 'landcover-low-zoom' in Layer at line 334 of '/openstreetmap-carto/stylesheet.xml'
+2018/10/28 02:48:23 render.go:35: [ERROR] Render child error: %v   encountered during parsing of layer 'landcover-low-zoom' in Layer at line 334 of '/openstreetmap-carto/stylesheet.xml'
 
-2018/10/26 01:24:52 main.go:91: [CRITICAL] Failed to create tile server: Failed to create some renders: [Invalid read uint64: EOF Invalid read uint64: EOF]
-2018/10/26 01:25:20 renderselector.go:209: [DEBUG] ping error %v dial tcp 127.0.0.1:8090: getsockopt: connection refused
-2018/10/26 01:25:20 renderselector.go:117: [DEBUG] '%v' is %v localhost:8090 Offline
-^C
-[jibl@pc-100 proto]$ docker logs -f postgis
-LOG:  database system was shut down at 2018-10-26 01:14:23 UTC
-LOG:  MultiXact member wraparound protections are now enabled
-LOG:  database system is ready to accept connections
-LOG:  autovacuum launcher started
-FATAL:  database "gis" does not exist
-FATAL:  database "gis" does not exist
+2018/10/28 02:48:23 main.go:91: [CRITICAL] Failed to create tile server: Failed to create some renders: [Invalid read uint64: EOF Invalid read uint64: EOF]
 ^C
 [jibl@pc-100 proto]$ 
+
 ```
 
 
