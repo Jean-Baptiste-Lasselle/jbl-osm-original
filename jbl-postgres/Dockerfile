@@ -2,6 +2,7 @@ FROM ubuntu
 
 MAINTAINER Jean-Baptiste Lasselle <@j-b-l@jean.baptiste.lasselle@gmail.com>
 
+
 # export POSTGRESQL_VERSION_ID=9.5.14
 ARG VERSION_POSTGRESQL=9.5.14
 # ENV VERSION_POSTGRESQL=9.5.14
