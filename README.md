@@ -17,6 +17,13 @@ cf. https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json
 Tu crois qu'ils aureint ne serait-e que mentionné cela, dansle tutoriel originel shinemachin... :-o :-o !!?? :skull: 
 
 
+Et pour terminer avec Gopnik, il est à noter que Gopnik semble de toute évidence un projet mort-né : 
+* Très peu de documentatiosn sur le repo [github](https://github.com/sputnik-maps/gopnik) et référenes sur le web
+* De plus sur [la page "wiki" du projet](http://sputnik-maps.github.io/gopnik/), il est clairement indiqué un ATTNETION!! Totelement instable !!! : 
+
+  ![Born Dead Gopnik](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/raw/master/issues-memory/gopnik-unstable-fais-chier.png)
+ 
+ Les logs de ma dernière erreur sur l'autheitfiation à PostgreSQL : 
 
 ```bash
 [jibl@pc-100 proto]$ docker logs -f rendereurpoulet
@@ -82,6 +89,9 @@ Ce qui pose problème, c'est que je n'arrive pas à crééer l'utilisateur que j
 
 Et c'est logique, puisque je suis en train de résoudre ce dernier problème, en reconstruisantt de zéro mon stack postgresql / postgis dockerisé (les images et Dockerfiles trouvées dans les repos et doc parcourues présntent souvent le problème de référencer la 'latest', et bien evidemment,  12 mois plus tard, on obtient un plantage.
 Exemple : dans le [fichier dockerfile suggéré par la documentation Docker](), et que otu ce petit monde semble utiliser sans se poser de question, on un `FROM ubuntu`. Sauf que `python-software-properties` n'existe plus sur les repository Ubuntu des releases >= 12.04, et pas de chance, aujourd'hui on est bien plus loin que la rrelease 12.04, dans les latest publiée par Ubuntu.
+
+Ensuite, je passerai à la refonte omplète de l'architecture, pour permettre la mise en oeuvre d'un cluster pour OenStreetMap / Mapnik
+
 
 
 # À regarder
