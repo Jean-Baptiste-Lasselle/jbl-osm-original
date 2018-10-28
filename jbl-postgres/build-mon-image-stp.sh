@@ -78,6 +78,7 @@ echo " - "
 echo " VERIF : [NOM_DE_MON_IMAGE=$NOM_DE_MON_IMAGE]"
 echo " - "
 echo " "
+read ATTENDS1
 
 docker run --rm -it --name $NOM_CONTENEUR_TESTRUNNER --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS -d $NOM_DE_MON_IMAGE
 # 
@@ -99,11 +100,21 @@ echo " - "
 echo " VERIF : [NOM_DE_MON_IMAGE=$NOM_DE_MON_IMAGE]"
 echo " - "
 echo " "
+read ATTENDS2
+
+clear
 
 echo "  Utilisateur par défaut dans le conteneur : "
 docker exec -it --name $NOM_CONTENEUR_TESTRUNNER whoami
 echo "  Authentification auserveur PostGreSQL, en utilsiant le client psql, et avec l'utilisateur admin initial configuré dans le 'docker-compose.yml'  : "
 docker exec -it --name $NOM_CONTENEUR_TESTRUNNER psql -h $NOM_CONTENEUR_TESTRUNNER -U postgres --password
+
+echo " "
+echo "  [TEARDOWN] Pour nettoyer l'environnement et relancer ce test (ou le prochain) :  "
+echo "  "
+echo "      docker stop $NOM_CONTENEUR_TESTRUNNER && docker rm $NOM_CONTENEUR_TESTRUNNER && docker rmi $NOM_DE_MON_IMAGE && docker network rm $RESEAU_DOCKER_DEVOPS_TESTS "
+echo "  "
+echo "  "
 
 # 
 # - 
