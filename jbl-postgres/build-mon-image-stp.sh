@@ -1,6 +1,12 @@
 #!/bin/bash
 
 
+# -> D'abord, les variables d'environnements répercutées du docker-compose.yml : 
+# export POSTGRES_PASSWORD=$(cat ../docker-compose.yml|grep POSTGRES_PASSWORD|awk -F '=' '{print $2}')
+export POSTGRES_USER=biloute
+export POSTGRES_PASSWORD=whereischarlie
+
+
 export POSTGRESQL_VERSION_ID=9.5.14
 #      
 # - pourra être remplacé par :
@@ -124,7 +130,6 @@ docker exec -it $NOM_CONTENEUR_TESTRUNNER sh -c "psql -h $NOM_CONTENEUR_TESTRUNN
 
 echo " Vérifions que l'on peut utiliser la varible d'environnement 'PGPASSWORD' pour fixer le contexte d'authentification psql () "
 echo " (pour s'authentifier sans saisie interactive de mot de passe) : "
-export POSTGRES_PASSWORD=$(cat ../docker-compose.yml|grep POSTGRES_PASSWORD|awk -F '=' '{print $2}')
 docker exec -it $NOM_CONTENEUR_TESTRUNNER sh -c "export PGPASSWORD=$POSTGRES_PASSWORD && psql -h $NOM_CONTENEUR_TESTRUNNER -U postgres "
 
 
