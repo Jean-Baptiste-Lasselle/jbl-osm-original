@@ -24,7 +24,7 @@ USER root
 
 # Linux told me those packages are required for postgres installation process, so...
 # - waking uo apt-cache
-RUN rm -rf /var/lib/apt/lists/*
+# RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get update -y && apt-get install -y gnupg gnupg2 gnupg1
 # Add the PostgreSQL PGP key to verify their Debian packages.
 # It should be the same key as https://www.postgresql.org/media/keys/ACCC4CF8.asc
