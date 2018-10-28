@@ -33,25 +33,39 @@ export JEU_OPTIONS=""
 
 
 # 
-# [TESTS] pour chaque test :
-# - 
-# - Je lance 1 conteneur dans le réseau, différant seulement par les variables d'environnements / build args 
-
+# -------------------------  [TEST 1] 
+# 
+# -
+# 
+# - Je lance 1 conteneur dans le réseau $RESEAU_DOCKER_DEVOPS_TESTS, différant seulement par les
+# - variables d'environnements / build args , cf. 'export JEU_OPTIONS='
+# 
 # - Environnement du test
+# 
 export RESEAU_DOCKER_DEVOPS_TESTS=reseau-tests-devops1
 export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_USER=kytes"
 export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_PASSSWORD=kytes"
 
-# - SETUP 
+# 
+# - SETUP / JUnit ? ;)
+# 
 # - Je créée un réseau docker de type bridge
+# 
 docker network create --driver bridge $RESEAU_DOCKER_DEVOPS_TESTS
-# - J'exéute le test
+# - RUN TEST / J'exéute le test
 docker run --name test1-jbl-postgres-docker --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS -d $NOM_DE_MON_IMAGE
-# - TEAR DOWN 
-# docker stop test1-jbl-postgres-docker && docker rm test1-jbl-postgres-docker
-
-# Test 1 : me connecter à la BDD avecle client postgresql
+# 
+# But (TEST RESULT OK) du test : arriver à me connecter à la BDD avec le client postgresql
+# 
 docker run -it --rm --network postgres-network postgresondocker:9.3 psql -h postgresondocker -U postgresondocker --password
+# 
+# 
+# 
+# - TEAR DOWN 
+# 
+# docker stop test1-jbl-postgres-docker && docker rm test1-jbl-postgres-docker
+# 
+
 
 
 # !! -> !! FINAL TEARDOWN
