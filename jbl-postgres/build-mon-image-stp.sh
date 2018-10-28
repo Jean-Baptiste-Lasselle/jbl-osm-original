@@ -95,14 +95,14 @@ docker images|grep postgres
 echo "   "
 read ATTENDS1
 
-docker run -itd --name $NOM_CONTENEUR_TESTRUNNER --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS $NOM_DE_MON_IMAGE
+docker run -itd --name $NOM_CONTENEUR_TESTRUNNER --restart=always --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS $NOM_DE_MON_IMAGE
 # 
 # But (TEST RESULT OK) du test : arriver à me connecter à la BDD avec le client postgresql
 # 
 # d'autres tests : se connecter depuis un autre hôte réseau, un autre conteneur dans le réseau bridge Docker.
 #                  comme ma sonde réseau
 
-
+docker logs -f $NOM_CONTENEUR_TESTRUNNER
 
 echo " "
 echo " - ==>>> AVANT DOCKER EXEC (run test) "
