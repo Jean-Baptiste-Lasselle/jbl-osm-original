@@ -1,5 +1,32 @@
 # Reconstrcution d'une image PostGreSQL appropriée à mon usage
 
+## Principe
+
+Il s'agit d'un bac à sable de tests pour monter une image PostGreSQL appropriée à mes besoins de provisions Cartographqiues.
+
+## Utilisation
+
+Je veux pouvoir lancer, sur le même hôte Docker, mes tests PostGreSQL, indépendamment de mes tests de cartographie.
+
+Voici donc le script idemtpotent, à exécuter pour : 
+
+```bash
+export URI_REPO_GIT=https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original
+export PROVISIONING_HOME=$HOME/tests-postgres
+cd $PROVISIONING_HOME
+if [ -d $PROVISIONING_HOME ]; then sudo rm -rf $PROVISIONING_HOME; fi;
+mkdir -p $PROVISIONING_HOME
+git clone $URI_REPO_GIT .
+cd jbl-postgres
+docker-compose down && docker-compose up -d
+# ensuite, il faut excuter chaque série de tests
+# puis collecter les résultats de tests
+chmod +x *.sh
+./run-test-1.sh
+# ./run-test-2.sh
+# ./run-test-3.sh
+```
+
 Hypothèse en cours de vérification :+1: 
 
 
