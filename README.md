@@ -3,17 +3,12 @@
 
 # passe-chaud
 
-Effectivement, [retirer la mention `localhost` du ficheir de configuration `./renderer/map_data/config.json`](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/8) cela a bien changé les logs du renderer :+1: 
+Effectivement, [retirer la mention `localhost` du fichier de configuration `./renderer/map_data/config.json`](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/8) a bien inféré un changeement dans les logs du renderer :+1: 
 
 J'observe cependant, que j'ai toujours une erreur, pour la connexion à  "`:8090`".
 Observez aussi la mention `starting renderer`, juste après la mention `DB successfully created, waiting for restart`
 
-Désormais, hormis ce mystérieux échec de connexion à `:8090`, le seul problème problème qui reste est un erreur d'authentification du serveur GOPNIK, au serveur PostGreSQL. Ce ne sont ni le mot de passe, ou le nom d'utilisateur, dont le conteneur `renderer` fait usage pour s'authentifier à PostGreSQL, qui posent problème.
-Ce qui pose problème, c'est que je n'arrive pas à crééer l'utilisateur que je souahaite, et je ne VEUX PAS, utilsier le premier super-admoin, pour authentifier une appliation parmi d'autres dans un SI.
 
-
-Et c'est logique, puisque je suis en train de résoudre ce dernier problème, en reconstruisantt de zéro mon stack postgresql / postgis dockerisé (les images et Dockerfiles trouvées dans les repos et doc parcourues présntent souvent le problème de référencer la 'latest', et bien evidemment,  12 mois plus tard, on obtient un plantage.
-Exemple : dans le [fichier dockerfile suggéré par la documentation Docker](), et que otu ce petit monde semble utiliser sans se poser de question, on un `FROM ubuntu`. Sauf que `python-software-properties` n'existe plus sur les repository Ubuntu des releases >= 12.04, et pas de chance, aujourd'hui on est bien plus loin que la rrelease 12.04, dans les latest publiée par Ubuntu.
 
 
 ```bash
@@ -72,6 +67,14 @@ Starting renderer
 ^C
 [jibl@pc-100 proto]$ 
 ```
+
+
+Désormais, hormis ce mystérieux échec de connexion à `:8090`, le seul problème problème qui reste est un erreur d'authentification du serveur GOPNIK, au serveur PostGreSQL. Ce ne sont ni le mot de passe, ou le nom d'utilisateur, dont le conteneur `renderer` fait usage pour s'authentifier à PostGreSQL, qui posent problème.
+Ce qui pose problème, c'est que je n'arrive pas à crééer l'utilisateur que je souahaite, et je ne VEUX PAS, utilsier le premier super-admoin, pour authentifier une appliation parmi d'autres dans un SI.
+
+
+Et c'est logique, puisque je suis en train de résoudre ce dernier problème, en reconstruisantt de zéro mon stack postgresql / postgis dockerisé (les images et Dockerfiles trouvées dans les repos et doc parcourues présntent souvent le problème de référencer la 'latest', et bien evidemment,  12 mois plus tard, on obtient un plantage.
+Exemple : dans le [fichier dockerfile suggéré par la documentation Docker](), et que otu ce petit monde semble utiliser sans se poser de question, on un `FROM ubuntu`. Sauf que `python-software-properties` n'existe plus sur les repository Ubuntu des releases >= 12.04, et pas de chance, aujourd'hui on est bien plus loin que la rrelease 12.04, dans les latest publiée par Ubuntu.
 
 
 # À regarder
