@@ -14,7 +14,7 @@ Nom dé diou, c'est [un template gopnik](https://github.com/sputnik-maps/gopnik/
 
 cf. https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json
 
-Tu crois qu'ils aureint ne serait-e que mentionné cela, dansle tutoriel originel shinemachin... :-o :-o !!?? :skull: 
+Tu crois qu'ils auraient ne serait-ce que mentionné cela, dansle tutoriel originel shinemachin... :-o :-o !!?? :skull: 
 
 
 Et pour terminer avec Gopnik, il est à noter que Gopnik semble de toute évidence un projet mort-né : 
