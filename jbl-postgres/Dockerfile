@@ -54,7 +54,9 @@ RUN apt-get update -y
 # after each ``apt-get``
 
 # Run the rest of the commands as the ``postgres`` user created by the ``postgres-$VERSION_PACKAGE_UBUNTU_POSTGRESQL`` package when it was ``apt-get installed``
-USER postgres
+# USER postgres
+# When, where is 'postgres' user created ?
+USER $POSTGRES_USER
 
 # Create a PostgreSQL role named ``docker`` with ``docker`` as the password and
 # then create a database `docker` owned by the ``docker`` role.
@@ -85,6 +87,6 @@ RUN mkdir -p /kytes/go/postgres/cmd
 RUN cp ./startup.sh /kytes/go/postgres/cmd
 RUN chown -R postgres:postgres /kytes
 RUN chmod +x /kytes/go/postgres/cmd/startup.sh
-USER postgres
+USER $POSTGRES_USER
 # Set the default command to run when starting the container
 CMD ["/kytes/go/postgres/cmd/startup.sh"]
