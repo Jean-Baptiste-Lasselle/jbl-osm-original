@@ -91,7 +91,8 @@ services:
       - "8080:8080"
       - "9090:9090"
       - "8090:8090"
-      # - "8088:8088"
+      - "8088:8088"
+      - "9080:9080"
     expose:
       # - cf. `./renderer/map_data/config.json`
       - 8080/tcp
@@ -100,7 +101,8 @@ services:
       - 8090/tcp
       # I'll just make anything, to make that guy's so-called cluster finally work (very poor doc I found on Gopnik)
       - 8090/udp
-      # - 8088/tcp
+      - 8088
+      - 9080
     depends_on:
       - postgis
     networks:
