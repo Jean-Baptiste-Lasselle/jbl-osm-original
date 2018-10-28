@@ -117,7 +117,13 @@ clear
 echo "  Utilisateur par défaut dans le conteneur : "
 docker exec -it $NOM_CONTENEUR_TESTRUNNER whoami
 echo "  Authentification auserveur PostGreSQL, en utilsiant le client psql, et avec l'utilisateur admin initial configuré dans le 'docker-compose.yml'  : "
-docker exec -it $NOM_CONTENEUR_TESTRUNNER psql -h $NOM_CONTENEUR_TESTRUNNER -U postgres --password
+docker exec -it $NOM_CONTENEUR_TESTRUNNER sh -c "psql -h $NOM_CONTENEUR_TESTRUNNER -U postgres --password"
+
+echo " Vérifions que l'on peut utiliser la varible d'environnement 'PGPASSWORD' pour fixer le contexte d'authentification psql () "
+echo " (pour s'authentifier sans saisie interactive de mot de passe) : "
+export POSTGRES_PASSWORD=$(cat ../docker-compose.yml|grep POSTGRES_PASSWORD|awk -F '=' '{print $2}')
+docker exec -it $NOM_CONTENEUR_TESTRUNNER sh -c "export PGPASSWORD=$POSTGRES_PASSWORD && psql -h $NOM_CONTENEUR_TESTRUNNER -U postgres "
+
 
 echo " "
 echo "  [TEARDOWN] Pour nettoyer l'environnement et relancer ce test (ou le prochain) :  "
