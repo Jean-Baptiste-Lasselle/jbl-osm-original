@@ -13,8 +13,11 @@ export POSTGRESQL_VERSION_ID=9.5.14
 #   +  cc
 #    
 
-
-# might be an IP address, a resolvable (in execution context) domain name
+# +++++ 
+# +++++ BUILD ENV.
+# +++++ 
+# 
+# Might be an IP address, a resolvable (in execution context) domain name
 # export DOCKER_REGISTRY_NET_HOST_ID=docker.io
 # export DOCKER_REGISTRY_NET_HOST_ID=docker.kytes.io
 export DOCKER_REGISTRY_NET_HOST_ID=localhost
