@@ -36,3 +36,6 @@ export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_PASSSWORD=$POSTGRES_PASSSWORD"
 
 # - TEST TEAR DOWN
 docker-compose down --rmi all
+
+rm -f ./.env
+cp ./.env.clone ./.env
