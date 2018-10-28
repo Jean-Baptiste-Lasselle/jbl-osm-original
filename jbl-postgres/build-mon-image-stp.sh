@@ -63,6 +63,22 @@ export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_PASSSWORD=kytes"
 # 
 docker network create --driver bridge $RESEAU_DOCKER_DEVOPS_TESTS
 # - RUN TEST / J'exéute le test : option " --rm" pou rne pas être importuné par les répertoires créés par Docker Engine
+
+
+echo " "
+echo " - ==>>> AVANT DOCKER RUN (setup test)"
+echo " "
+echo " - "
+echo " VERIF : [NOM_CONTENEUR_TESTRUNNER=$NOM_CONTENEUR_TESTRUNNER]"
+echo " - "
+echo " VERIF : [RESEAU_DOCKER_DEVOPS_TESTS=$RESEAU_DOCKER_DEVOPS_TESTS]"
+echo " - "
+echo " VERIF : [JEU_OPTIONS=$JEU_OPTIONS]"
+echo " - "
+echo " VERIF : [NOM_DE_MON_IMAGE=$NOM_DE_MON_IMAGE]"
+echo " - "
+echo " "
+
 docker run --rm -it --name $NOM_CONTENEUR_TESTRUNNER --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS -d $NOM_DE_MON_IMAGE
 # 
 # But (TEST RESULT OK) du test : arriver à me connecter à la BDD avec le client postgresql
@@ -70,7 +86,24 @@ docker run --rm -it --name $NOM_CONTENEUR_TESTRUNNER --network $RESEAU_DOCKER_DE
 # d'autres tests : se connecter depuis un autre hôte réseau, un autre conteneur dans le réseau bridge Docker.
 #                  comme ma sonde réseau
 
-docker exec -it --network $RESEAU_DOCKER_DEVOPS_TESTS $NOM_DE_MON_IMAGE psql -h $NOM_CONTENEUR_TESTRUNNER -U postgres --password
+echo " "
+echo " - ==>>> AVANT DOCKER EXEC (run test) "
+echo " "
+echo " - "
+echo " VERIF : [NOM_CONTENEUR_TESTRUNNER=$NOM_CONTENEUR_TESTRUNNER]"
+echo " - "
+echo " VERIF : [RESEAU_DOCKER_DEVOPS_TESTS=$RESEAU_DOCKER_DEVOPS_TESTS]"
+echo " - "
+echo " VERIF : [JEU_OPTIONS=$JEU_OPTIONS]"
+echo " - "
+echo " VERIF : [NOM_DE_MON_IMAGE=$NOM_DE_MON_IMAGE]"
+echo " - "
+echo " "
+
+echo "  Utilisateur par défaut dans le conteneur : "
+docker exec -it --name $NOM_CONTENEUR_TESTRUNNER whoami
+echo "  Authentification auserveur PostGreSQL, en utilsiant le client psql, et avec l'utilisateur admin initial configuré dans le 'docker-compose.yml'  : "
+docker exec -it --name $NOM_CONTENEUR_TESTRUNNER psql -h $NOM_CONTENEUR_TESTRUNNER -U postgres --password
 
 # 
 # - 
