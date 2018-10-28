@@ -55,7 +55,7 @@ export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_PASSSWORD=kytes"
 # 
 docker network create --driver bridge $RESEAU_DOCKER_DEVOPS_TESTS
 # - RUN TEST / J'exéute le test : option " --rm" pou rne pas être importuné par les répertoires créés par Docker Engine
-docker run --rm --name $NOM_CONTENEUR_TESTRUNNER --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS -d $NOM_DE_MON_IMAGE
+docker run --rm -it --name $NOM_CONTENEUR_TESTRUNNER --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS -d $NOM_DE_MON_IMAGE
 # 
 # But (TEST RESULT OK) du test : arriver à me connecter à la BDD avec le client postgresql
 # 
