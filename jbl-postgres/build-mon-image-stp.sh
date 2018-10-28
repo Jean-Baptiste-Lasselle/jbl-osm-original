@@ -90,9 +90,15 @@ docker run -itd --name $NOM_CONTENEUR_TESTRUNNER --network $RESEAU_DOCKER_DEVOPS
 # d'autres tests : se connecter depuis un autre hôte réseau, un autre conteneur dans le réseau bridge Docker.
 #                  comme ma sonde réseau
 
+
+
 echo " "
 echo " - ==>>> AVANT DOCKER EXEC (run test) "
 echo " "
+echo " "
+echo " - "
+echo " Le conteneur créé et lancé avec |docker run] est  : "
+docker ps -a|grep $NOM_CONTENEUR_TESTRUNNER
 echo " - "
 echo " VERIF : [NOM_CONTENEUR_TESTRUNNER=$NOM_CONTENEUR_TESTRUNNER]"
 echo " - "
