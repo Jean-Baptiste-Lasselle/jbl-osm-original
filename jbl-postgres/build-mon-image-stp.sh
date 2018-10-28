@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 export POSTGRESQL_VERSION_ID=9.5.14
 #      
 # - pourra être remplacé par :
