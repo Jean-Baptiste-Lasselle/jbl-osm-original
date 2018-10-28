@@ -2,6 +2,10 @@ FROM ubuntu
 
 MAINTAINER Jean-Baptiste Lasselle <@j-b-l@jean.baptiste.lasselle@gmail.com>
 
+# export POSTGRESQL_VERSION_ID=9.5.14
+ARG VERSION_POSTGRESQL=9.5.14
+# ENV VERSION_POSTGRESQL=9.5.14
+
 ENV POSTGRES_USER=biloute
 ARG POSTGRES_USER=$POSTGRES_USER
 
@@ -54,5 +58,14 @@ EXPOSE 5432
 # Add VOLUMEs to allow backup of config, logs and databases
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
+RUN echo " generating CMD script, so that I can interpolate PostGreSQL's version at build time. "
+# Need root to do that
+USER root
+RUN echo "/usr/lib/postgresql/9.3/bin/postgres -D /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf" >> ./startup.sh
+RUN mkdir /kytes/go/postgres/cmd
+RUN cp ./startup.sh /kytes/go/postgres/cmd
+RUN chown -R postgres:postgres /kytes
+RUN chmod +x /kytes/go/postgres/cmd/startup.sh
+USER postgres
 # Set the default command to run when starting the container
-CMD ["/usr/lib/postgresql/9.3/bin/postgres", "-D", "/var/lib/postgresql/9.3/main", "-c", "config_file=/etc/postgresql/9.3/main/postgresql.conf"]
+CMD ["/kytes/go/postgres/cmd/startup.sh"]
