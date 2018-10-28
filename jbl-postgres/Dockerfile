@@ -28,18 +28,18 @@ RUN apt-get update -y && apt-get install -y gnupg gnupg2 gnupg1
 RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
 
 # Add PostgreSQL's repository. It contains the most recent stable release
-#     of PostgreSQL, ``9.3``.
+#     of PostgreSQL, ``$VERSION_POSTGRESQL``.
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
-# Install ``python-software-properties``, ``software-properties-common`` and PostgreSQL 9.3
+# Install ``python-software-properties``, ``software-properties-common`` and PostgreSQL $VERSION_POSTGRESQL
 #  There are some warnings (in red) that show up during the build. You can hide
 #  them by prefixing each apt-get statement with DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -y python-software-properties software-properties-common postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3
+RUN apt-get install -y python-software-properties software-properties-common postgresql-$VERSION_POSTGRESQL postgresql-client-$VERSION_POSTGRESQL postgresql-contrib-$VERSION_POSTGRESQL
 
 # Note: The official Debian and Ubuntu images automatically ``apt-get clean``
 # after each ``apt-get``
 
-# Run the rest of the commands as the ``postgres`` user created by the ``postgres-9.3`` package when it was ``apt-get installed``
+# Run the rest of the commands as the ``postgres`` user created by the ``postgres-$VERSION_POSTGRESQL`` package when it was ``apt-get installed``
 USER postgres
 
 # Create a PostgreSQL role named ``docker`` with ``docker`` as the password and
@@ -52,10 +52,10 @@ RUN    /etc/init.d/postgresql start &&\
 
 # Adjust PostgreSQL configuration so that remote connections to the
 # database are possible.
-RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
+RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/$VERSION_POSTGRESQL/main/pg_hba.conf
 
-# And add ``listen_addresses`` to ``/etc/postgresql/9.3/main/postgresql.conf``
-RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
+# And add ``listen_addresses`` to ``/etc/postgresql/$VERSION_POSTGRESQL/main/postgresql.conf``
+RUN echo "listen_addresses='*'" >> /etc/postgresql/$VERSION_POSTGRESQL/main/postgresql.conf
 
 # Expose the PostgreSQL port
 EXPOSE 5432
@@ -66,7 +66,7 @@ VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 RUN echo " generating CMD script, so that I can interpolate PostGreSQL's version at build time. "
 # Need root to do that
 USER root
-RUN echo "/usr/lib/postgresql/9.3/bin/postgres -D /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf" >> ./startup.sh
+RUN echo "/usr/lib/postgresql/$VERSION_POSTGRESQL/bin/postgres -D /var/lib/postgresql/$VERSION_POSTGRESQL/main -c config_file=/etc/postgresql/$VERSION_POSTGRESQL/main/postgresql.conf" >> ./startup.sh
 RUN mkdir /kytes/go/postgres/cmd
 RUN cp ./startup.sh /kytes/go/postgres/cmd
 RUN chown -R postgres:postgres /kytes
