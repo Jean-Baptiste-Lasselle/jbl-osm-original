@@ -43,7 +43,9 @@ export JEU_OPTIONS=""
 # - Environnement du test
 # 
 export RESEAU_DOCKER_DEVOPS_TESTS=reseau-tests-devops1
-export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_USER=kytes"
+export NOM_CONTENEUR_TESTRUNNER=test1-jbl-postgres-docker
+export JEU_OPTIONS=""
+# export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_USER=kytes"
 export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_PASSSWORD=kytes"
 
 # 
@@ -52,12 +54,22 @@ export JEU_OPTIONS="$JEU_OPTIONS -e POSTGRES_PASSSWORD=kytes"
 # - Je créée un réseau docker de type bridge
 # 
 docker network create --driver bridge $RESEAU_DOCKER_DEVOPS_TESTS
-# - RUN TEST / J'exéute le test
-docker run --name test1-jbl-postgres-docker --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS -d $NOM_DE_MON_IMAGE
+# - RUN TEST / J'exéute le test : option " --rm" pou rne pas être importuné par les répertoires créés par Docker Engine
+docker run --rm --name $NOM_CONTENEUR_TESTRUNNER --network $RESEAU_DOCKER_DEVOPS_TESTS $JEU_OPTIONS -d $NOM_DE_MON_IMAGE
 # 
 # But (TEST RESULT OK) du test : arriver à me connecter à la BDD avec le client postgresql
 # 
-docker run -it --rm --network postgres-network postgresondocker:9.3 psql -h postgresondocker -U postgresondocker --password
+# d'autres tests : se connecter depuis un autre hôte réseau, un autre conteneur dans le réseau bridge Docker.
+#                  comme ma sonde réseau
+
+docker exec -it --network $RESEAU_DOCKER_DEVOPS_TESTS $NOM_DE_MON_IMAGE psql -h $NOM_CONTENEUR_TESTRUNNER -U postgres --password
+
+# 
+# - 
+# - Le test sugéré par ma lecture (manifestement un connexion avec le prmier super-utilisateur créé par PostGreSQL, en fonction des valaeurs des variables d'environnement : 
+# - 
+# 
+# docker run -it --rm --network $RESEAU_DOCKER_DEVOPS_TESTS $NOM_DE_MON_IMAGE psql -h $NOM_CONTENEUR_TESTRUNNER -U postgres --password
 # 
 # 
 # 
