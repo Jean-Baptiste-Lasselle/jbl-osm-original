@@ -34,10 +34,10 @@ Et pour en terminer avec Gopnik, il est à noter que Gopnik semble de toute évi
  
  > Gopnik (Russian: го́пник, IPA: [ˈɡopnʲɪk])[1] is a pejorative stereotype describing a particular subculture in Russia, Ukraine, Belarus and other former Soviet republics to refer to young men or women of sometimes lower-class suburban areas (usually under 25 years of age)[2] coming from families of poor education and (sometimes) income. The female form is gopnitsa (Russian: го́пница), and the collective noun is gopota (Russian: гопота́). The subculture of Gopniks has its roots in the late Russian Empire, and evolved during the 20th century in many cities in the Soviet Union.[3][4] 
 
-Un peu particulier, pour un concepteuir, de choisir un mot péjroatif dans sa propre langue, pour baptiser sa création...: Si c'était moi, et étais dans le même état d'esprit que le développeur de Gopnik, j'aurais peut-être baptisé "un  ... vite fait, pour s'amuser, en mode adidas". 
+Un peu particulier, pour un concepteur, de choisir un mot péjroatif dans sa propre langue, pour baptiser sa création...: Si c'était moi, et étais dans le même état d'esprit que le développeur de Gopnik, j'aurais peut-être baptisé "un  ... vite fait, pour s'amuser, en mode adidas". 
 
 
-Les logs de ma dernière erreur sur l'authentifiation à PostgreSQL : 
+Les logs de ma dernière erreur sur l'authentification à PostgreSQL : 
 
 ```bash
 [jibl@pc-100 proto]$ docker logs -f rendereurpoulet
