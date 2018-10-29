@@ -3,10 +3,19 @@
 
 # passe-chaud
 
+
+
 Effectivement, [retirer la mention `localhost` du fichier de configuration `./renderer/map_data/config.json`](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/issues/8) a bien inféré un changement dans les logs du renderer :+1: 
 
 J'observe cependant, que j'ai toujours une erreur, pour la connexion à  "`:8090`".
 Observez aussi la mention `starting renderer`, juste après la mention `DB successfully created, waiting for restart`
+
+Addendum à posteriori : sur l'eerreur que j'obtiens, en rapport avec la connexion au port "`:8090`", j'ai trouvé une 
+information : 
+* au niveau de cette erreur, on observe dans le logs, une mention mystérieuse : `ping error %v dial tcp :8090: getsockopt: connection refused`. IL apparaît : 
+* Que  `getsockopt` est [une fonction/méthode bien connue](http://www.linux-france.org/article/man-fr/man2/getsockopt-2.html), existant sous quasi toutes les distributions linux
+* Que l'objet de cette méthode est de lire les `OPTIONS` de `socket` réseau. LEs Socket sont la base de la programmation réseau, il ne fait nul doute que notre progframmeur russe a dans son code golang, utilisé une bibliothèque enveloppante de ce package natif linux.
+* Obtenir les informations d'une socket réseau, est loin d'être anodin :  je ne suis donc pas surpris qu'un refus de coopérer soit retourné par Linux. Il pourrait donc y avoir uen question de gestion de droits, et de sécurité, derrière cette erreur.
 
 Oh purée, le fameux fichier `./renderer/map_data/config.json` :+1: 
 
@@ -14,14 +23,14 @@ Nom dé diou, c'est [un template gopnik](https://github.com/sputnik-maps/gopnik/
 
 cf. https://github.com/sputnik-maps/gopnik/blob/master/example/dockerconfig.json
 
-Tu crois qu'ils auraient ne serait-ce que mentionné cela, dansle tutoriel originel shinemachin... :-o :-o !!?? :skull: 
+Tu crois qu'ils auraient ne serait-ce que mentionné cela, dans le tutoriel originel shinemachin... :-o :-o !!?? :skull: 
 les quelques références de doc gopnik : 
 
 * http://sputnik-maps.github.io/gopnik/
 * http://sputnik-maps.github.io/gopnik/configuration.html
 * http://sputnik-maps.github.io/gopnik/utils.html
 
-Je ferai donc une série de tests, piour essayer les différentes possibilités de configuration.
+Je ferai donc une série de tests, pour essayer les différentes possibilités de configuration.
 
 
 Et pour en terminer avec Gopnik, il est à noter que Gopnik semble de toute évidence un projet mort-né : 
