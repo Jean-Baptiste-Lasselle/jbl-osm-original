@@ -1,4 +1,4 @@
-# Reconstrcution d'une image PostGreSQL appropriée à mon usage
+# Reconstruction d'une image PostGreSQL appropriée à mon usage
 
 ## Principe
 
