@@ -24,7 +24,11 @@ docker-compose down && docker-compose up -d
 chmod +x ./run-tests.sh
 ./run-tests.sh
 ```
+En une ligne :
 
+```bash
+export URI_REPO_GIT=https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original && export PROVISIONING_HOME=$HOME/tests-postgres && cd $PROVISIONING_HOME && if [ -d $PROVISIONING_HOME ]; then sudo rm -rf $PROVISIONING_HOME; fi; && mkdir -p $PROVISIONING_HOME && git clone $URI_REPO_GIT . && cd jbl-postgres && docker-compose down && docker-compose up -d && chmod +x ./run-tests.sh && ./run-tests.sh
+```
 Hypothèse en cours de vérification :+1: 
 
 
