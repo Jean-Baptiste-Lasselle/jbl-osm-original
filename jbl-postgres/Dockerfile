@@ -2,7 +2,17 @@ FROM ubuntu
 
 MAINTAINER Jean-Baptiste Lasselle <@j-b-l@jean.baptiste.lasselle@gmail.com>
 
-
+# --
+# - Abstract
+# --
+# This image is intended to allow user to easily :
+# => be provided with a postgres with postgis extensions server up 'n running.
+# => 
+# => set the first POTSGRES super-admin user of that postgres / postgis instacne : that kinds of user is by design, meant to be restricted to IT staff, like DBA managers
+#    This image will use POSTGRES_USER, POSTGRES_PASSWORD,  to set username and password of that first super admin user.
+# => create a database : This image assumes the user wants to create a PostGreSQL database that will be used by an application : 
+#    This image will use APP_DB_NAME to create the database with that name
+# => set one application user : this user will be created by
 
 # export POSTGRESQL_VERSION_ID=9.5.14
 ARG VERSION_POSTGRESQL=9.5.14
@@ -13,13 +23,40 @@ ARG VERSION_PACKAGE_ALPINE_POSTGRESQL=9.5
 
 # ENV VERSION_POSTGRESQL=9.5.14
 
-ENV POSTGRES_USER=biloute
-ARG POSTGRES_USER=$POSTGRES_USER
+# - Le répertoire dans le conteneru à l'intérieur duquel on trouvera le fichier planet-latest.osm.pbf, par exemple  
+ARG DOWNLOADED_PBF_FILES_HOME
+# built-in default value et runtime, baby
+ENV DOWNLOADED_PBF_FILES_HOME=$DOWNLOADED_PBF_FILES_HOME
+# ARG POSTGRES_DB
+# built-in default value et runtime, baby
+# ENV POSTGRES_DB=$POSTGRES_DB
+# POSTGRES_USER
+ARG POSTGRES_USER
+# built-in default value et runtime, baby
+ENV POSTGRES_USER=$POSTGRES_USER
+# POSTGRES_PASSWORD (note: should not be built-in container, for the sake of security)
+ARG POSTGRES_PASSWORD
+# built-in default value et runtime, baby
+ENV POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+# I'll have to check, but if ....
 
-ARG POSTGRES_PASSSWORD=biloute
-ENV POSTGRES_PASSSWORD=$POSTGRES_PASSSWORD
+
+ARG APP_DB_NAME=bddgeoloc
+ENV APP_DB_NAME=$APP_DB_NAME
+
+ARG APP_DB_USER_NAME=tolkien
+ENV APP_DB_USER_NAME=$APP_DB_USER_NAME
+
+ARG APP_DB_USER_PWD=tolkien
+ENV APP_DB_USER_PWD=$APP_DB_USER_PWD
+
+
+
 
 USER root 
+
+
+
 
 #
 # example Dockerfile from https://docs.docker.com/engine/examples/postgresql_service/#install-postgresql-on-docker
