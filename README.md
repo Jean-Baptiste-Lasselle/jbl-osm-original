@@ -30,11 +30,11 @@ Et pour en terminer avec Gopnik, il est à noter que Gopnik semble de toute évi
 * De plus sur [la page "wiki" du projet](http://sputnik-maps.github.io/gopnik/), il est clairement indiqué un ATTNETION!! Totelement instable !!! : 
 
   ![Born Dead Gopnik](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/raw/master/issues-memory/gopnik-unstable-fais-chier.png)
- * Eet parce que les mots ont une importance (nous travaillons avec des _languages_ de programmation, non?), j'ai avec ammsement découvert le [sens du mot Gopnik en Russe](https://en.wikipedia.org/wiki/Gopnik) : 
+ * Eet parce que les mots ont une importance (nous travaillons avec des _languages_ de programmation, non?), j'ai avec amusement découvert le [sens du mot Gopnik en Russe](https://en.wikipedia.org/wiki/Gopnik) : 
  
  > Gopnik (Russian: го́пник, IPA: [ˈɡopnʲɪk])[1] is a pejorative stereotype describing a particular subculture in Russia, Ukraine, Belarus and other former Soviet republics to refer to young men or women of sometimes lower-class suburban areas (usually under 25 years of age)[2] coming from families of poor education and (sometimes) income. The female form is gopnitsa (Russian: го́пница), and the collective noun is gopota (Russian: гопота́). The subculture of Gopniks has its roots in the late Russian Empire, and evolved during the 20th century in many cities in the Soviet Union.[3][4] 
 
-Un peu particulier, pour un concepteuir, de choisir un mot péjroatif dans sa propre langue, pour baptiser sa création...: Si c'était moi, et étais dans le même état d'esprit que le développeur de Gopnik, j'aurais peut-être baptisé gopnik, e traduirais ça par "un  ... vite fait, pour s'amuser, en mode adidas". 
+Un peu particulier, pour un concepteuir, de choisir un mot péjroatif dans sa propre langue, pour baptiser sa création...: Si c'était moi, et étais dans le même état d'esprit que le développeur de Gopnik, j'aurais peut-être baptisé "un  ... vite fait, pour s'amuser, en mode adidas". 
 
 
 Les logs de ma dernière erreur sur l'authentifiation à PostgreSQL : 
