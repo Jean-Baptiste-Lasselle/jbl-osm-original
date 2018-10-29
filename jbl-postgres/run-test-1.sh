@@ -56,8 +56,17 @@ docker run -itd --name $NOM_CONTENEUR_TESTRUNNER --restart=always --network $RES
 echo " Your tests logs : "
 docker logs $NOM_CONTENEUR_TESTRUNNER
 
+echo " - "
+echo " To TEAR DOWN : "
+echo " - "
+docker images|grep postgres
+echo " - "
+read ATTENDS1
+# 
 # - TEST TEAR DOWN
-docker-compose down --rmi all > ./teardown.log
+# docker-compose down --rmi all > ./teardown.log
+# cat ./teardown.log 
+# 
 
 rm -f ./.env
 cp ./.env.clone ./.env
