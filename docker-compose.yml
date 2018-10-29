@@ -88,11 +88,11 @@ services:
     
     ports:
       # - cf. `./renderer/map_data/config.json`
-      - "8080:8080"
-      - "9090:9090"
-      - "8090:8090"
-      - "8088:8088"
-      - "9080:9080"
+      - 8080:8080/tcp
+      - 9090:9090/tcp
+      - 8090:8090/tcp
+      - 8088:8088/tcp
+      - 9080:9080/tcp
     expose:
       # - cf. `./renderer/map_data/config.json`
       - 8080/tcp
@@ -100,9 +100,10 @@ services:
       # I saw in docker logs, gopnik/mapnik trying to connect to 127.0.0.1:8090, with connection refused error
       - 8090/tcp
       # I'll just make anything, to make that guy's so-called cluster finally work (very poor doc I found on Gopnik)
-      - 8090/udp
-      - 8088
-      - 9080
+#      - 8090/udp
+      - 8088/tcp
+#       - 8088/udp
+      - 9080/tcp
     depends_on:
       - postgis
     networks:
