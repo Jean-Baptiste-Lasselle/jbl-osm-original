@@ -1,6 +1,6 @@
 version: '3'
 services:
-  postgis:
+  postres-tester:
     image: $DISTRIBUTOR_ORGANIZATION/$DISTRIBUTED_PRODUCT_DISTRIBUTION_NAME-$POSTGRESQL_VERSION_ID-$UNEDERLYING_CONTAINER_OS_IMAGE
     # image: kytes/postgres-9.5.14-ubuntu:0.0.1
     container_name: $NOM_CONTENEUR_EXECUTION_TESTS
@@ -32,7 +32,7 @@ services:
       - APP_DB_USER_NAME=renderer_user
       - APP_DB_USER_PWD=whereischarlie
     networks:
-      - cartoproto
+      - postgres-tests
     restart: always
 
 networks:
