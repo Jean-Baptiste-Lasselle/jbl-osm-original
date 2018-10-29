@@ -21,10 +21,8 @@ cd jbl-postgres
 docker-compose down && docker-compose up -d
 # ensuite, il faut excuter chaque série de tests
 # puis collecter les résultats de tests
-chmod +x *.sh
-./run-test-1.sh
-# ./run-test-2.sh
-# ./run-test-3.sh
+chmod +x ./run-tests.sh
+./run-tests.sh
 ```
 
 Hypothèse en cours de vérification :+1: 
