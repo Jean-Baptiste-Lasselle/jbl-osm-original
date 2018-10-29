@@ -36,7 +36,7 @@ Je ferai donc une série de tests, pour essayer les différentes possibilités d
 Et pour en terminer avec Gopnik, il est à noter que Gopnik semble de toute évidence un projet mort-né : 
 * Très peu de documentation(s) sur le repo [github](https://github.com/sputnik-maps/gopnik),
 *  Aussi peu de référenes sur le web (tutoriaux, ré-utilisations).
-* De plus sur [la page "wiki" du projet](http://sputnik-maps.github.io/gopnik/), il est clairement indiqué un ATTNETION!! Totelement instable !!! : 
+* De plus sur [la page "wiki" du projet](http://sputnik-maps.github.io/gopnik/), il est clairement indiqué un ATTENTION!! Totelement instable !!! : 
 
   ![Born Dead Gopnik](https://github.com/Jean-Baptiste-Lasselle/jbl-osm-original/raw/master/issues-memory/gopnik-unstable-fais-chier.png)
  * Eet parce que les mots ont une importance (nous travaillons avec des _languages_ de programmation, non?), j'ai avec amusement découvert le [sens du mot Gopnik en Russe](https://en.wikipedia.org/wiki/Gopnik) : 
