@@ -26,7 +26,8 @@ docker-compose up -d
 # 
 
 # export NOM_CONTENEUR_TESTRUNNER=test1-jbl-postgres-docker
-export NOM_CONTENEUR_TESTRUNNER=$(cat ./docker-compose.yml|grep container|awk -F ':' '{print $2}')
+# export NOM_CONTENEUR_TESTRUNNER=$(cat ./docker-compose.yml|grep container|awk -F ':' '{print $2}')
+export NOM_CONTENEUR_TESTRUNNER=$(cat ./.env |grep NOM_CONTENEUR_EXECUTION_TESTS|awk -F '=' '{print $2}')
 echo "  "
 echo " VERIF ENV. TEST RUN : [NOM_CONTENEUR_TESTRUNNER=$NOM_CONTENEUR_TESTRUNNER] "
 echo "  "
